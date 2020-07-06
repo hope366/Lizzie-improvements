@@ -1,0 +1,17 @@
+persist.properties
+persist
+lizzie.properties
+config.txt
+out/*
+.idea/
+*.dll
+*.iml
+*.exe
+network
+*.gz
+leelaz
+src/main/resources/META-INF
+target
+leelaz_opencl_tuning
+*.sh
+*.jar
