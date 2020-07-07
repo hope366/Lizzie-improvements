@@ -58,7 +58,7 @@ Lizzie will provide multitude of options to load and save SGF files, run an auto
 configure the board. To see all the options just hold down the key **x** (yes, just press and hold
 the letter **x**) and you will see all the commands listed in the GUI.
 
-### About v1.0
+### Initial release changes
 
 ・Fix #727 (winrate graph for LCB)
 
