@@ -113,4 +113,9 @@ For jpg format image files, you can convert them to png format or just change th
 
 Next, open config.txt and change it to "theme": "default", → "theme": "aaa",. This will change the background.
 
+・About komi 6.5 points
+
+In the official release version, komi is set to 7.5 points, but it has been changed to apply 6.5 points at startup.
+This is convenient when using katago to consider Japanese rules and Korean rules. leelazero has no effect because it does not support variable komi.
+
 
