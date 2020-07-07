@@ -1,3 +1,5 @@
+<!-- START doctoc -->
+<!-- END doctoc -->
 # Lizzie - Leela Zero Interface
 ![screenshot0 7](https://user-images.githubusercontent.com/63999713/86693777-f0982280-c045-11ea-9b59-1e7b5292851a.jpg)
 
