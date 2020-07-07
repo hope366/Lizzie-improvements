@@ -87,7 +87,8 @@ This smaller one is the LCB, and as the number of searches increases, the deviat
 
 * Put the jar file and the sound folder in the lizzie folder.When you start lizzie, an item called Settings → Play Sound has been added, so you can switch on/off the start sound here.You can also switch by ""play-sound": true," in config.txt.
 
-### Show GTP console during initial tuning of KataGo  ### Update obsolete "Leela Zero" in DisplayStrings_ja_JP
+### Show GTP console during initial tuning of KataGo
+### Update obsolete "Leela Zero" in DisplayStrings_ja_JP
 
 * Tuning is performed only the first time when the OpenCL version of katago is started with lizzie, so it may take a considerable time depending on the performance of the computer.So some people may give up thinking it is a bug or freeze.With this fix, the GTP console is displayed only at the first startup, and you can see that the tuning work is being performed internally.To verify, delete the KataGoData folder in the lizzie or katago folder and then launch the OpenCL version of katago with lizzie.
 
