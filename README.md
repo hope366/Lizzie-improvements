@@ -1,6 +1,8 @@
+# Lizzie-improvements
 <!-- TOC -->
 
-- [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
+- [Lizzie-improvements](#lizzie-improvements)
+    - [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
     - [Running a release](#running-a-release)
         - [Building Leela Zero](#building-leela-zero)
         - [Building Lizzie](#building-lizzie)
@@ -17,7 +19,7 @@
         - [About komi 6.5 points](#about-komi-65-points)
 
 <!-- /TOC -->
-# Lizzie - Leela Zero Interface
+## Lizzie - Leela Zero Interface
 ![screenshot0 7](https://user-images.githubusercontent.com/63999713/86693777-f0982280-c045-11ea-9b59-1e7b5292851a.jpg)
 Lizzie is a graphical interface allowing the user to analyze games in
 real time using [Leela Zero](https://github.com/gcp/leela-zero). You
