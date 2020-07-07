@@ -1,5 +1,5 @@
 # Lizzie - Leela Zero Interface
-![screenshot](https://raw.githubusercontent.com/featurecat/lizzie/master/screenshot0.7.jpg?raw=true)
+![screenshot0 7](https://user-images.githubusercontent.com/63999713/86683184-449e0980-c03c-11ea-8af0-dd3bb7d98c93.jpg)
 
 Lizzie is a graphical interface allowing the user to analyze games in
 real time using [Leela Zero](https://github.com/gcp/leela-zero). You
