@@ -111,8 +111,8 @@ Suppose you create a folder called "aaa".
 Place the image file you want to use as the background in this folder and name the file "background.png".
 For jpg format image files, you can convert them to png format or just change the name and extension.
 Next, open config.txt and change it to "theme": "default", → "theme": "aaa",. This will change the background.
-Start lizzie and select "aaa" from Settings → Themes → Top theme → Pulldown menu.
-Once you close lizzie and restart it, the specified image will be applied.
+
+Start lizzie and select "Settings" -> "Themes" -> "aaa" from the pull-down menu of the top theme. You can also change the background image with this method.
 We also recommend 1920x1080 as the size of the image file used. If the size is small, it looks like a split mode and it looks bad.
 
 ・About komi 6.5 points
