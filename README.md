@@ -80,6 +80,14 @@ In other words, the true win rate is in the range below.
 
 This smaller one is the LCB, and as the number of searches increases, the deviation becomes smaller and the LCB approaches 43.16%.Generally, MCTS starts the one with the largest number of searches in Root, but Leela Zero uses the one with the largest LCB.I'm supposed to choose. This was about +70 Elo stronger.
 
+### Fix #701 (wrong winrate in WinratePane)
+
+* This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 55% is correct and the screenshot below shows the previous number.This bug has been fixed.
+
+![up](https://user-images.githubusercontent.com/63999713/86817497-14984a00-c0c0-11ea-8c6a-f283c2d97441.jpg)
+
+![down](https://user-images.githubusercontent.com/63999713/86817567-27ab1a00-c0c0-11ea-937b-ed77bf5e8e0f.jpg)
+
 ### Remove redundant score display to fix #683
 
 * Although the numerical value showing the disparity information is displayed in the upper center of the winning percentage bar, there was a bug that the numerical value here was always 0 when the pre-analyzed sgf file was read and moved with pondering off.In v1.0 this confusing display has been removed.
@@ -97,6 +105,7 @@ This smaller one is the LCB, and as the number of searches increases, the deviat
 * In the official release version, "Leela Zero is loading" will continue to be displayed in the lower left until the analysis starts, regardless of the engine type.The modified version will display "Loading engine".
 
 ![load](https://user-images.githubusercontent.com/63999713/86813282-e6643b80-c0ba-11ea-826b-d28c94b7dd8b.jpg)
+
 ![engine](https://user-images.githubusercontent.com/63999713/86813353-0693fa80-c0bb-11ea-92ff-4f2a7e480c7e.jpg)
 
 ### About background image
