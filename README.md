@@ -1,6 +1,24 @@
+<!-- TOC -->
+
+- [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
+    - [Running a release](#running-a-release)
+        - [Building Leela Zero](#building-leela-zero)
+        - [Building Lizzie](#building-lizzie)
+        - [Running Lizzie](#running-lizzie)
+    - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
+        - [Fix #727 (winrate graph for LCB)](#fix-727-winrate-graph-for-lcb)
+        - [About Lcb](#about-lcb)
+        - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
+        - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
+        - [Add play sound](#add-play-sound)
+        - [Show GTP console during initial tuning of KataGo](#show-gtp-console-during-initial-tuning-of-katago)
+        - [Update obsolete "Leela Zero" in DisplayStrings_ja_JP](#update-obsolete-leela-zero-in-displaystrings_ja_jp)
+        - [About background image](#about-background-image)
+        - [About komi 6.5 points](#about-komi-65-points)
+
+<!-- /TOC -->
 # Lizzie - Leela Zero Interface
 ![screenshot0 7](https://user-images.githubusercontent.com/63999713/86693777-f0982280-c045-11ea-9b59-1e7b5292851a.jpg)
-
 Lizzie is a graphical interface allowing the user to analyze games in
 real time using [Leela Zero](https://github.com/gcp/leela-zero). You
 need Java 8 or higher to run this program.
