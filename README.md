@@ -19,6 +19,9 @@
         - [About komi 6.5 points](#about-komi-65-points)
 
 <!-- /TOC -->
+The explanation in Japanese is at the following link.
+https://ameblo.jp/hope366
+
 ## Lizzie - Leela Zero Interface
 ![screenshot0 7](https://user-images.githubusercontent.com/63999713/86693777-f0982280-c045-11ea-9b59-1e7b5292851a.jpg)
 Lizzie is a graphical interface allowing the user to analyze games in
