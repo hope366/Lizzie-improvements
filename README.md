@@ -129,7 +129,7 @@ This smaller one is the LCB, and as the number of searches increases, the deviat
 ### About background image
 
 * In v1.0, the starry sky background is applied by default, but the user can apply any image.There is a folder called theme in the lizzie folder.Create a folder with an arbitrary name in this.Suppose you create a folder called "aaa".Place the image file you want to use as the background in this folder and name the file "background.png".For jpg format image files, you can convert them to png format or just change the name and extension.Next, open config.txt and change it to "theme": "default", → "theme": "aaa",. This will change the background.Start lizzie and select "Settings" -> "Themes" -> "aaa" from the pull-down menu of the top theme. You can also change the background image with this method.
-* We also recommend 1920x1080 as the size of the image file used. If the size is small, it looks like a split mode and it looks bad.
+* We also recommend 1920x1080 as the size of the image file used. If the file size is small, it may not be displayed properly.
 
 ### About komi 6.5 points
 
