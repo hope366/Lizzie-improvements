@@ -87,7 +87,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
   * #### About Lcb
 
-With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
+   * With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
 LCB at this time is 40.86%.
 
 Q3 -> 10 (V: 43.16%) (LCB: 40.86%)
