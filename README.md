@@ -8,7 +8,6 @@
         - [Building Lizzie](#building-lizzie)
         - [Running Lizzie](#running-lizzie)
     - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
-            - [About Lcb](#about-lcb)
         - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
         - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
         - [Add play sound](#add-play-sound)
@@ -86,7 +85,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ![lcb](https://user-images.githubusercontent.com/63999713/86690198-acefe980-c042-11ea-93d2-1158e97a53ca.jpg)
 
-#### About Lcb
+  * #### About Lcb
 
 With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
 LCB at this time is 40.86%.
