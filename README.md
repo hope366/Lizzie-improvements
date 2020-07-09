@@ -85,19 +85,19 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ![lcb](https://user-images.githubusercontent.com/63999713/86690198-acefe980-c042-11ea-93d2-1158e97a53ca.jpg)
 
-    #### About Lcb
+ #### About Lcb
 
-With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
-LCB at this time is 40.86%.
+    With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
+    LCB at this time is 40.86%.
 
-Q3 -> 10 (V: 43.16%) (LCB: 40.86%)
+    Q3 -> 10 (V: 43.16%) (LCB: 40.86%)
 
-In 10 searches, the winning rate of 43.16% shifts 2.3% (43.16-40.86) up and down,
-In other words, the true win rate is in the range below.
+    In 10 searches, the winning rate of 43.16% shifts 2.3% (43.16-40.86) up and down,
+    In other words, the true win rate is in the range below.
 
-40.86% <= 43.16% <= 45.46%
+    40.86% <= 43.16% <= 45.46%
 
-This smaller one is the LCB, and as the number of searches increases, the deviation becomes smaller and the LCB approaches 43.16%.Generally, MCTS starts the one with the largest number of searches in Root, but Leela Zero uses the one with the largest LCB.I'm supposed to choose. This was about +70 Elo stronger.
+    This smaller one is the LCB, and as the number of searches increases, the deviation becomes smaller and the LCB approaches 43.16%.Generally, MCTS starts the one with the largest number of searches in Root, but Leela Zero uses the one with the largest LCB.I'm supposed to choose. This was about +70 Elo stronger.
 
 ### Fix #701 (wrong winrate in WinratePane)
 
