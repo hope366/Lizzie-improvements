@@ -81,27 +81,27 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 * ### Fix #727 (winrate graph for LCB)
 
-  * When studying with katago in lizzie, there was a problem in drawing the graph when the winning rate display method was Lcb.If the score difference becomes extremely large, the graph will not be drawn correctly and the vertical movement will be repeated violently.This has been improved in v1.0.
+ When studying with katago in lizzie, there was a problem in drawing the graph when the winning rate display method was Lcb.If the score difference becomes extremely large, the graph will not be drawn correctly and the vertical movement will be repeated violently.This has been improved in v1.0.
 
 ![lcb](https://user-images.githubusercontent.com/63999713/86690198-acefe980-c042-11ea-93d2-1158e97a53ca.jpg)
 
  #### About Lcb
 
-  With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
-  LCB at this time is 40.86%.
+ With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
+ LCB at this time is 40.86%.
 
-  Q3 -> 10 (V: 43.16%) (LCB: 40.86%)
+ Q3 -> 10 (V: 43.16%) (LCB: 40.86%)
 
-  In 10 searches, the winning rate of 43.16% shifts 2.3% (43.16-40.86) up and down,
-  In other words, the true win rate is in the range below.
+ In 10 searches, the winning rate of 43.16% shifts 2.3% (43.16-40.86) up and down,
+ In other words, the true win rate is in the range below.
 
-  40.86% <= 43.16% <= 45.46%
+ 40.86% <= 43.16% <= 45.46%
 
-  This smaller one is the LCB, and as the number of searches increases, the deviation becomes smaller and the LCB approaches 43.16%.Generally, MCTS starts the one with the largest number of searches in Root, but Leela Zero uses the one with the largest LCB.I'm supposed to choose. This was about +70 Elo stronger.
+ This smaller one is the LCB, and as the number of searches increases, the deviation becomes smaller and the LCB approaches 43.16%.Generally, MCTS starts the one with the largest number of searches in Root, but Leela Zero uses the one with the largest LCB.I'm supposed to choose. This was about +70 Elo stronger.
 
 ### Fix #701 (wrong winrate in WinratePane)
 
-* This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 55% is correct and the screenshot below shows the previous number.This bug has been fixed.
+ This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 55% is correct and the screenshot below shows the previous number.This bug has been fixed.
 
 ![up](https://user-images.githubusercontent.com/63999713/86817497-14984a00-c0c0-11ea-8c6a-f283c2d97441.jpg)
 
@@ -109,19 +109,19 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### Remove redundant score display to fix #683
 
-* Although the numerical value showing the disparity information is displayed in the upper center of the winning percentage bar, there was a bug that the numerical value here was always 0 when the pre-analyzed sgf file was read and moved with pondering off.In v1.0 this confusing display has been removed.
+ Although the numerical value showing the disparity information is displayed in the upper center of the winning percentage bar, there was a bug that the numerical value here was always 0 when the pre-analyzed sgf file was read and moved with pondering off.In v1.0 this confusing display has been removed.
 
 ### Add play sound
 
-* Put the jar file and the sound folder in the lizzie folder.When you start lizzie, an item called Settings → Play Sound has been added, so you can switch on/off the start sound here.You can also switch by ""play-sound": true," in config.txt.
+ Put the jar file and the sound folder in the lizzie folder.When you start lizzie, an item called Settings → Play Sound has been added, so you can switch on/off the start sound here.You can also switch by ""play-sound": true," in config.txt.
 
 ### Show GTP console during initial tuning of KataGo
 
-*  Tuning is performed only the first time when the OpenCL version of katago is started with lizzie, so it may take a considerable time depending on the performance of the computer.So some people may give up thinking it is a bug or freeze.With this fix, the GTP console is displayed only at the first startup, and you can see that the tuning work is being performed internally.To verify, delete the KataGoData folder in the lizzie or katago folder and then launch the OpenCL version of katago with lizzie.
+ Tuning is performed only the first time when the OpenCL version of katago is started with lizzie, so it may take a considerable time depending on the performance of the computer.So some people may give up thinking it is a bug or freeze.With this fix, the GTP console is displayed only at the first startup, and you can see that the tuning work is being performed internally.To verify, delete the KataGoData folder in the lizzie or katago folder and then launch the OpenCL version of katago with lizzie.
 
 ### Update obsolete "Leela Zero" in DisplayStrings_ja_JP
 
-* In the official release version, "Leela Zero is loading" will continue to be displayed in the lower left until the analysis starts, regardless of the engine type.The modified version will display "Loading engine".
+ In the official release version, "Leela Zero is loading" will continue to be displayed in the lower left until the analysis starts, regardless of the engine type.The modified version will display "Loading engine".
 
 ![load](https://user-images.githubusercontent.com/63999713/86813282-e6643b80-c0ba-11ea-826b-d28c94b7dd8b.jpg)
 
@@ -129,11 +129,11 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### About background image
 
-* In v1.0, the starry sky background is applied by default, but the user can apply any image.For the background image, put your favorite image in the yasnaya folder in the thema folder of the Lizzie folder, set the upper menu to yasnaya in the theme tab from the settings of the upper menu, and you can make it your favorite image with the path of the background image below it. I will. (It will be reflected when Lizzie is restarted after the change)
-* We also recommend 1920x1080 as the size of the image file used. If the file size is small, it may not be displayed properly.
+ In v1.0, the starry sky background is applied by default, but the user can apply any image.For the background image, put your favorite image in the yasnaya folder in the thema folder of the Lizzie folder, set the upper menu to yasnaya in the theme tab from the settings of the upper menu, and you can make it your favorite image with the path of the background image below it. I will. (It will be reflected when Lizzie is restarted after the change)
+ We also recommend 1920x1080 as the size of the image file used. If the file size is small, it may not be displayed properly.
 
 ### About komi 6.5 points
 
-* In the official release version, komi is set to 7.5 points, but it has been changed to apply 6.5 points at startup.This is convenient when using katago to consider Japanese rules and Korean rules. leelazero has no effect because it does not support variable komi.
+ In the official release version, komi is set to 7.5 points, but it has been changed to apply 6.5 points at startup.This is convenient when using katago to consider Japanese rules and Korean rules. leelazero has no effect because it does not support variable komi.
 
 
