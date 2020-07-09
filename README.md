@@ -8,7 +8,6 @@
         - [Building Lizzie](#building-lizzie)
         - [Running Lizzie](#running-lizzie)
     - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
-        - [* Fix #727 (winrate graph for LCB)](#-fix-727-winrate-graph-for-lcb)
             - [About Lcb](#about-lcb)
         - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
         - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
@@ -81,7 +80,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ## Changes in the initial release (v1.0)
 
-### * Fix #727 (winrate graph for LCB)
+* ### Fix #727 (winrate graph for LCB)
 
   * When studying with katago in lizzie, there was a problem in drawing the graph when the winning rate display method was Lcb.If the score difference becomes extremely large, the graph will not be drawn correctly and the vertical movement will be repeated violently.This has been improved in v1.0.
 
