@@ -21,7 +21,7 @@ The explanation in Japanese is at the following link.
 https://ameblo.jp/hope366
 
 ## Lizzie - Leela Zero Interface
-![GIF 2020-07-13 3-02-36](https://user-images.githubusercontent.com/63999713/87253355-763c2800-c4b5-11ea-8eee-8ee20b5068c7.gif)
+![GIF 2020-07-13 3-15-50](https://user-images.githubusercontent.com/63999713/87253578-4726b600-c4b7-11ea-8c96-6ad038c7d6c2.gif)
 Lizzie is a graphical interface allowing the user to analyze games in
 real time using [Leela Zero](https://github.com/gcp/leela-zero). You
 need Java 8 or higher to run this program.
