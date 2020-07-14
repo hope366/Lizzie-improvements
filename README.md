@@ -86,6 +86,8 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ![lcb](https://user-images.githubusercontent.com/63999713/87446286-13bd6600-c634-11ea-88e7-39baf95f3f55.jpg)
 
+![lcb2](https://user-images.githubusercontent.com/63999713/87453050-eb863500-c63c-11ea-9bf9-69409e921ed3.jpg)
+
  #### About Lcb
 
  With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
