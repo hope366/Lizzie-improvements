@@ -84,7 +84,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
  When studying with katago in lizzie, there was a problem in drawing the graph when the winning rate display method was Lcb.If the score difference becomes extremely large, the graph will not be drawn correctly and the vertical movement will be repeated violently.This has been improved in v1.0.
  This screenshot shows a 5 stone handicap game setup. White 2, 4, 6, 8 are passes.
 
-![lcb](https://user-images.githubusercontent.com/63999713/87445786-706c5100-c633-11ea-94c7-8ed9710966d9.jpg)
+![lcb](https://user-images.githubusercontent.com/63999713/87446286-13bd6600-c634-11ea-88e7-39baf95f3f55.jpg)
 
  #### About Lcb
 
