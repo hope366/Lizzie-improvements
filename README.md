@@ -126,7 +126,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ![loadtyu](https://user-images.githubusercontent.com/63999713/87438168-2894fc00-c62a-11ea-8f0d-0de55759c7eb.jpg)
 
-![engine](https://user-images.githubusercontent.com/63999713/86813353-0693fa80-c0bb-11ea-92ff-4f2a7e480c7e.jpg)
+![image](https://user-images.githubusercontent.com/63999713/87439458-c76e2800-c62b-11ea-83fd-2b2c34b2d7ce.png)
 
 ### About background image
 
