@@ -102,11 +102,11 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### Fix #701 (wrong winrate in WinratePane)
 
- This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 55% is correct and the screenshot below shows the previous number.This bug has been fixed.
+ This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 34.3% is correct and the screenshot below shows the previous number.This bug has been fixed.
 
-![up](https://user-images.githubusercontent.com/63999713/86817497-14984a00-c0c0-11ea-8c6a-f283c2d97441.jpg)
+![sedol1](https://user-images.githubusercontent.com/63999713/87452256-f5f3ff00-c63b-11ea-89be-9d7391379bf5.jpg)
 
-![down](https://user-images.githubusercontent.com/63999713/86817567-27ab1a00-c0c0-11ea-937b-ed77bf5e8e0f.jpg)
+![sedol2](https://user-images.githubusercontent.com/63999713/87452332-115f0a00-c63c-11ea-9663-ca889d3a0095.jpg)
 
 ### Remove redundant score display to fix #683
 
