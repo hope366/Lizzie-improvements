@@ -124,7 +124,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  In the official release version, "Leela Zero is loading" will continue to be displayed in the lower left until the analysis starts, regardless of the engine type.The modified version will display "Loading engine".
 
-![load](https://user-images.githubusercontent.com/63999713/86813282-e6643b80-c0ba-11ea-826b-d28c94b7dd8b.jpg)
+v![engine road](https://user-images.githubusercontent.com/63999713/87437350-2a11f480-c629-11ea-8b64-f200ee41f1b6.jpg)
 
 ![engine](https://user-images.githubusercontent.com/63999713/86813353-0693fa80-c0bb-11ea-92ff-4f2a7e480c7e.jpg)
 
