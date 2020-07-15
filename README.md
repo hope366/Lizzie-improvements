@@ -1,19 +1,18 @@
 # Lizzie-improvements
 
-- [Lizzie-improvements](#lizzie-improvements)
-    - [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
-    - [Running a release](#running-a-release)
-        - [Building Leela Zero](#building-leela-zero)
-        - [Building Lizzie](#building-lizzie)
-        - [Running Lizzie](#running-lizzie)
-    - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
-        - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
-        - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
-        - [Add play sound](#add-play-sound)
-        - [Show GTP console during initial tuning of KataGo](#show-gtp-console-during-initial-tuning-of-katago)
-        - [Update obsolete "Leela Zero" in DisplayStrings_ja_JP](#update-obsolete-leela-zero-in-displaystrings_ja_jp)
-        - [About background image](#about-background-image)
-        - [About komi 6.5 points](#about-komi-65-points)
+- [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
+- [Running a release](#running-a-release)
+  - [Building Leela Zero](#building-leela-zero)
+  - [Building Lizzie](#building-lizzie)
+  - [Running Lizzie](#running-lizzie)
+- [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
+  - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
+  - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
+  - [Add play sound](#add-play-sound)
+  - [Show GTP console during initial tuning of KataGo](#show-gtp-console-during-initial-tuning-of-katago)
+  - [Update obsolete "Leela Zero" in DisplayStrings_ja_JP](#update-obsolete-leela-zero-in-displaystrings_ja_jp)
+  - [About background image](#about-background-image)
+  - [About komi 6.5 points](#about-komi-65-points)
 
 日本語での説明は、こちらのリンク先をご覧ください→
 https://ameblo.jp/hope366
