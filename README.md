@@ -1,5 +1,4 @@
 # Lizzie-improvements
-<!-- TOC -->
 
 - [Lizzie-improvements](#lizzie-improvements)
     - [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
@@ -16,7 +15,6 @@
         - [About background image](#about-background-image)
         - [About komi 6.5 points](#about-komi-65-points)
 
-<!-- /TOC -->
 日本語での説明は、こちらのリンク先をご覧ください→
 https://ameblo.jp/hope366
 
