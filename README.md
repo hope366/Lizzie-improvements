@@ -6,6 +6,8 @@
   - [Building Lizzie](#building-lizzie)
   - [Running Lizzie](#running-lizzie)
 - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
+  - [Fix #727 (winrate graph for LCB)](#Fix #727 (winrate graph for LCB))
+    - [About Lcb](#About Lcb)
   - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
   - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
   - [Add play sound](#add-play-sound)
