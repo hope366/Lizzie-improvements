@@ -17,7 +17,7 @@
         - [About komi 6.5 points](#about-komi-65-points)
 
 <!-- /TOC -->
-The explanation in Japanese is at the following link.
+日本語での説明は、こちらのリンク先をご覧ください→
 https://ameblo.jp/hope366
 
 ## Lizzie - Leela Zero Interface
