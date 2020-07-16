@@ -1,23 +1,22 @@
 # Lizzie-improvements
-<!-- TOC -->
 
-- [Lizzie-improvements](#lizzie-improvements)
-    - [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
-    - [Running a release](#running-a-release)
-        - [Building Leela Zero](#building-leela-zero)
-        - [Building Lizzie](#building-lizzie)
-        - [Running Lizzie](#running-lizzie)
-    - [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
-        - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
-        - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
-        - [Add play sound](#add-play-sound)
-        - [Show GTP console during initial tuning of KataGo](#show-gtp-console-during-initial-tuning-of-katago)
-        - [Update obsolete "Leela Zero" in DisplayStrings_ja_JP](#update-obsolete-leela-zero-in-displaystrings_ja_jp)
-        - [About background image](#about-background-image)
-        - [About komi 6.5 points](#about-komi-65-points)
+- [Lizzie - Leela Zero Interface](#lizzie---leela-zero-interface)
+- [Running a release](#running-a-release)
+    - [Building Leela Zero](#building-leela-zero)
+    - [Building Lizzie](#building-lizzie)
+    - [Running Lizzie](#running-lizzie)
+- [Changes in the initial release (v1.0)](#changes-in-the-initial-release-v10)
+    - [Fix #727 (winrate graph for LCB)](#fix-727-winrate-graph-for-lcb)
+        - [About Lcb](#about-lcb)
+    - [Fix #701 (wrong winrate in WinratePane)](#fix-701-wrong-winrate-in-winratepane)
+    - [Remove redundant score display to fix #683](#remove-redundant-score-display-to-fix-683)
+    - [Add play sound](#add-play-sound)
+    - [Show GTP console during initial tuning of KataGo](#show-gtp-console-during-initial-tuning-of-katago)
+    - [Update obsolete "Leela Zero" in DisplayStrings_ja_JP](#update-obsolete-leela-zero-in-displaystrings_ja_jp)
+    - [About background image](#about-background-image)
+    - [About komi 6.5 points](#about-komi-65-points)
 
-<!-- /TOC -->
-The explanation in Japanese is at the following link.
+日本語での説明は、こちらのリンク先をご覧ください→
 https://ameblo.jp/hope366
 
 ## Lizzie - Leela Zero Interface
@@ -79,14 +78,16 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ## Changes in the initial release (v1.0)
 
- ### Fix #727 (winrate graph for LCB)
+### Fix #727 (winrate graph for LCB)
 
  When studying with katago in lizzie, there was a problem in drawing the graph when the winning rate display method was Lcb.If the score difference becomes extremely large, the graph will not be drawn correctly and the vertical movement will be repeated violently.This has been improved in v1.0.
  This screenshot shows a 5 stone handicap game setup. White 2, 4, 6, 8 are passes.
 
-![lcb](https://user-images.githubusercontent.com/63999713/86690198-acefe980-c042-11ea-93d2-1158e97a53ca.jpg)
+![lcb](https://user-images.githubusercontent.com/63999713/87446286-13bd6600-c634-11ea-88e7-39baf95f3f55.jpg)
 
- #### About Lcb
+![lcb2](https://user-images.githubusercontent.com/63999713/87453050-eb863500-c63c-11ea-9bf9-69409e921ed3.jpg)
+
+#### About Lcb
 
  With LeelaZero, for example, Q3 is searched 10 times and the average win rate is 43.16%.
  LCB at this time is 40.86%.
@@ -102,11 +103,11 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### Fix #701 (wrong winrate in WinratePane)
 
- This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 55% is correct and the screenshot below shows the previous number.This bug has been fixed.
+ This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 34.3% is correct and the screenshot below shows the previous number.This bug has been fixed.
 
-![up](https://user-images.githubusercontent.com/63999713/86817497-14984a00-c0c0-11ea-8c6a-f283c2d97441.jpg)
+![sedol1](https://user-images.githubusercontent.com/63999713/87452256-f5f3ff00-c63b-11ea-89be-9d7391379bf5.jpg)
 
-![down](https://user-images.githubusercontent.com/63999713/86817567-27ab1a00-c0c0-11ea-937b-ed77bf5e8e0f.jpg)
+![sedol2](https://user-images.githubusercontent.com/63999713/87452332-115f0a00-c63c-11ea-9663-ca889d3a0095.jpg)
 
 ### Remove redundant score display to fix #683
 
@@ -124,9 +125,9 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  In the official release version, "Leela Zero is loading" will continue to be displayed in the lower left until the analysis starts, regardless of the engine type.The modified version will display "Loading engine".
 
-![load](https://user-images.githubusercontent.com/63999713/86813282-e6643b80-c0ba-11ea-826b-d28c94b7dd8b.jpg)
+![loadtyu](https://user-images.githubusercontent.com/63999713/87438168-2894fc00-c62a-11ea-8f0d-0de55759c7eb.jpg)
 
-![engine](https://user-images.githubusercontent.com/63999713/86813353-0693fa80-c0bb-11ea-92ff-4f2a7e480c7e.jpg)
+![gtp](https://user-images.githubusercontent.com/63999713/87439880-42374300-c62c-11ea-8da6-e2e0424b2dd1.jpg)
 
 ### About background image
 
