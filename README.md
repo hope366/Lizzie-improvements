@@ -138,4 +138,42 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  In the official release version, komi is set to 7.5 points, but it has been changed to apply 6.5 points at startup.This is convenient when using katago to consider Japanese rules and Korean rules. leelazero has no effect because it does not support variable komi.
 
+## Changes in v1.1
+
+### Fixed initial placement for handicap games
+
+ In KataGo's handicap game, the initial placement was randomly determined, but it has been changed to the official placement.
+
+### Fix obsolete "Leela Zero" for the default player name
+
+ When playing a new game with KataGo, "Leela Zero" was displayed in the game info dialog box and the player name at the bottom of the board, but it has been changed to "AI".
+
+  <![ai](https://user-images.githubusercontent.com/63999713/87859317-49818800-c96f-11ea-9fcd-c48f721e76d1.jpg)> <![ai2](https://user-images.githubusercontent.com/63999713/87859331-6453fc80-c96f-11ea-88b0-53d9aa8d0378.jpg)>
+
+### Fixed a bug where the win rate graph would cross the board
+
+
+ When loading a pre-analyzed sgf file and moving it from the beginning with pondering off, if the automatic width adjustment of the winning percentage graph is enabled, the graph appears to cross the main board greatly.This bug has been fixed in v1.1.
+
+  ![graph](https://user-images.githubusercontent.com/63999713/87859391-cd3b7480-c96f-11ea-92a9-4fcc5df0f0c6.jpg)
+
+### Fix saveBackRouting skipping nodes
+
+ See the screenshot below. In the above screenshot, switch the engine from Katago to leelazero. It should be in the same phase, but the result will show the point of another previous branch, as in the screenshot below.Thus, if you have several branches, switching engines may show aspects of another previous branch. This bug has been fixed in v1.1.
+
+![GIF 2020-07-13 14-43-42](https://user-images.githubusercontent.com/63999713/87859408-ec3a0680-c96f-11ea-914e-f4a0b105b5fd.gif)
+
+### Fix: "Pondering on/off" was not updated by Analyze button
+
+ When Pondering on is displayed, click the "Analysis" button on the toolbar to stop the search on the board. However, it does not update to "Pondering off" until you move the mouse cursor over the main board. In the modified version, "Pondering off" is displayed immediately after clicking the "Analysis" button.
+
+### Fix (scoreMean & scoreStdev)
+
+ There are three items above the winning percentage graph: "mean", "stdev", and "Last move". In real-time analysis, all three work normally, but when moved with the pondering off, "mean" and "stdev" are fixed at the final numerical values ​​and do not work properly.In v1.1, these two non-functioning items were hidden when moving with pondering off.
+
+### Option to opaquely paint grayscale territory prediction on board
+
+ About the lower menu "Kata Estimate", added the option to display with opaque white to black paint.To switch, go to View → KataGo Settings → Trend Information → Brend with board. The shortcut key is "Shift-Period". The changes will be reflected when you turn on Pondering on.
+
+
 
