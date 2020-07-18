@@ -167,6 +167,8 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  When Pondering on is displayed, click the "Analysis" button on the toolbar to stop the search on the board. However, it does not update to "Pondering off" until you move the mouse cursor over the main board. In the modified version, "Pondering off" is displayed immediately after clicking the "Analysis" button.
 
+ ![GIF 2020-07-19 3-40-03](https://user-images.githubusercontent.com/63999713/87859677-e8a77f00-c971-11ea-8a14-f4854c109022.gif)
+
 ### Fix (scoreMean & scoreStdev)
 
  There are three items above the winning percentage graph: "mean", "stdev", and "Last move". In real-time analysis, all three work normally, but when moved with the pondering off, "mean" and "stdev" are fixed at the final numerical values ​​and do not work properly.In v1.1, these two non-functioning items were hidden when moving with pondering off.
@@ -174,6 +176,10 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Option to opaquely paint grayscale territory prediction on board
 
  About the lower menu "Kata Estimate", added the option to display with opaque white to black paint.To switch, go to View → KataGo Settings → Trend Information → Brend with board. The shortcut key is "Shift-Period". The changes will be reflected when you turn on Pondering on.
+
+ ![grey1](https://user-images.githubusercontent.com/63999713/87859685-fe1ca900-c971-11ea-84e9-413694fde269.jpg)
+
+ ![grey2](https://user-images.githubusercontent.com/63999713/87859692-112f7900-c972-11ea-9bbc-9a1e682184d9.jpg)
 
 
 
