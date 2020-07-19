@@ -156,7 +156,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  When playing a new game with KataGo, "Leela Zero" was displayed in the game info dialog box and the player name at the bottom of the board, but it has been changed to "AI".
 
-  <![ai](https://user-images.githubusercontent.com/63999713/87859317-49818800-c96f-11ea-9fcd-c48f721e76d1.jpg)> <![ai2](https://user-images.githubusercontent.com/63999713/87859331-6453fc80-c96f-11ea-88b0-53d9aa8d0378.jpg)>
+  <![ai](https://user-images.githubusercontent.com/63999713/87859317-49818800-c96f-11ea-9fcd-c48f721e76d1.jpg)" width="45%"> <![ai2](https://user-images.githubusercontent.com/63999713/87859331-6453fc80-c96f-11ea-88b0-53d9aa8d0378.jpg)" width="45%">
 
 ### Fixed a bug where the win rate graph would cross the board
 
