@@ -151,6 +151,8 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  In KataGo's handicap game, the initial placement was randomly determined, but it has been changed to the official placement.
 
+ <img src="https://user-images.githubusercontent.com/63999713/87868402-1fac7d80-c9d0-11ea-8d12-6b4f9f78aae0.jpg" width="45%"> <img src="https://user-images.githubusercontent.com/63999713/87868427-584c5700-c9d0-11ea-822f-fc9c6c1790a2.jpg" width="45%">
+
 ### Fix obsolete "Leela Zero" for the default player name
 
  When playing a new game with KataGo, "Leela Zero" was displayed in the game info dialog box and the player name at the bottom of the board, but it has been changed to "AI".
