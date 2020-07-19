@@ -156,7 +156,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  When playing a new game with KataGo, "Leela Zero" was displayed in the game info dialog box and the player name at the bottom of the board, but it has been changed to "AI".
 
-  <img src="https://user-images.githubusercontent.com/63999713/87859317-49818800-c96f-11ea-9fcd-c48f721e76d1.jpg" width="50%"> <img src="https://user-images.githubusercontent.com/63999713/87859331-6453fc80-c96f-11ea-88b0-53d9aa8d0378.jpg" width="50%">
+  <img src="https://user-images.githubusercontent.com/63999713/87859317-49818800-c96f-11ea-9fcd-c48f721e76d1.jpg" width="45%"> <img src="https://user-images.githubusercontent.com/63999713/87859331-6453fc80-c96f-11ea-88b0-53d9aa8d0378.jpg" width="45%">
 
 ### Fixed a bug where the win rate graph would cross the board
 
@@ -185,7 +185,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  About the lower menu "Kata Estimate", added the option to display with opaque white to black paint.To switch, go to View → KataGo Settings → Trend Information → Brend with board. The shortcut key is "Shift-Period". The changes will be reflected when you turn on Pondering on.
 
- <img src="https://user-images.githubusercontent.com/63999713/87859685-fe1ca900-c971-11ea-84e9-413694fde269.jpg" width=50%> <img src="https://user-images.githubusercontent.com/63999713/87859692-112f7900-c972-11ea-9bbc-9a1e682184d9.jpg" width=50%>
+ <img src="https://user-images.githubusercontent.com/63999713/87859685-fe1ca900-c971-11ea-84e9-413694fde269.jpg" width=45%> <img src="https://user-images.githubusercontent.com/63999713/87859692-112f7900-c972-11ea-9bbc-9a1e682184d9.jpg" width=45%>
 
 
 
