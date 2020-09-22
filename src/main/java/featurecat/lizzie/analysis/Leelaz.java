@@ -58,6 +58,9 @@ public class Leelaz {
   private boolean isPondering;
   private long startPonderTime;
 
+  // enable temporary detaching for efficiency
+  public boolean isAttached = true;
+
   // fixed_handicap
   public boolean isSettingHandicap = false;
 
@@ -226,15 +229,25 @@ public class Leelaz {
   }
 
   public void normalQuit() {
+    final int MAX_TRIALS = 5;
     sendCommand("quit");
     executor.shutdown();
     try {
-      while (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
+      for (int i = 0; i < MAX_TRIALS; i++) {
+        if (executor.awaitTermination(1, TimeUnit.SECONDS)) {
+          break;
+        }
+        System.out.printf("Waiting for shutdown of engine... (%d)\n", i + 1);
         executor.shutdownNow();
       }
-      if (executor.awaitTermination(1, TimeUnit.SECONDS)) {
-        shutdown();
+      if (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
+        JOptionPane.showMessageDialog(
+            Lizzie.frame,
+            "Engine does not close its pipe after GTP command 'quit'.",
+            "Lizzie - Error!",
+            JOptionPane.ERROR_MESSAGE);
       }
+      shutdown();
     } catch (InterruptedException e) {
       executor.shutdownNow();
       Thread.currentThread().interrupt();
@@ -573,6 +586,9 @@ public class Leelaz {
    * @param move coordinate of the coordinate
    */
   public void playMove(Stone color, String move) {
+    if (!isAttached) {
+      return;
+    }
     synchronized (this) {
       String colorString;
       switch (color) {
@@ -660,6 +676,9 @@ public class Leelaz {
   }
 
   public void undo() {
+    if (!isAttached) {
+      return;
+    }
     synchronized (this) {
       sendCommand("undo");
       bestMoves = new ArrayList<>();
