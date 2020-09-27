@@ -188,6 +188,32 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  <img src="https://user-images.githubusercontent.com/63999713/87859685-fe1ca900-c971-11ea-84e9-413694fde269.jpg" width=45%> <img src="https://user-images.githubusercontent.com/63999713/87859692-112f7900-c972-11ea-9bbc-9a1e682184d9.jpg" width=45%>
 
+ ## Changes in v1.2
+
+ ### Fixed a bug that lizzie freezes when loading certain FOX GO SGF files
+
+  Some FOX GO game records contain many explanations and branches. This is often seen in official competitions between professionals.
+  If you save this and load it with lizzie, lizzie may freeze. This bug has been fixed in v1.2.
+
+### Show error dialog for typical engine troubles
+
+ Previously, lizzie did not display any information if lizzie could not be started normally due to some flaw. With this fix, an error message will be displayed in a dialog box if the engine is improperly installed.
+
+### Fix parsing GAMEINFOMAIN when GONGJE is missing
+
+ This is a fix for GONGJE (komi) when loading a GIB format file, but the details are unknown and are currently under investigation.
+
+### Avoid infinite loop in switchEngine
+
+ Lizzie can freeze in switchEngine if the engine does not close its pipe after the GTP command "quit" for some reason.I'm afraid this may occur when users write their scripts for cloud engines.
+ This bug has been fixed in v1.2.
+
+### Fix #745 (NPE after initial config)
+ 
+ Details are unknown.See [here] (https://github.com/featurecat/lizzie/issues/745).
+
+  
+
 
 
 
