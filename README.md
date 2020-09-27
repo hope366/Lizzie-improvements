@@ -32,6 +32,13 @@
         - [1.5.3. Fix parsing GAMEINFOMAIN when GONGJE is missing](#153-fix-parsing-gameinfomain-when-gongje-is-missing)
         - [1.5.4. Avoid infinite loop in switchEngine](#154-avoid-infinite-loop-in-switchengine)
         - [1.5.5. Fix #745 (NPE after initial config)](#155-fix-745-npe-after-initial-config)
+    - [1.6. Changes in v1.3](#16-changes-in-v13)
+        - [1.6.1 Record startup log for #756 even when printCommunication is not set #759](#161-record-startup-log-for-756-even-when-printcommunication-is-not-set-759)
+        - [1.6.2 Show dialog for #756 when engine ended unintentionally](#162-show-dialog-for-756-when-engine-ended-unintentionally)
+        - [1.6.3 Show "Engine is down." in trouble instead of "Engine is loading..."](#163-show-engine-is-down-in-trouble-instead-of-engine-is-loading)
+        - [1.6.4 Show GTP console when engine ended unintentionally](#164-show-gtp-console-when-engine-ended-unintentionally)
+        - [1.6.5 Import komi fix for Fox SGF from KaTrain (ref. #755)](#165-import-komi-fix-for-fox-sgf-from-katrain-ref-755)
+        - [1.6.6 Fix #752 (deadlock by Fox SGF)](#166-fix-752-deadlock-by-fox-sgf)
 
 <!-- /TOC -->
 
@@ -222,6 +229,38 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### 1.5.5. Fix #745 (NPE after initial config)
  
  Details are unknown.See [here](https://github.com/featurecat/lizzie/issues/745).
+
+## 1.6. Changes in v1.3
+
+### 1.6.1 Record startup log for #756 even when printCommunication is not set #759
+
+ The main reasons why lizzie does not start normally are that the engine command input is incorrect, the contents of the KataGo configuration file are incorrect, the weight file is incorrect, and so on.
+ In such cases, lizzie will display in the Gtp console why it failed to start.
+
+### 1.6.2 Show dialog for #756 when engine ended unintentionally
+
+ Displays an error message in a dialog box if the engine fails to start.
+
+### 1.6.3 Show "Engine is down." in trouble instead of "Engine is loading..." 
+
+ If the engine fails to start, the status display at the bottom left was previously displayed as "Loading engine ...", but it has been changed to "Engin is down".
+
+### 1.6.4 Show GTP console when engine ended unintentionally
+
+ With some of the above fixes, users can now easily identify the cause when lizzie fails to launch successfully.
+
+ For example, if you start lizzie without placing it in the weight file lizzie folder, it will look like the screenshot below.
+
+ ![error](https://user-images.githubusercontent.com/63999713/94359971-0832f480-00e5-11eb-9e54-c7f0b806e9fe.jpg)
+
+### 1.6.5 Import komi fix for Fox SGF from KaTrain (ref. #755)
+
+ The FOX GO SGF file may contain incorrect komi values. Fixed to be converted to the correct komi value and read when loaded with lizzie
+
+### 1.6.6 Fix #752 (deadlock by Fox SGF)
+
+ When loading a FOX GO SGF file, lizzie may freeze. A simple fix was made in v1.2, but a more ideal fix was made in v1.3.
+ See [here](https://github.com/featurecat/lizzie/pull/757) for more information.
 
   
 
