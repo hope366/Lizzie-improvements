@@ -120,7 +120,6 @@ public class SGFParser {
     if (Lizzie.leelaz != null) {
       Lizzie.leelaz.supportScoremean = false;
     }
-
     // Detach engine for avoiding useless "play" and "undo" (#752).
     Lizzie.leelaz.isAttached = false;
     parseValue(value, null, false);
@@ -151,6 +150,9 @@ public class SGFParser {
     String tag = "";
     StringBuilder tagBuilder = new StringBuilder();
     StringBuilder tagContentBuilder = new StringBuilder();
+    // for Fox SGF
+    boolean isFox = false;
+    String rule = "";
     // MultiGo 's branch: (Main Branch (Main Branch) (Branch) )
     // Other 's branch: (Main Branch (Branch) Main Branch)
     if (value.matches("(?s).*\\)\\s*\\)")) {
@@ -406,6 +408,14 @@ public class SGFParser {
             } catch (NumberFormatException e) {
               e.printStackTrace();
             }
+          } else if (tag.equals("AP")) {
+            if ("foxwq".equals(tagContent)) {
+              // Beware: Fox SGF has two AP[]. (2020-09-26)
+              // ...AP[GNU Go:3.8]RE[B+3.50]TM[10800]TC[5]TT[60]AP[foxwq]...
+              isFox = true;
+            }
+          } else if (tag.equals("RU")) {
+            rule = tagContent;
           } else {
             if (moveStart) {
               // Other SGF node properties
@@ -525,8 +535,26 @@ public class SGFParser {
         }
       }
     }
+    if (isFox) {
+      fixFoxSGF(history, rule);
+    }
     Lizzie.config.playSound = originalPlaySound;
     return history;
+  }
+
+  private static void fixFoxSGF(BoardHistoryList history, String rule) {
+    BoardHistoryList validHistory = (history == null ? Lizzie.board.getHistory() : history);
+    String lowerCaseRule = rule.toLowerCase();
+    // ref. https://github.com/sanderland/katrain/issues/177
+    double correctedKomi =
+        (validHistory.getGameInfo().getHandicap() >= 1)
+            ? 0.5
+            : (lowerCaseRule.equals("chinese") || lowerCaseRule.equals("cn")) ? 7.5 : 6.5;
+    if (history == null) {
+      Lizzie.board.setKomi(correctedKomi);
+    } else {
+      history.getGameInfo().setKomi(correctedKomi);
+    }
   }
 
   public static String saveToString() throws IOException {

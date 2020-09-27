@@ -46,6 +46,8 @@ public class Leelaz {
   private BufferedInputStream inputStream;
   private BufferedOutputStream outputStream;
 
+  private WriterThread writerThread;
+
   private boolean printCommunication;
   public boolean gtpConsole;
 
@@ -83,6 +85,8 @@ public class Leelaz {
   private boolean switching = false;
   private int currentEngineN = -1;
   private ScheduledExecutorService executor;
+  private boolean isQuittingNormally = false;
+  private boolean isDown = false;
 
   // dynamic komi and opponent komi as reported by dynamic-komi version of leelaz
   private float dynamicKomi = Float.NaN;
@@ -139,6 +143,8 @@ public class Leelaz {
 
     isLoaded = false;
     isKataGo = false;
+    isQuittingNormally = false;
+    isDown = false;
     bestMoves = new ArrayList<>();
     Lizzie.board.getData().tryToClearBestMoves();
 
@@ -181,15 +187,16 @@ public class Leelaz {
     try {
       process = processBuilder.start();
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(
-          Lizzie.frame,
-          "Failed to start the engine.",
-          "Lizzie - Error!",
-          JOptionPane.ERROR_MESSAGE);
+      String err = e.getLocalizedMessage();
+      String message =
+          String.format(
+              "Failed to start the engine.\n\nError: %s", (err == null) ? "(No message)" : err);
+      alertEngineDown(message);
       throw e;
     }
 
     initializeStreams();
+    startWriterThread();
 
     // Send a name request to check if the engine is KataGo
     // Response handled in parseLine
@@ -228,7 +235,15 @@ public class Leelaz {
     togglePonder();
   }
 
+  private void alertEngineDown(String message) {
+    isDown = true;
+    String displayedMessage = String.format("%s\n\nEngine command: %s", message, engineCommand);
+    JOptionPane.showMessageDialog(
+        Lizzie.frame, displayedMessage, "Lizzie - Error!", JOptionPane.ERROR_MESSAGE);
+  }
+
   public void normalQuit() {
+    isQuittingNormally = true;
     final int MAX_TRIALS = 5;
     sendCommand("quit");
     executor.shutdown();
@@ -252,6 +267,7 @@ public class Leelaz {
       executor.shutdownNow();
       Thread.currentThread().interrupt();
     }
+    stopWriterThread();
     started = false;
     isLoaded = false;
     Lizzie.engineManager.updateEngineIcon();
@@ -302,7 +318,7 @@ public class Leelaz {
    */
   private void parseLine(String line) {
     synchronized (this) {
-      if (printCommunication || gtpConsole) {
+      if (printCommunication || gtpConsole || !isLoaded) {
         Lizzie.gtpConsole.addLine(line);
       }
       if (line.startsWith("komi=")) {
@@ -482,6 +498,13 @@ public class Leelaz {
       }
       // this line will be reached when Leelaz shuts down
       System.out.println("Engine process ended.");
+      if (!isQuittingNormally) {
+        if (!Lizzie.gtpConsole.isVisible()) {
+          Lizzie.frame.toggleGtpConsole();
+        }
+        alertEngineDown(
+            "Engine process ended unintentionally for some reason.\nYou may find more information in GTP console.");
+      }
 
       shutdown();
       // Do no exit for switching weights
@@ -549,14 +572,7 @@ public class Leelaz {
     Lizzie.gtpConsole.addCommand(command, cmdNumber);
     command = cmdNumber + " " + command;
     cmdNumber++;
-    if (outputStream != null) {
-      try {
-        outputStream.write((command + "\n").getBytes());
-        outputStream.flush();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
+    sendToWriterThread(command + "\n");
   }
 
   /** Check whether leelaz is responding to the last command */
@@ -959,6 +975,10 @@ public class Leelaz {
     return isLoaded;
   }
 
+  public boolean isDown() {
+    return isDown;
+  }
+
   public boolean supportScoremean() {
     return isKataGo || supportScoremean;
   }
@@ -997,6 +1017,80 @@ public class Leelaz {
       currentWeightFile = wMatcher.group(2);
       String[] names = currentWeightFile.split("[\\\\|/]");
       currentWeight = names.length > 1 ? names[names.length - 1] : currentWeightFile;
+    }
+  }
+  // Writer thread for avoiding deadlock (#752)
+  class WriterThread extends Thread {
+    public ArrayDeque<String> writerQueue = new ArrayDeque<>();
+    private ArrayDeque<String> privateQueue = new ArrayDeque<>();
+    public boolean shouldStopNow = false;
+
+    public void run() {
+      // ref.
+      // https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
+      while (true) {
+        synchronized (this) {
+          while (writerQueue.isEmpty() && !shouldStopNow) {
+            try {
+              wait();
+            } catch (InterruptedException e) {
+            }
+          }
+          if (shouldStopNow) return;
+          // Note that outputStream can be stalled by massive GTP commands (#752).
+          // We move requests from writerQueue to privateQueue
+          // so that we can release the lock BEFORE using outputStream.
+          // Then other threads can send new requests to writerQueue
+          // even when writer thread is blocked in writeToStream().
+          while (!writerQueue.isEmpty()) {
+            String command = writerQueue.removeFirst();
+            privateQueue.addLast(command);
+          }
+        }
+        writeToStream();
+      }
+    }
+
+    private void writeToStream() {
+      if (outputStream != null) {
+        try {
+          while (!privateQueue.isEmpty()) {
+            String command = privateQueue.removeFirst();
+            outputStream.write(command.getBytes());
+          }
+          outputStream.flush();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
+  public void startWriterThread() {
+    writerThread = this.new WriterThread();
+    writerThread.start();
+  }
+
+  public void stopWriterThread() {
+    if (writerThread == null) return;
+    synchronized (writerThread) {
+      writerThread.shouldStopNow = true;
+      writerThread.notify();
+    }
+    // Wait for writer thread to notice the shouldStopNow and actually finish terminating
+    try {
+      writerThread.join();
+    } catch (InterruptedException e) {
+    }
+    // Reset it to null now that it is dead. All cleaned up
+    writerThread = null;
+  }
+
+  public void sendToWriterThread(String command) {
+    if (writerThread == null) return;
+    synchronized (writerThread) {
+      writerThread.writerQueue.addLast(command);
+      writerThread.notify();
     }
   }
 }
