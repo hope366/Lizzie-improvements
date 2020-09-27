@@ -42,7 +42,7 @@
 
 <!-- /TOC -->
 
-日本語での説明は、下記のリンク先をご覧ください→
+日本語での説明は、こちらのリンク先をご覧ください→
 https://ameblo.jp/hope366/entry-12627866225.html
 
 ## 1.1. Lizzie - Leela Zero Interface
