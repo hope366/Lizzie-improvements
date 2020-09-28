@@ -4,6 +4,7 @@ import static java.lang.Math.round;
 
 import featurecat.lizzie.Lizzie;
 import featurecat.lizzie.analysis.Leelaz;
+import featurecat.lizzie.gui.BoardRenderer;
 import featurecat.lizzie.gui.MainFrame;
 import featurecat.lizzie.rules.BoardData;
 import featurecat.lizzie.rules.BoardHistoryNode;
@@ -408,6 +409,28 @@ public class Utils {
       }
       sourceDataLine.drain();
       sourceDataLine.close();
+    }
+  }
+
+  public static void setDisplayedBranchLength(BoardRenderer board, int n) {
+    board.setDisplayedBranchLength(n);
+  }
+
+  public static void doBranchSub(BoardRenderer board, int moveTo) {
+    if (moveTo > 0) {
+      if (board.isShowingNormalBoard()) {
+        setDisplayedBranchLength(board, 2);
+      } else {
+        board.incrementDisplayedBranchLength(1);
+      }
+    } else {
+      if (board.isShowingNormalBoard()) {
+        setDisplayedBranchLength(board, board.getReplayBranch());
+      } else {
+        if (board.getDisplayedBranchLength() > 1) {
+          board.incrementDisplayedBranchLength(-1);
+        }
+      }
     }
   }
 }
