@@ -120,7 +120,8 @@ public class SGFParser {
     if (Lizzie.leelaz != null) {
       Lizzie.leelaz.supportScoremean = false;
     }
-    // Detach engine for avoiding useless "play" and "undo" (#752).
+    // Detach engine for avoiding useless "play" and "undo" (#752)
+    // except for handicap stones in parseValue() (#765).
     Lizzie.leelaz.isAttached = false;
     parseValue(value, null, false);
     Lizzie.leelaz.isAttached = true;
@@ -348,6 +349,8 @@ public class SGFParser {
                 }
               }
             } else {
+              // Setting handicap stones. We need to send "play" to the engine here.
+              Lizzie.leelaz.isAttached = true;
               if (move == null) {
                 if (history == null) {
                   Lizzie.board.pass(color);
@@ -366,6 +369,7 @@ public class SGFParser {
               } else {
                 history.flatten();
               }
+              Lizzie.leelaz.isAttached = false;
             }
           } else if (tag.equals("PB")) {
             blackPlayer = tagContent;
