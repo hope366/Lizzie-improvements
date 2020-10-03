@@ -39,6 +39,14 @@
         - [1.6.4 Show GTP console when engine ended unintentionally](#164-show-gtp-console-when-engine-ended-unintentionally)
         - [1.6.5 Import komi fix for Fox SGF from KaTrain (ref. #755)](#165-import-komi-fix-for-fox-sgf-from-katrain-ref-755)
         - [1.6.6 Fix #752 (deadlock by Fox SGF)](#166-fix-752-deadlock-by-fox-sgf)
+    - [Changes in v1.4](#changes-in-v14)
+        - [Fix #765 (handicap bug in #758) #766](#fix-765-handicap-bug-in-758-766)
+        - [Improve subboard and add option not refresh variation when displayed](#improve-subboard-and-add-option-not-refresh-variation-when-displayed)
+        - [A try about new logo](#a-try-about-new-logo)
+        - [Fix: "Engine is down." was not shown for panel UI](#fix-engine-is-down-was-not-shown-for-panel-ui)
+        - [bump version to 0.7.4 #720](#bump-version-to-074-720)
+        - [Correct inconsistent indents #763](#correct-inconsistent-indents-763)
+        - [Update contributors #764](#update-contributors-764)
 
 <!-- /TOC -->
 
@@ -262,7 +270,43 @@ the letter **x**) and you will see all the commands listed in the GUI.
  When loading a FOX GO SGF file, lizzie may freeze. A simple fix was made in v1.2, but a more ideal fix was made in v1.3.
  See [here](https://github.com/featurecat/lizzie/pull/757) for more information.
 
+## Changes in v1.4
+
+### Fix #765 (handicap bug in #758) #766
+
+ Lizzie-v0.7.4 had a bug where the winning percentage and score lead were displayed at handicap stone when loading the SGF of the handicap game, but this bug has been fixed in this release.
+
+### Improve subboard and add option not refresh variation when displayed
+
+* mouse hover to stop flicker
+
+  When the analysis is on, the sub-go board changes rapidly and the change charts change, making it difficult to see. It has been modified so that the change diagram is fixed when the mouse pointer is moved over the sub board.
   
+* mouse wheel to change variation length
+  
+  By moving the mouse wheel up and down, you can slowly check the change diagram.
+
+* left/right click to show nth variation
+
+  Click the left and right mouse to display the nth change diagram.
+
+* Addition of "No Refresh Displayed Variation" option
+
+  On the main board, if you hover the mouse cursor over the candidate hand with analysis turned on, the various change charts will change rapidly and it will be difficult to see. You can fix the change chart by enabling this option.
+
+### A try about new logo
+
+ The icons on the taskbar are similar to Sabaki's and hard to distinguish, but the new logo looks like lizzie.
+
+### Fix: "Engine is down." was not shown for panel UI
+
+ This was applied in Lizzie-v0.7.4, but not in Lizzie-improved-v1.3, so I applied it in this release.
+
+### bump version to 0.7.4 #720
+### Correct inconsistent indents #763
+### Update contributors #764
+
+ These are not functionally explained in particular. If you are interested, please click [here](https://github.com/featurecat/lizzie/pulls?q=is%3Apr+is%3Aclosed)
 
 
 
