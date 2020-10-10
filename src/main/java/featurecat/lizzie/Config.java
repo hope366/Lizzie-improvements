@@ -451,6 +451,10 @@ public class Config {
     return showBranch || showBestMovesTemporarily;
   }
 
+  public boolean useAvoidInAnalysis() {
+    return config.getJSONObject("leelaz").getInt("avoid-keep-variations") > 0;
+  }
+
   public void togglePlaySound() {
     this.playSound = !this.playSound;
     Lizzie.config.uiConfig.put("play-sound", playSound);

@@ -1520,6 +1520,9 @@ public class LizzieFrame extends MainFrame {
     if (isPlayingAgainstLeelaz) {
       return false;
     }
+    if (!Lizzie.config.useAvoidInAnalysis()) {
+      return false;
+    }
     if (Lizzie.leelaz.isPondering()) {
       Lizzie.leelaz.sendCommand("name");
     }
