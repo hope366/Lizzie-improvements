@@ -47,6 +47,13 @@
         - [bump version to 0.7.4 #720](#bump-version-to-074-720)
         - [Correct inconsistent indents #763](#correct-inconsistent-indents-763)
         - [Update contributors #764](#update-contributors-764)
+    - [Changes in v1.4.1](#changes-in-v141)
+        - [Fix missing movenum in subboard #770](#fix-missing-movenum-in-subboard-770)
+    - [Changes in v1.5](#changes-in-v15)
+        - [Disable "Avoid Keep Variations" if it is 0](#disable-avoid-keep-variations-if-it-is-0)
+        - [right-click to undo in panel UI](#right-click-to-undo-in-panel-ui)
+        - [click to redo in panel UI](#click-to-redo-in-panel-ui)
+        - [Fix wrong variation number on subboard](#fix-wrong-variation-number-on-subboard)
 
 <!-- /TOC -->
 
@@ -307,6 +314,31 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Update contributors #764
 
  These are not functionally explained in particular. If you are interested, please click [here](https://github.com/featurecat/lizzie/pulls?q=is%3Apr+is%3Aclosed)
+
+## Changes in v1.4.1
+
+### Fix missing movenum in subboard #770
+
+ The stone on the sub board has a move number, but there was a bug in Lizzie-v 0.7.4 where this number disappears when you move the mouse cursor to the same position on the main board.
+ This bug has been fixed in this release.
+
+## Changes in v1.5
+
+### Disable "Avoid Keep Variations" if it is 0
+
+ Setting Settings> Engine> Avoid Keep Variations to "0" disables this feature and instead enables the "Undo" feature by right-clicking. (When the engine is Leela Zero)
+ 
+### right-click to undo in panel UI
+
+ In panel UI mode, right-clicking anywhere other than the main board did not respond (except for the sub board), but it has been fixed so that the "Undo" effect appears.
+
+### click to redo in panel UI
+
+ Switch to panel UI mode and line up some stones on the board. Next, put back the stones that were lined up. Left-click to place the stone in the same position as it was originally lined up. The stone will not be displayed by itself. Move the mouse cursor to see the stones. It's a very small detail, but it has been fixed so that the stone is displayed the moment you left-click.
+ 
+### Fix wrong variation number on subboard
+
+ Suppose you currently have 10 candidate moves on the main board. By clicking left and right on the sub board, the change diagram from 1 to 10 is displayed. And the number of the change diagram is displayed at the bottom right of the sub board. At this time, there was a bug that the wrong number "11" was displayed. This bug has been fixed in v1.5.
 
 
 
