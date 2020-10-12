@@ -128,6 +128,7 @@ public class EngineManager {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    Lizzie.frame.refresh();
   }
 
   public void refresh() throws JSONException, IOException {
