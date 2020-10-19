@@ -349,7 +349,7 @@ public abstract class MainFrame extends JFrame {
   }
 
   public void saveFile() {
-    FileNameExtensionFilter filter = new FileNameExtensionFilter("*.sgf", "*.SGF");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("sgf file", "sgf", "SGF");
     JSONObject filesystem = Lizzie.config.persisted.getJSONObject("filesystem");
     JFileChooser chooser = new JFileChooser(filesystem.getString("last-folder"));
     chooser.setFileFilter(filter);
