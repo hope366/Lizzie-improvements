@@ -47,7 +47,6 @@ public class LizzieLayout extends BorderLayout implements LayoutManager2, java.i
 
   public int ponderingX;
   public int ponderingY;
-  public int supposedPonderingHeight;
 
   public LizzieLayout() {
     this(3, 0);
@@ -456,8 +455,7 @@ public class LizzieLayout extends BorderLayout implements LayoutManager2, java.i
       // pondering message
       double ponderingSize = .02;
       ponderingX = x;
-      supposedPonderingHeight = 2 + (int) (maxBound * ponderingSize);
-      ponderingY = bottom - supposedPonderingHeight;
+      ponderingY = bottom - 2 - (int) (maxBound * ponderingSize);
 
       // subboard
       int subBoardY = gry + grh + 1;

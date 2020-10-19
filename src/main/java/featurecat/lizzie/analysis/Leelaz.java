@@ -128,8 +128,15 @@ public class Leelaz {
       // substitute in the weights file
       engineCommand = engineCommand.replaceAll("%network-file", config.getString("network-file"));
     }
-    updateEngineCommandAndNickname(engineCommand);
-    engineCommand = this.engineCommand;
+    Matcher nicknameMatcher = Pattern.compile("<([^<]*)>\\s*(.*)").matcher(engineCommand);
+    if (nicknameMatcher.matches()) {
+      engineNickname = nicknameMatcher.group(1);
+      engineCommand = nicknameMatcher.group(2);
+    } else {
+      engineNickname = null;
+    }
+
+    this.engineCommand = engineCommand;
     if (engineCommand.toLowerCase().contains("override-version")) {
       this.isKataGo = true;
     }
@@ -950,8 +957,7 @@ public class Leelaz {
   }
 
   public boolean isCommandChange(String command) {
-    updateEngineCommandAndNickname(command);
-    List<String> newList = splitCommand(engineCommand);
+    List<String> newList = splitCommand(command);
     if (this.commands.size() != newList.size()) {
       return true;
     } else {
@@ -964,17 +970,6 @@ public class Leelaz {
         }
       }
       return false;
-    }
-  }
-
-  private void updateEngineCommandAndNickname(String command) {
-    Matcher nicknameMatcher = Pattern.compile("<(.*?)>\\s*(.*)").matcher(command);
-    if (nicknameMatcher.matches()) {
-      engineNickname = nicknameMatcher.group(1);
-      engineCommand = nicknameMatcher.group(2);
-    } else {
-      engineNickname = null;
-      engineCommand = command;
     }
   }
 
