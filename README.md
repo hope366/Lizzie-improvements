@@ -54,6 +54,17 @@
         - [right-click to undo in panel UI](#right-click-to-undo-in-panel-ui)
         - [click to redo in panel UI](#click-to-redo-in-panel-ui)
         - [Fix wrong variation number on subboard](#fix-wrong-variation-number-on-subboard)
+    - [Changes in v1.6](#changes-in-v16)
+        - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
+        - [Allows reading of uppercase .SGF and .GIF files](#allows-reading-of-uppercase-sgf-and-gif-files)
+        - [<nickname> before the engine command](#nickname-before-the-engine-command)
+        - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
+        - [Restore all checks in View > Panel at startup](#restore-all-checks-in-view--panel-at-startup)
+        - [overflow of pondering message in Panel UI](#overflow-of-pondering-message-in-panel-ui)
+        - [Fix wrong "Engine is loading..."](#fix-wrong-engine-is-loading)
+        - [Fix obsolete "Pondering on" by Analyze > Toggle analyze](#fix-obsolete-pondering-on-by-analyze--toggle-analyze)
+        - [variation tree was not updated by click to redo in panel UI](#variation-tree-was-not-updated-by-click-to-redo-in-panel-ui)
+        - [Display the analysis result when the file is loaded](#display-the-analysis-result-when-the-file-is-loaded)
 
 <!-- /TOC -->
 
@@ -339,6 +350,59 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Fix wrong variation number on subboard
 
  Suppose you currently have 10 candidate moves on the main board. By clicking left and right on the sub board, the change diagram from 1 to 10 is displayed. And the number of the change diagram is displayed at the bottom right of the sub board. At this time, there was a bug that the wrong number "11" was displayed. This bug has been fixed in v1.5.
+
+## Changes in v1.6
+
+### Display existing .sgf file when openfile
+
+ Resolved an issue where existing files were not displayed when saving the file.
+
+### Allows reading of uppercase .SGF and .GIF files
+
+ Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
+
+### <nickname> before the engine command
+
+ By adding <arbitrary description> to the beginning of the engine command, it is possible to freely edit the items at the time of engine switching.
+ 
+### Toggle large winrate graph by mouse click of center button 
+
+ You can now zoom in / out the winning percentage graph by clicking the center of the mouse.
+
+### Restore all checks in View > Panel at startup 
+
+ The settings of various panel displays are stored in lizzie and will be reflected at the next startup.
+
+### overflow of pondering message in Panel UI
+
+ Solved the problem that the status display at the bottom left was slightly shifted downward when in panel UI mode.
+
+### Fix wrong "Engine is loading..."  
+
+ * Fix forever "Engine is loading..." if pondering is off
+ 
+  Fixed an issue where when lizzie was started, if the analysis was stopped before the analysis was started, the status display at the bottom left would remain "Engine is loading" indefinitely.
+  
+ * Fix unshown "Engine is loading..." until mouse move 
+
+  Solved the problem that "Engine is loading" was not displayed until the mouse was moved when switching the engine.
+
+### Fix obsolete "Pondering on" by Analyze > Toggle analyze
+
+ Solved the problem that the status display at the bottom left was not updated even when switching analysis on / off.
+
+### variation tree was not updated by click to redo in panel UI
+
+ Place some stones on the main board when in panel UI mode. Exclude the next stone and place it in the same place you first placed it. At this time, there was a problem that the change diagram on the upper right was not updated correctly. It has been fixed in v1.6.
+
+### Display the analysis result when the file is loaded
+
+ In the official release version of Lizzie-v 0.7.4, there is a bug that the analysis result is not displayed even if the sgf file containing the analysis result is loaded, but in the Lizzie-improved series, this bug is not present.
+
+ 
+
+ 
+  
 
 
 
