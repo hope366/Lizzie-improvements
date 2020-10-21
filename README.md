@@ -39,32 +39,32 @@
         - [1.6.4 Show GTP console when engine ended unintentionally](#164-show-gtp-console-when-engine-ended-unintentionally)
         - [1.6.5 Import komi fix for Fox SGF from KaTrain (ref. #755)](#165-import-komi-fix-for-fox-sgf-from-katrain-ref-755)
         - [1.6.6 Fix #752 (deadlock by Fox SGF)](#166-fix-752-deadlock-by-fox-sgf)
-    - [Changes in v1.4](#changes-in-v14)
-        - [Fix #765 (handicap bug in #758) #766](#fix-765-handicap-bug-in-758-766)
-        - [Improve subboard and add option not refresh variation when displayed](#improve-subboard-and-add-option-not-refresh-variation-when-displayed)
-        - [A try about new logo](#a-try-about-new-logo)
-        - [Fix: "Engine is down." was not shown for panel UI](#fix-engine-is-down-was-not-shown-for-panel-ui)
-        - [bump version to 0.7.4 #720](#bump-version-to-074-720)
-        - [Correct inconsistent indents #763](#correct-inconsistent-indents-763)
-        - [Update contributors #764](#update-contributors-764)
-    - [Changes in v1.4.1](#changes-in-v141)
-        - [Fix missing movenum in subboard #770](#fix-missing-movenum-in-subboard-770)
-    - [Changes in v1.5](#changes-in-v15)
-        - [Disable "Avoid Keep Variations" if it is 0](#disable-avoid-keep-variations-if-it-is-0)
-        - [right-click to undo in panel UI](#right-click-to-undo-in-panel-ui)
-        - [click to redo in panel UI](#click-to-redo-in-panel-ui)
-        - [Fix wrong variation number on subboard](#fix-wrong-variation-number-on-subboard)
-    - [Changes in v1.6](#changes-in-v16)
-        - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
-        - [Allows reading of uppercase .SGF and .GIF files](#allows-reading-of-uppercase-sgf-and-gif-files)
-        - [<nickname> before the engine command](#nickname-before-the-engine-command)
-        - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
-        - [Restore all checks in View > Panel at startup](#restore-all-checks-in-view--panel-at-startup)
-        - [overflow of pondering message in Panel UI](#overflow-of-pondering-message-in-panel-ui)
-        - [Fix wrong "Engine is loading..."](#fix-wrong-engine-is-loading)
-        - [Fix obsolete "Pondering on" by Analyze > Toggle analyze](#fix-obsolete-pondering-on-by-analyze--toggle-analyze)
-        - [variation tree was not updated by click to redo in panel UI](#variation-tree-was-not-updated-by-click-to-redo-in-panel-ui)
-        - [Display the analysis result when the file is loaded](#display-the-analysis-result-when-the-file-is-loaded)
+    - [1.7. Changes in v1.4](#17-changes-in-v14)
+        - [1.7.1 Fix #765 (handicap bug in #758) #766](#171-fix-765-handicap-bug-in-758-766)
+        - [1.7.2 Improve subboard and add option not refresh variation when displayed](#172-improve-subboard-and-add-option-not-refresh-variation-when-displayed)
+        - [1.7.3 A try about new logo](#173-a-try-about-new-logo)
+        - [1.7.4 Fix: "Engine is down." was not shown for panel UI](#174-fix-engine-is-down-was-not-shown-for-panel-ui)
+        - [1.7.5 bump version to 0.7.4 #720](#175-bump-version-to-074-720)
+        - [1.7.6 Correct inconsistent indents #763](#176-correct-inconsistent-indents-763)
+        - [1.7.7 Update contributors #764](#177-update-contributors-764)
+    - [1.8. Changes in v1.4.1](#18-changes-in-v141)
+        - [1.8.1 Fix missing movenum in subboard #770](#181-fix-missing-movenum-in-subboard-770)
+    - [1.9. Changes in v1.5](#19-changes-in-v15)
+        - [1.9.1 Disable "Avoid Keep Variations" if it is 0](#191-disable-avoid-keep-variations-if-it-is-0)
+        - [1.9.2 right-click to undo in panel UI](#192-right-click-to-undo-in-panel-ui)
+        - [1.9.3 click to redo in panel UI](#193-click-to-redo-in-panel-ui)
+        - [1.9.4 Fix wrong variation number on subboard](#194-fix-wrong-variation-number-on-subboard)
+    - [2.0. Changes in v1.6](#20-changes-in-v16)
+        - [2.0.1 Display existing .sgf file when openfile](#201-display-existing-sgf-file-when-openfile)
+        - [2.0.2 Allows reading of uppercase .SGF and .GIF files](#202-allows-reading-of-uppercase-sgf-and-gif-files)
+        - [2.0.3 <nickname> before the engine command](#203-nickname-before-the-engine-command)
+        - [2.0.4 Toggle large winrate graph by mouse click of center button](#204-toggle-large-winrate-graph-by-mouse-click-of-center-button)
+        - [2.0.5 Restore all checks in View > Panel at startup](#205-restore-all-checks-in-view--panel-at-startup)
+        - [2.0.6 overflow of pondering message in Panel UI](#206-overflow-of-pondering-message-in-panel-ui)
+        - [2.0.7 Fix wrong "Engine is loading..."](#207-fix-wrong-engine-is-loading)
+        - [2.0.8 Fix obsolete "Pondering on" by Analyze > Toggle analyze](#208-fix-obsolete-pondering-on-by-analyze--toggle-analyze)
+        - [2.0.9 variation tree was not updated by click to redo in panel UI](#209-variation-tree-was-not-updated-by-click-to-redo-in-panel-ui)
+        - [2.1.1 Display the analysis result when the file is loaded](#211-display-the-analysis-result-when-the-file-is-loaded)
 
 <!-- /TOC -->
 
@@ -288,13 +288,13 @@ the letter **x**) and you will see all the commands listed in the GUI.
  When loading a FOX GO SGF file, lizzie may freeze. A simple fix was made in v1.2, but a more ideal fix was made in v1.3.
  See [here](https://github.com/featurecat/lizzie/pull/757) for more information.
 
-## Changes in v1.4
+## 1.7. Changes in v1.4
 
-### Fix #765 (handicap bug in #758) #766
+### 1.7.1 Fix #765 (handicap bug in #758) #766
 
  Lizzie-v0.7.4 had a bug where the winning percentage and score lead were displayed at handicap stone when loading the SGF of the handicap game, but this bug has been fixed in this release.
 
-### Improve subboard and add option not refresh variation when displayed
+### 1.7.2 Improve subboard and add option not refresh variation when displayed
 
 * mouse hover to stop flicker
 
@@ -312,72 +312,72 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
   On the main board, if you hover the mouse cursor over the candidate hand with analysis turned on, the various change charts will change rapidly and it will be difficult to see. You can fix the change chart by enabling this option.
 
-### A try about new logo
+### 1.7.3 A try about new logo
 
  The icons on the taskbar are similar to Sabaki's and hard to distinguish, but the new logo looks like lizzie.
 
-### Fix: "Engine is down." was not shown for panel UI
+### 1.7.4 Fix: "Engine is down." was not shown for panel UI
 
  This was applied in Lizzie-v0.7.4, but not in Lizzie-improved-v1.3, so I applied it in this release.
 
-### bump version to 0.7.4 #720
-### Correct inconsistent indents #763
-### Update contributors #764
+### 1.7.5 bump version to 0.7.4 #720
+### 1.7.6 Correct inconsistent indents #763
+### 1.7.7 Update contributors #764
 
  These are not functionally explained in particular. If you are interested, please click [here](https://github.com/featurecat/lizzie/pulls?q=is%3Apr+is%3Aclosed)
 
-## Changes in v1.4.1
+## 1.8. Changes in v1.4.1
 
-### Fix missing movenum in subboard #770
+### 1.8.1 Fix missing movenum in subboard #770
 
  The stone on the sub board has a move number, but there was a bug in Lizzie-v 0.7.4 where this number disappears when you move the mouse cursor to the same position on the main board.
  This bug has been fixed in this release.
 
-## Changes in v1.5
+## 1.9. Changes in v1.5
 
-### Disable "Avoid Keep Variations" if it is 0
+### 1.9.1 Disable "Avoid Keep Variations" if it is 0
 
  Setting Settings> Engine> Avoid Keep Variations to "0" disables this feature and instead enables the "Undo" feature by right-clicking. (When the engine is Leela Zero)
  
-### right-click to undo in panel UI
+### 1.9.2 right-click to undo in panel UI
 
  In panel UI mode, right-clicking anywhere other than the main board did not respond (except for the sub board), but it has been fixed so that the "Undo" effect appears.
 
-### click to redo in panel UI
+### 1.9.3 click to redo in panel UI
 
  Switch to panel UI mode and line up some stones on the board. Next, put back the stones that were lined up. Left-click to place the stone in the same position as it was originally lined up. The stone will not be displayed by itself. Move the mouse cursor to see the stones. It's a very small detail, but it has been fixed so that the stone is displayed the moment you left-click.
  
-### Fix wrong variation number on subboard
+### 1.9.4 Fix wrong variation number on subboard
 
  Suppose you currently have 10 candidate moves on the main board. By clicking left and right on the sub board, the change diagram from 1 to 10 is displayed. And the number of the change diagram is displayed at the bottom right of the sub board. At this time, there was a bug that the wrong number "11" was displayed. This bug has been fixed in v1.5.
 
-## Changes in v1.6
+## 2.0. Changes in v1.6
 
-### Display existing .sgf file when openfile
+### 2.0.1 Display existing .sgf file when openfile
 
  Resolved an issue where existing files were not displayed when saving the file.
 
-### Allows reading of uppercase .SGF and .GIF files
+### 2.0.2 Allows reading of uppercase .SGF and .GIF files
 
  Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
 
-### <nickname> before the engine command
+### 2.0.3 <nickname> before the engine command
 
  By adding <arbitrary description> to the beginning of the engine command, it is possible to freely edit the items at the time of engine switching.
  
-### Toggle large winrate graph by mouse click of center button 
+### 2.0.4 Toggle large winrate graph by mouse click of center button 
 
  You can now zoom in / out the winning percentage graph by clicking the center of the mouse.
 
-### Restore all checks in View > Panel at startup 
+### 2.0.5 Restore all checks in View > Panel at startup 
 
  The settings of various panel displays are stored in lizzie and will be reflected at the next startup.
 
-### overflow of pondering message in Panel UI
+### 2.0.6 overflow of pondering message in Panel UI
 
  Solved the problem that the status display at the bottom left was slightly shifted downward when in panel UI mode.
 
-### Fix wrong "Engine is loading..."  
+### 2.0.7 Fix wrong "Engine is loading..."  
 
  * Fix forever "Engine is loading..." if pondering is off
  
@@ -387,15 +387,15 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
   Solved the problem that "Engine is loading" was not displayed until the mouse was moved when switching the engine.
 
-### Fix obsolete "Pondering on" by Analyze > Toggle analyze
+### 2.0.8 Fix obsolete "Pondering on" by Analyze > Toggle analyze
 
  Solved the problem that the status display at the bottom left was not updated even when switching analysis on / off.
 
-### variation tree was not updated by click to redo in panel UI
+### 2.0.9 variation tree was not updated by click to redo in panel UI
 
  Place some stones on the main board when in panel UI mode. Exclude the next stone and place it in the same place you first placed it. At this time, there was a problem that the change diagram on the upper right was not updated correctly. It has been fixed in v1.6.
 
-### Display the analysis result when the file is loaded
+### 2.1.1 Display the analysis result when the file is loaded
 
  In the official release version of Lizzie-v 0.7.4, there is a bug that the analysis result is not displayed even if the sgf file containing the analysis result is loaded, but in the Lizzie-improved series, this bug is not present.
 
