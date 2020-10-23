@@ -56,7 +56,7 @@
         - [Fix wrong variation number on subboard](#fix-wrong-variation-number-on-subboard)
     - [Changes in v1.6](#changes-in-v16)
         - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
-        - [Allows reading of uppercase .SGF and .GIF files](#allows-reading-of-uppercase-sgf-and-gif-files)
+        - [Allows reading of uppercase .SGF and .GIB files](#allows-reading-of-uppercase-sgf-and-gib-files)
         - [<nickname> before the engine command](#nickname-before-the-engine-command)
         - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
         - [Restore all checks in View > Panel at startup](#restore-all-checks-in-view--panel-at-startup)
@@ -357,7 +357,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  Resolved an issue where existing files were not displayed when saving the file.
 
-### Allows reading of uppercase .SGF and .GIF files
+### Allows reading of uppercase .SGF and .GIB files
 
  Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
 
@@ -381,11 +381,11 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  * Fix forever "Engine is loading..." if pondering is off
  
-  Fixed an issue where when lizzie was started, if the analysis was stopped before the analysis was started, the status display at the bottom left would remain "Engine is loading" indefinitely.
+      Fixed an issue where when lizzie was started, if the analysis was stopped before the analysis was started, the status display at the bottom left would remain "Engine is loading" indefinitely.
   
  * Fix unshown "Engine is loading..." until mouse move 
 
-  Solved the problem that "Engine is loading" was not displayed until the mouse was moved when switching the engine.
+      Solved the problem that "Engine is loading" was not displayed until the mouse was moved when switching the engine.
 
 ### Fix obsolete "Pondering on" by Analyze > Toggle analyze
 
