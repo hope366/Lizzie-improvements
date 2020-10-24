@@ -57,7 +57,7 @@
     - [Changes in v1.6](#changes-in-v16)
         - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
         - [Allows reading of uppercase .SGF and .GIB files](#allows-reading-of-uppercase-sgf-and-gib-files)
-        - [<nickname> before the engine command](#nickname-before-the-engine-command)
+        - ["<nickname>" before the engine command](#nickname-before-the-engine-command)
         - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
         - [Restore all checks in View > Panel at startup](#restore-all-checks-in-view--panel-at-startup)
         - [overflow of pondering message in Panel UI](#overflow-of-pondering-message-in-panel-ui)
@@ -361,9 +361,9 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
 
-### <nickname> before the engine command
+### "<nickname>" before the engine command
 
- By adding <arbitrary description> to the beginning of the engine command, it is possible to freely edit the items at the time of engine switching.
+ By adding "<arbitrary description>" to the beginning of the engine command, it is possible to freely edit the items at the time of engine switching.
  
 ### Toggle large winrate graph by mouse click of center button 
 
