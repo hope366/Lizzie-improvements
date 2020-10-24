@@ -57,7 +57,7 @@
     - [Changes in v1.6](#changes-in-v16)
         - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
         - [Allows reading of uppercase .SGF and .GIB files](#allows-reading-of-uppercase-sgf-and-gib-files)
-        - ["<nickname>" before the engine command](#nickname-before-the-engine-command)
+        - [Display an arbitrary engine name instead of the weight file name](#display-an-arbitrary-engine-name-instead-of-the-weight-file-name)
         - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
         - [Restore all checks in View > Panel at startup](#restore-all-checks-in-view--panel-at-startup)
         - [overflow of pondering message in Panel UI](#overflow-of-pondering-message-in-panel-ui)
@@ -361,9 +361,11 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
 
-### "<nickname>" before the engine command
+### Display an arbitrary engine name instead of the weight file name
 
- By adding "<arbitrary description>" to the beginning of the engine command, it is possible to freely edit the items at the time of engine switching.
+ As shown in the screenshot below, you can freely edit the pull-down menu display when selecting an engine by adding an arbitrary engine name to the beginning of the engine command.
+ ![engine1](https://user-images.githubusercontent.com/63999713/97095142-d044b000-1696-11eb-9a92-cf92e1698539.png)
+ ![engine2](https://user-images.githubusercontent.com/63999713/97095155-eeaaab80-1696-11eb-8c69-7566f0e5eece.png)
  
 ### Toggle large winrate graph by mouse click of center button 
 
