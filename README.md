@@ -155,7 +155,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### Fix #701 (wrong winrate in WinratePane)
 
- This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot above is a real-time analysis, and the screenshot below is a sgf file saved in panel UI mode and loaded.The screenshot above showing the white win rate of 34.3% is correct and the screenshot below shows the previous number.This bug has been fixed.
+ This screenshot is the second station of the 5th match of Alpha Go and Isedle 9th dan.The screenshot left is a real-time analysis, and the screenshot right is a sgf file saved in panel UI mode and loaded.The screenshot left showing the white win rate of 34.3% is correct and the screenshot right shows the previous number.This bug has been fixed.
 
 <img src="https://user-images.githubusercontent.com/63999713/87452256-f5f3ff00-c63b-11ea-89be-9d7391379bf5.jpg" width="45%"> <img src="https://user-images.githubusercontent.com/63999713/87452332-115f0a00-c63c-11ea-9663-ca889d3a0095.jpg" width="45%">
 
