@@ -357,6 +357,8 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  Resolved an issue where existing files were not displayed when saving the file.
 
+ <img src="https://user-images.githubusercontent.com/63999713/97395229-d1404080-1927-11eb-8dea-d4f67e6985fb.png" width="45%"> <img src="https://user-images.githubusercontent.com/63999713/97395424-41e75d00-1928-11eb-9cef-cd5afec00c0b.png" width="45%">  
+
 ### Allows reading of uppercase .SGF and .GIB files
 
  Resolves an issue where uppercase .SGF and .GIB files could not be loaded.
