@@ -41,12 +41,11 @@ import java.nio.file.Path;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -231,6 +230,7 @@ public class ConfigDialog extends LizzieDialog {
     okButton.addActionListener(
         new ActionListener() {
           public void actionPerformed(ActionEvent e) {
+            finalizeEditedBlunderColors();
             setVisible(false);
             saveConfig();
             applyChange();
@@ -1813,7 +1813,7 @@ public class ConfigDialog extends LizzieDialog {
     @Override
     protected void done() {
       okButton.setEnabled(true);
-      pnlBoardPreview.repaint();
+      tabbedPane.repaint();
     }
   }
 
@@ -1923,6 +1923,7 @@ public class ConfigDialog extends LizzieDialog {
   }
 
   private void applyChange() {
+    Lizzie.config.applyTheme();
     int[] size = getBoardSize();
     Lizzie.board.reopen(size[0], size[1]);
     if (Lizzie.engineManager == null) {
@@ -1935,6 +1936,9 @@ public class ConfigDialog extends LizzieDialog {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    Lizzie.frame.resetImages();
+    Lizzie.frame.refreshBackground();
+    Lizzie.frame.refresh();
   }
 
   private Integer txtFieldIntValue(JTextField txt) {
@@ -2095,7 +2099,7 @@ public class ConfigDialog extends LizzieDialog {
 
     public JSONArray getThresholdArray() {
       JSONArray thresholds = new JSONArray("[]");
-      data.forEach(d -> thresholds.put(new Double((String) d.get(0))));
+      data.forEach(d -> thresholds.put(toDouble(d.get(0))));
       return thresholds;
     }
 
@@ -2116,7 +2120,7 @@ public class ConfigDialog extends LizzieDialog {
     public void removeRow(int index) {
       if (index >= 0 && index < data.size()) {
         data.remove(index);
-        fireTableRowsDeleted(0, data.size() - 1);
+        fireTableRowsDeleted(index, index);
       }
     }
 
@@ -2147,6 +2151,24 @@ public class ConfigDialog extends LizzieDialog {
 
     public boolean isCellEditable(int row, int col) {
       return true;
+    }
+
+    private double toDouble(Object x) {
+      final double invalid = -777;
+      try {
+        return new Double((String) x);
+      } catch (NumberFormatException e) {
+        return invalid;
+      }
+    }
+
+    public void sortData() {
+      data.sort(
+          new Comparator<Vector<Object>>() {
+            public int compare(Vector<Object> a, Vector<Object> b) {
+              return Double.compare(toDouble(a.get(0)), toDouble(b.get(0)));
+            }
+          });
     }
   }
 
@@ -2471,6 +2493,14 @@ public class ConfigDialog extends LizzieDialog {
         ((BlunderNodeTableModel) tblBlunderNodes.getModel()).getColorArray());
   }
 
+  private void finalizeEditedBlunderColors() {
+    if (tblBlunderNodes == null) return;
+    TableCellEditor editor = tblBlunderNodes.getCellEditor();
+    BlunderNodeTableModel model = (BlunderNodeTableModel) tblBlunderNodes.getModel();
+    if (editor != null) editor.stopCellEditing();
+    if (model != null) model.sortData();
+  }
+
   private void saveConfig() {
     try {
       leelazConfig.putOpt("max-analyze-time-minutes", txtFieldIntValue(txtMaxAnalyzeTime));
@@ -2565,16 +2595,5 @@ public class ConfigDialog extends LizzieDialog {
 
   public void switchTab(int index) {
     tabbedPane.setSelectedIndex(index);
-    if (index == 2) {
-      Timer timer = new Timer();
-      timer.schedule(
-          new TimerTask() {
-            public void run() {
-              tabbedPane.repaint();
-              this.cancel();
-            }
-          },
-          100);
-    }
   }
 }
