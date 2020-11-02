@@ -65,11 +65,16 @@
         - [Fix obsolete "Pondering on" by Analyze > Toggle analyze](#fix-obsolete-pondering-on-by-analyze--toggle-analyze)
         - [variation tree was not updated by click to redo in panel UI](#variation-tree-was-not-updated-by-click-to-redo-in-panel-ui)
         - [Display the analysis result when the file is loaded](#display-the-analysis-result-when-the-file-is-loaded)
+    - [Changes in v1.7](#changes-in-v17)
+        - [Problems with the variation tree](#problems-with-the-variation-tree)
+        - [Issues related to "Settings→Theme→Winning Rate Change Node"](#issues-related-to-settings→theme→winning-rate-change-node)
+        - [There is something wrong with the window that appears in Settings→Theme.](#there-is-something-wrong-with-the-window-that-appears-in-settings→theme)
+        - [Overwrite storage issues](#overwrite-storage-issues)
 
 <!-- /TOC -->
 
 日本語での説明は、こちらのリンク先をご覧ください→
-https://ameblo.jp/hope366/entry-12632908485.html
+https://ameblo.jp/hope366/entry-12635554389.html
 
 ## Lizzie - Leela Zero Interface
 ![GIF 2020-07-13 12-46-35](https://user-images.githubusercontent.com/63999713/87269204-6d744200-c507-11ea-80aa-263f24205251.gif)
@@ -402,6 +407,38 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Display the analysis result when the file is loaded
 
  In the official release version of Lizzie-v 0.7.4, there is a bug that the analysis result is not displayed even if the sgf file containing the analysis result is loaded, but in the Lizzie-improved series, this bug is not present.
+
+## Changes in v1.7
+
+### Problems with the variation tree
+
+ * In Panel UI mode
+   * The blunder color of the current node is not visible when analysis is turned on. If analysis is turned off, you can see it.
+   * When a node is moved, the blunder color of the current node is not visible. When analysis is on, it becomes visible by turning analysis off, and when analysis is off, it becomes visible by turning analysis on and off.
+ * In normal mode
+   * When a node is moved, the blunder color of the current node is not visible when analysis is off. It is still visible when analysis is turned on and then turned off again, but it disappears again when you move to another node and come back.
+ * There is no black dot in the "□" of the root node (with no stones in the board).
+
+ All of these things have been improved in v1.7.
+
+### Issues related to "Settings→Theme→Winning Rate Change Node"
+
+ * If you enter blunder color, lizzie will not remember it unless you click on another cell.
+ * When I try to delete them all, the last line remains. When I click on another cell, it disappears.
+ * Threshold values are not reflected in the variation tree unless they are sorted in order of decreasing value, but because the system is not equipped with a sorting function (to sort data according to a certain criterion), it will not work well if the data are entered in pieces.
+ * Even if you enter a single threshold or blunder color, it will not be reflected until you restart lizzie.
+ * If the threshold is entered by mistake in full-width characters, the analysis on/off will not work, but users are likely to be confused because there is no function to inform them of the error. The fixed version informs the user that an invalid string has been entered by displaying "-777.0" the next time the user checks.
+ * You have to restart lizzie to get the new settings for the win rate change nodes.
+ * The window is not displayed correctly when I go to Settings→Theme.
+
+### There is something wrong with the window that appears in Settings→Theme.
+
+ With the existing lizzie, some parts of it are not displayed correctly in the existing lizzie, so you can move to another tab and come back to it.
+
+### Overwrite storage issues
+
+ For example, if a file called "ff.sgf" already exists and you try to save the file by typing "ff", the existing lizzie will be overwritten without a confirmation message, but in v1.7, a confirmation message is shown.
+ 
 
  
 
