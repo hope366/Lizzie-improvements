@@ -600,7 +600,6 @@ public class LizzieMain extends MainFrame {
     commentPane.drawComment();
     //    commentPane.revalidate();
     commentPane.repaint();
-    invalidLayout();
   }
 
   @Override
