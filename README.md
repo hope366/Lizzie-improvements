@@ -68,6 +68,7 @@
     - [Changes in v1.7](#changes-in-v17)
         - [Problems with the variation tree](#problems-with-the-variation-tree)
         - [Issues related to "Settings→Theme→Winning Rate Change Node"](#issues-related-to-settings→theme→winning-rate-change-node)
+        - [Winning rate change node for trial](#winning-rate-change-node-for-trial)
         - [There is something wrong with the window that appears in Settings→Theme.](#there-is-something-wrong-with-the-window-that-appears-in-settings→theme)
         - [Overwrite storage issues](#overwrite-storage-issues)
 
@@ -429,11 +430,16 @@ the letter **x**) and you will see all the commands listed in the GUI.
  * Even if you enter a single threshold or blunder color, it will not be reflected until you restart lizzie.
  * If the threshold is entered by mistake in full-width characters, the analysis on/off will not work, but users are likely to be confused because there is no function to inform them of the error. The fixed version informs the user that an invalid string has been entered by displaying "-777.0" the next time the user checks.
  * You have to restart lizzie to get the new settings for the win rate change nodes.
- * The window is not displayed correctly when I go to Settings→Theme.
+ 
+ All of these things have been improved in v1.7.
 
+### Winning rate change node for trial
+
+ To make it easier to recognize the function of the win rate change node, the sample data for a one-time function is pre-set.
+ 
 ### There is something wrong with the window that appears in Settings→Theme.
 
- With the existing lizzie, some parts of it are not displayed correctly in the existing lizzie, so you can move to another tab and come back to it.
+ With the existing lizzie, some parts of it are not displayed correctly in the existing lizzie, so you can move to another tab and come back to it.In v1.7, it is correct from the start.
 
 ### Overwrite storage issues
 
