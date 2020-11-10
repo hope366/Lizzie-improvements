@@ -228,7 +228,6 @@ public class Config {
     JSONObject persistConfig = createPersistConfig();
 
     // Load "persisted" before "config" for checkEmptyBlunderThresholds.
-
     // Persisted properties
     this.persisted = loadAndMergeConfig(persistConfig, persistFilename, false);
     // Main properties
