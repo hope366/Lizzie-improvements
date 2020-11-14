@@ -5,7 +5,9 @@ import static java.lang.Math.min;
 
 import featurecat.lizzie.Lizzie;
 import featurecat.lizzie.analysis.Leelaz;
+import featurecat.lizzie.analysis.MoveData;
 import featurecat.lizzie.rules.BoardData;
+import featurecat.lizzie.util.Utils;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -133,7 +135,6 @@ public class WinratePane extends LizziePane {
     Leelaz.WinrateStats stats = Lizzie.leelaz.getWinrateStats();
     double curWR = stats.maxWinrate; // winrate on this move
     boolean validWinrate = (stats.totalPlayouts > 0); // and whether it was actually calculated
-    boolean validScore = validWinrate;
     if (!validWinrate) {
       // ref. drawMoveStatistics() in LizzieFrame.java
       curWR = Lizzie.board.getHistory().getData().winrate;
@@ -188,31 +189,18 @@ public class WinratePane extends LizziePane {
     setPanelFont(g, (int) (min(width, height) * 0.2));
 
     String text = "";
+    MoveData bestMove = Utils.getBestMove();
+    boolean validScore = (bestMove != null);
     if (Lizzie.leelaz.isKataGo && validScore) {
-      double score = Lizzie.leelaz.scoreMean;
-      if (Lizzie.board.getHistory().isBlacksTurn()) {
-        if (Lizzie.config.showKataGoBoardScoreMean) {
-          score = score + Lizzie.board.getHistory().getGameInfo().getKomi();
-        }
-      } else {
-        if (Lizzie.config.showKataGoBoardScoreMean) {
-          score = score - Lizzie.board.getHistory().getGameInfo().getKomi();
-        }
-        if (Lizzie.config.kataGoScoreMeanAlwaysBlack) {
-          score = -score;
-        }
-      }
+      double stdev = bestMove.scoreStdev;
       text =
-          LizzieMain.resourceBundle.getString("LizzieFrame.katago.scoreMean")
-              + ":"
-              + String.format("%.1f", score)
-              + " ";
-      text =
-          text
-              + LizzieMain.resourceBundle.getString("LizzieFrame.katago.scoreStdev")
-              + ":"
-              + String.format("%.1f", Lizzie.leelaz.scoreStdev)
-              + " ";
+          stdev == 0
+              ? text
+              : text
+                  + LizzieMain.resourceBundle.getString("LizzieFrame.katago.scoreStdev")
+                  + ":"
+                  + String.format("%.1f", stdev)
+                  + " ";
     }
     // Last move
     if (validLastWinrate && validWinrate) {
@@ -230,14 +218,10 @@ public class WinratePane extends LizziePane {
                 + LizzieMain.resourceBundle.getString("LizzieFrame.display.lastMove")
                 + String.format(":%.1f%%", 100 - lastWR - curWR);
       }
-
+    }
+    if (text != "") {
       g.drawString(
           text, posX + 2 * strokeRadius, posY + height - 2 * strokeRadius); // - font.getSize());
-    } else {
-      // I think it's more elegant to just not display anything when we don't have
-      // valid data --dfannius
-      // g.drawString(resourceBundle.getString("LizzieFrame.display.lastMove") + ": ?%",
-      //              posX + 2 * strokeRadius, posY + height - 2 * strokeRadius);
     }
 
     if (validWinrate || validLastWinrate) {
@@ -266,6 +250,18 @@ public class WinratePane extends LizziePane {
           winString,
           barPosxB + maxBarwidth - sw - 2 * strokeRadius,
           posY + barHeight - 2 * strokeRadius);
+      String scoreTextWithLeadingColor = Utils.getScoreTextWithLeadingColor();
+      if (scoreTextWithLeadingColor != "") {
+        String scoreString =
+            Lizzie.frame.resourceBundle.getString("LizzieFrame.katago.scoreMean")
+                + ": "
+                + scoreTextWithLeadingColor;
+        sw = g.getFontMetrics().stringWidth(scoreString);
+        g.drawString(
+            scoreString,
+            barPosxB + maxBarwidth / 2 - sw / 2 - strokeRadius,
+            posY + barHeight - 2 * strokeRadius);
+      }
 
       g.setColor(Color.GRAY);
       Stroke oldstroke = g.getStroke();

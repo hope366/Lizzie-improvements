@@ -148,13 +148,6 @@ public class WinrateGraph {
         g.setStroke(dashed);
         g.setColor(Color.white);
         g.drawLine(x, posy, x, posy + height);
-        // Show move number
-        String moveNumString = "" + node.getData().moveNumber;
-        int mw = g.getFontMetrics().stringWidth(moveNumString);
-        int margin = strokeRadius;
-        int mx = x - posx < width / 2 ? x + margin : x - mw - margin;
-        g.setColor(Color.black);
-        g.drawString(moveNumString, mx, posy + height - margin);
         g.setStroke(previousStroke);
       }
       if (playouts > 0 && node.getData().moveNumber - 1 <= numMoves) {
@@ -300,18 +293,35 @@ public class WinrateGraph {
         movenum--;
       }
       if (curMovenum > 0) {
+        Font origFont = g.getFont();
         g.setColor(Color.WHITE);
         Font f = new Font("", Font.BOLD, 15);
+        int sign =
+            Lizzie.config.kataGoScoreMeanAlwaysBlack
+                ? 1
+                : Lizzie.board.getHistory().isBlacksTurn() ? 1 : -1;
         g.setFont(f);
         g.drawString(
-            String.format("%.1f", curCurscoreMean),
+            String.format("%.1f", sign * curCurscoreMean),
             posx + (curMovenum * width / numMoves) - 2 * DOT_RADIUS,
             posy
                 + height / 2
                 - (int) (convertScoreMean(curCurscoreMean) * height / 2 / maxcoreMean)
                 + 2 * DOT_RADIUS);
+        g.setFont(origFont);
       }
     }
+
+    // Show move number
+    int moveNumber = curMove.getData().moveNumber;
+    String moveNumString = "" + moveNumber;
+    movenum = moveNumber - 1;
+    int x = posx + (movenum * width / numMoves);
+    int mw = g.getFontMetrics().stringWidth(moveNumString);
+    int margin = strokeRadius;
+    int mx = x - posx < width / 2 ? x + margin : x - mw - margin;
+    g.setColor(Color.black);
+    g.drawString(moveNumString, mx, posy + height - margin);
 
     // record parameters for calculating moveNumber
     params[0] = posx;
