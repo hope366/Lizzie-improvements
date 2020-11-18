@@ -977,15 +977,31 @@ public class LizzieFrame extends MainFrame {
     MoveData bestMove = Utils.getBestMove();
     boolean validScore = (bestMove != null);
     if (Lizzie.leelaz.isKataGo && validScore) {
+      double score = bestMove.scoreMean;
       double stdev = bestMove.scoreStdev;
+      if (Lizzie.board.getHistory().isBlacksTurn()) {
+        if (Lizzie.config.showKataGoBoardScoreMean) {
+          score = score + Lizzie.board.getHistory().getGameInfo().getKomi();
+        }
+      } else {
+        if (Lizzie.config.showKataGoBoardScoreMean) {
+          score = score - Lizzie.board.getHistory().getGameInfo().getKomi();
+        }
+        if (Lizzie.config.kataGoScoreMeanAlwaysBlack) {
+      score = -score;}
+        }
+      }
       text =
-          stdev == 0
-              ? text
-              : text
-                  + resourceBundle.getString("LizzieFrame.katago.scoreStdev")
-                  + ": "
-                  + String.format("%.1f", stdev)
-                  + " ";
+sourceBundle.getString("LizzieFrame.katago.scoreMean")
+              + ": "
+              + String.format("%.1f", score)
+              + " ";
+      text =
+          text
+              + resourceBundle.getString("LizzieFrame.katago.scoreStdev")
+              + ": "
+              + String.format("%.1f", stdev)
+              + " ";
     }
     // Last move
     if (validLastWinrate && validWinrate) {
