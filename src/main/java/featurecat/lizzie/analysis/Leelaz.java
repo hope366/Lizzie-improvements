@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -53,7 +55,7 @@ public class Leelaz {
 
   public Board board;
   private List<MoveData> bestMoves;
- 
+
   private List<LeelazListener> listeners;
 
   private boolean isPondering;
@@ -96,6 +98,11 @@ public class Leelaz {
   ArrayList<Double> estimateArray = new ArrayList<Double>();
   public double scoreMean = 0;
   public double scoreStdev = 0;
+
+  public boolean isLeela0110 = false;
+  private Timer leela0110PonderingTimer;
+  private BoardData leela0110PonderingBoardData;
+  private static final int LEELA0110_PONDERING_INTERVAL_MILLIS = 100;
 
   /**
    * Initializes the leelaz process and starts reading output
@@ -163,7 +170,7 @@ public class Leelaz {
     //    File lef = startfolder.toPath().resolve(new File(commands.get(0)).toPath()).toFile();
     //    System.out.println(lef.getPath());
     //    if (!lef.exists()) {
-    //      JOptionPane.showMessageDialog(
+    //      Utils.showMessageDialog(
     //          null,
     //          resourceBundle.getString("LizzieFrame.display.leelaz-missing"),
     //          "Lizzie - Error!",
@@ -174,7 +181,7 @@ public class Leelaz {
     // Check if network file is present
     //    File wf = startfolder.toPath().resolve(new File(currentWeightFile).toPath()).toFile();
     //    if (!wf.exists()) {
-    //      JOptionPane.showMessageDialog(
+    //      Utils.showMessageDialog(
     //          null, resourceBundle.getString("LizzieFrame.display.network-missing"));
     //      throw new IOException("network-file not present");
     //    }
@@ -239,7 +246,7 @@ public class Leelaz {
     isDown = true;
     Lizzie.frame.refresh();
     String displayedMessage = String.format("%s\n\nEngine command: %s", message, engineCommand);
-    JOptionPane.showMessageDialog(
+    Utils.showMessageDialog(
         Lizzie.frame, displayedMessage, "Lizzie - Error!", JOptionPane.ERROR_MESSAGE);
   }
 
@@ -257,7 +264,7 @@ public class Leelaz {
         executor.shutdownNow();
       }
       if (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
-        JOptionPane.showMessageDialog(
+        Utils.showMessageDialog(
             Lizzie.frame,
             "Engine does not close its pipe after GTP command 'quit'.",
             "Lizzie - Error!",
@@ -375,6 +382,7 @@ public class Leelaz {
         }
         isLoaded = true;
         if (isResponseUpToDate()
+            || isLeela0110 && isPondering
             || isThinking
                 && (!isPondering && Lizzie.frame.isPlayingAgainstLeelaz || isInputCommand)) {
           // TODO Do not update the best moves when playing against Leela Zero
@@ -383,6 +391,7 @@ public class Leelaz {
               && (Lizzie.config.limitBestMoveNum == 0
                   || bestMoves.size() < Lizzie.config.limitBestMoveNum)) {
             bestMoves.add(MoveData.fromSummary(line));
+            if (isLeela0110) return;
             notifyBestMoveListeners();
             Lizzie.frame.refresh(1);
           }
@@ -393,6 +402,13 @@ public class Leelaz {
           Lizzie.board.place(line.substring(5).trim());
         }
         isThinking = false;
+
+      } else if (isLeela0110 && line.startsWith("=====")) {
+        if (isLeela0110PonderingValid()) Lizzie.board.getData().tryToSetBestMoves(bestMoves);
+        Lizzie.frame.refresh(1);
+        Lizzie.frame.updateTitle();
+        leela0110UpdatePonder();
+        return;
 
       } else if (line.startsWith("=") || line.startsWith("?")) {
         if (!isLoaded) {
@@ -445,14 +461,17 @@ public class Leelaz {
           if (params[1].startsWith("KataGo")) {
             this.isKataGo = true;
             Lizzie.initializeAfterVersionCheck(this);
+          } else if (params[1].equals("Leela") && params.length == 2) {
+            this.isLeela0110 = true;
+            Lizzie.initializeAfterVersionCheck(this);
           }
           isCheckingName = false;
-        } else if (isCheckingVersion && !isKataGo) {
+        } else if (isCheckingVersion && !isKataGo && !isLeela0110) {
           String[] ver = params[1].split("\\.");
           int minor = Integer.parseInt(ver[1]);
           // Gtp support added in version 15
           if (minor < 15) {
-            JOptionPane.showMessageDialog(
+            Utils.showMessageDialog(
                 Lizzie.frame,
                 "Lizzie requires version 0.15 or later of Leela Zero for analysis (found "
                     + params[1]
@@ -705,6 +724,10 @@ public class Leelaz {
   public void ponder() {
     isPondering = true;
     startPonderTime = System.currentTimeMillis();
+    if (isLeela0110) {
+      leela0110Ponder();
+      return;
+    }
     if (Lizzie.board.isAvoding
         && Lizzie.board.isKeepingAvoid
         && !isKataGo
@@ -740,8 +763,42 @@ public class Leelaz {
     Lizzie.frame.updateBasicInfo();
   }
 
+  private void leela0110Ponder() {
+    synchronized (this) {
+      if (leela0110PonderingBoardData != null) return;
+      leela0110PonderingBoardData = Lizzie.board.getData();
+      bestMoves = new ArrayList<>();
+      sendCommand("time_left b 0 0");
+      leela0110PonderingTimer = new Timer();
+      leela0110PonderingTimer.schedule(
+          new TimerTask() {
+            public void run() {
+              sendCommand("name");
+            }
+          },
+          LEELA0110_PONDERING_INTERVAL_MILLIS);
+    }
+  }
+
+  private void leela0110StopPonder() {
+    if (leela0110PonderingTimer != null) {
+      leela0110PonderingTimer.cancel();
+      leela0110PonderingTimer = null;
+    }
+    leela0110PonderingBoardData = null;
+  }
+
+  private void leela0110UpdatePonder() {
+    leela0110StopPonder();
+    if (isPondering) leela0110Ponder();
+  }
+
+  private boolean isLeela0110PonderingValid() {
+    return leela0110PonderingBoardData == Lizzie.board.getData();
+  }
   /** End the process */
   public void shutdown() {
+    leela0110StopPonder();
     if (process != null) process.destroy();
   }
 

@@ -10,6 +10,7 @@ import featurecat.lizzie.gui.MainFrame;
 import featurecat.lizzie.rules.BoardData;
 import featurecat.lizzie.rules.BoardHistoryNode;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -333,6 +334,27 @@ public class Utils {
       (new Throwable()).printStackTrace();
       System.out.println("----------------------");
     }
+  }
+
+  public static void showMessageDialog(Component parentComponent, Object message) {
+    SwingUtilities.invokeLater(
+        new Runnable() {
+          public void run() {
+            mustBeEventDispatchThread();
+            JOptionPane.showMessageDialog(parentComponent, message);
+          }
+        });
+  }
+
+  public static void showMessageDialog(
+      Component parentComponent, Object message, String title, int messageType) {
+    SwingUtilities.invokeLater(
+        new Runnable() {
+          public void run() {
+            mustBeEventDispatchThread();
+            JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
+          }
+        });
   }
 
   public static TransferHandler transFile =

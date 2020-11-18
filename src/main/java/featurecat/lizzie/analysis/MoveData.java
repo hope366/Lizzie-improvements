@@ -144,13 +144,19 @@ public class MoveData {
    *
    * <p>Q4 -> 4348 (V: 43.88%) (LCB: 43.81%) (N: 18.67%) PV: Q4 D16 D4 Q16 R14 R6 C1
    *
+   * <p>Leela 0.11.0
+   *
+   * <p>R16 -> 788 (W: 48.73%) (U: 48.02%) (V: 49.09%: 141) (N: 3.8%) PV: R16 D17 Q3
+   *
    * @param summary line of summary output
    */
   public static MoveData fromSummary(String summary) {
     Matcher match = summaryPatternLcb.matcher(summary.trim());
     if (!match.matches()) {
       // support 0.16 0.15
-      Matcher matchold = summaryPatternWinrate.matcher(summary.trim());
+      Pattern oldPattern =
+          Lizzie.leelaz.isLeela0110 ? summaryPatternLeela0110 : summaryPatternWinrate;
+      Matcher matchold = oldPattern.matcher(summary.trim());
       if (!matchold.matches()) {
         throw new IllegalArgumentException("Unexpected summary format: " + summary);
       } else {
@@ -178,6 +184,8 @@ public class MoveData {
   private static Pattern summaryPatternWinrate =
       Pattern.compile("^ *(\\w\\d*) -> *(\\d+) \\(V: ([^%)]+)%\\) \\([^\\)]+\\) PV: (.+).*$");
   // support 0.16 0.15
+  private static Pattern summaryPatternLeela0110 =
+      Pattern.compile("^ *(\\w\\d*) -> *(\\d+) \\(W: ([^%)]+)%\\).*PV: (.+).*$");
 
   public static int getPlayouts(List<MoveData> moves) {
     int playouts = 0;
