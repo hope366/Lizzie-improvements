@@ -71,11 +71,21 @@
         - [Winning rate change node for trial](#winning-rate-change-node-for-trial)
         - [There is something wrong with the window that appears in Settings→Theme.](#there-is-something-wrong-with-the-window-that-appears-in-settings→theme)
         - [Overwrite storage issues](#overwrite-storage-issues)
+    - [Changes in v1.8](#changes-in-v18)
+        - [Leela 0.11.0 on Lizzie 0.7.4](#leela-0110-on-lizzie-074)
+        - [Accept only numbers as blunder thresholds](#accept-only-numbers-as-blunder-thresholds)
+        - [Make the threshold 0.0 usable for the blunder color of "normal" moves](#make-the-threshold-00-usable-for-the-blunder-color-of-normal-moves)
+        - [Fix(slow play/undo/redo)](#fixslow-playundoredo)
+        - [Fix #805(The ">>" doesn't work properly)](#fix-805the--doesnt-work-properly)
+        - [Fix overflow of variation tree with largeSubBoard in normal UI](#fix-overflow-of-variation-tree-with-largesubboard-in-normal-ui)
+        - [Win rate graph related](#win-rate-graph-related)
+        - [Fix: Remove wrong-sized ownership marks](#fix-remove-wrong-sized-ownership-marks)
+        - [Fix: Up arrow key does not work just after click on a suggested move …](#fix-up-arrow-key-does-not-work-just-after-click-on-a-suggested-move-)
 
 <!-- /TOC -->
 
 日本語での説明は、こちらのリンク先をご覧ください→
-https://ameblo.jp/hope366/entry-12635554389.html
+https://ameblo.jp/hope366/entry-12639259283.html
 
 ## Lizzie - Leela Zero Interface
 ![GIF 2020-07-13 12-46-35](https://user-images.githubusercontent.com/63999713/87269204-6d744200-c507-11ea-80aa-263f24205251.gif)
@@ -444,6 +454,53 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Overwrite storage issues
 
  For example, if a file called "ff.sgf" already exists and you try to save the file by typing "ff", the existing lizzie will be overwritten without a confirmation message, but in v1.7, a confirmation message is shown.
+
+## Changes in v1.8
+
+### Leela 0.11.0 on Lizzie 0.7.4
+
+ Leela 0.11.0 is now available in lizzie.
+ Download "Leela 0.11.0 engine only" from https://www.sjeng.org/leela.html and place "Leela0110GTP.exe" or "Leela0110GTP_OpenCL.exe" in the lizzie folder.
+ Specify "Leela0110GTP.exe -g" or "Leela0110GTP_OpenCL.exe -g" in the engine command.
+
+### Accept only numbers as blunder thresholds
+
+ When you enter a threshold for a win rate change node, if you enter a string other than an appropriate string, the cell will be surrounded by a red frame and you will not be able to enter blunder color. This allows the user to readily recognize that the wrong string has been entered.
+
+### Make the threshold 0.0 usable for the blunder color of "normal" moves
+
+ For blunder color, it is now possible to specify the normal movement as well.Until now, the best moves and movements close to them were white and inconspicuous, but with the addition of this function, it is now possible to display good movements in cool colors such as light blue.
+
+### Fix(slow play/undo/redo)
+
+ On a CPU-only PC, under the conditions of Panel UI + Toolbar + KataGo (OpenCL), the undo speed may be quite slow (about 0.5 seconds per move).This issue has been resolved.
+
+
+### Fix #805(The ">>" doesn't work properly)
+
+ ">>" on the lower toolbar is a function to advance 10 moves, but there was a bug that only one move was actually advanced, so I fixed it.
+
+### Fix overflow of variation tree with largeSubBoard in normal UI
+
+ There was a bug that the variation tree protruded to the main board when the winning percentage graph or the sub board was enlarged and displayed when there were many branches in the variation tree. It has been fixed in v1.8.
+
+### Win rate graph related
+ 
+ * Fixed an issue where move numbers were hard to see due to the green winning percentage line.
+ * By displaying something like "white +0.5" above the bar graph, the current score lead information is easier to see.
+ * Place some stones on the main board with pondering off. Next, turn on pondering and return the stones one by one. At this time, the stdev and score lead information is hidden. Fixed this issue. 
+
+### Fix: Remove wrong-sized ownership marks 
+
+ Display the ownership mark with "katago posture" on the toolbar. Then turn off podering and resize the window. Then the ownership mark is not optimized for the window size. Hide this false display. It will be displayed again as soon as you turn on pondering.
+
+### Fix: Up arrow key does not work just after click on a suggested move …
+
+ Place the stone in the place of the candidate hand displayed on the board. Restoring the stone with the up arrow key or the mouse wheel (up) without moving the mouse pointer. The stone you put on it should disappear, but it doesn't actually disappear. This issue has been fixed in v1.8.
+
+
+
+
  
 
  
