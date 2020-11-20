@@ -100,9 +100,10 @@ public class Leelaz {
   public double scoreStdev = 0;
 
   public boolean isLeela0110 = false;
+  private List<MoveData> leela0110BestMoves;
   private Timer leela0110PonderingTimer;
   private BoardData leela0110PonderingBoardData;
-  private static final int LEELA0110_PONDERING_INTERVAL_MILLIS = 100;
+  private static final int LEELA0110_PONDERING_INTERVAL_MILLIS = 1000;
 
   /**
    * Initializes the leelaz process and starts reading output
@@ -382,15 +383,16 @@ public class Leelaz {
         }
         isLoaded = true;
         if (isResponseUpToDate()
-            || isLeela0110 && isPondering
+            || isLeela0110
             || isThinking
                 && (!isPondering && Lizzie.frame.isPlayingAgainstLeelaz || isInputCommand)) {
+          List<MoveData> bm = isLeela0110 ? leela0110BestMoves : bestMoves;
           // TODO Do not update the best moves when playing against Leela Zero
           // Because it is equivalent to the winrate of the previous move.
           if (!Lizzie.frame.isPlayingAgainstLeelaz
               && (Lizzie.config.limitBestMoveNum == 0
-                  || bestMoves.size() < Lizzie.config.limitBestMoveNum)) {
-            bestMoves.add(MoveData.fromSummary(line));
+                  || bm.size() < Lizzie.config.limitBestMoveNum)) {
+            bm.add(MoveData.fromSummary(line));
             if (isLeela0110) return;
             notifyBestMoveListeners();
             Lizzie.frame.refresh(1);
@@ -404,7 +406,8 @@ public class Leelaz {
         isThinking = false;
 
       } else if (isLeela0110 && line.startsWith("=====")) {
-        if (isLeela0110PonderingValid()) Lizzie.board.getData().tryToSetBestMoves(bestMoves);
+        if (isLeela0110PonderingValid())
+          Lizzie.board.getData().tryToSetBestMoves(bestMoves = leela0110BestMoves);
         Lizzie.frame.refresh(1);
         Lizzie.frame.updateTitle();
         leela0110UpdatePonder();
@@ -421,7 +424,6 @@ public class Leelaz {
         }
         if (printCommunication || gtpConsole) {
           System.out.print(line);
-          Lizzie.gtpConsole.addLine(line);
         }
         String[] params = line.trim().split(" ");
         currentCmdNum = Integer.parseInt(params[0].substring(1).trim());
@@ -767,7 +769,7 @@ public class Leelaz {
     synchronized (this) {
       if (leela0110PonderingBoardData != null) return;
       leela0110PonderingBoardData = Lizzie.board.getData();
-      bestMoves = new ArrayList<>();
+      leela0110BestMoves = new ArrayList<>();
       sendCommand("time_left b 0 0");
       leela0110PonderingTimer = new Timer();
       leela0110PonderingTimer.schedule(
@@ -796,6 +798,7 @@ public class Leelaz {
   private boolean isLeela0110PonderingValid() {
     return leela0110PonderingBoardData == Lizzie.board.getData();
   }
+
   /** End the process */
   public void shutdown() {
     leela0110StopPonder();
