@@ -1412,6 +1412,7 @@ public class Menu extends JMenuBar {
       if (engineDt != null) {
         if (engineDt.currentWeight() != "")
           engine[i].setText(engine[i].getText() + " : " + engineDt.nicknameOrcurrentWeight());
+        engine[i].setToolTipText(engineDt.engineCommand());
         engine[i].setVisible(true);
         int a = i;
         engine[i].addActionListener(
