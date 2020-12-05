@@ -1828,7 +1828,7 @@ public class ConfigDialog extends LizzieDialog {
               resourceBundle.getString("LizzieConfig.title.engine"), "exe", "bat", "sh");
       chooser.setFileFilter(filter);
     } else {
-      setVisible(false);
+      // setVisible(false);
     }
     chooser.setMultiSelectionEnabled(false);
     chooser.setDialogTitle(resourceBundle.getString("LizzieConfig.prompt.selectEngine"));
@@ -1930,7 +1930,9 @@ public class ConfigDialog extends LizzieDialog {
       Lizzie.initializeEngineManager();
     }
     try {
+      // if (Lizzie.engineManager != null) {
       Lizzie.engineManager.refresh();
+      // }
     } catch (JSONException e) {
       e.printStackTrace();
     } catch (IOException e) {

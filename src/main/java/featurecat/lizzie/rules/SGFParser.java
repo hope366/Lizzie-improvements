@@ -297,7 +297,7 @@ public class SGFParser {
             int playoutsUnit =
                 playoutsStr.endsWith("m") ? kilo * kilo : playoutsStr.endsWith("k") ? kilo : 1;
             int numPlayouts =
-            (int) (Double.parseDouble(playoutsStr.replaceAll("[^0-9.]", "")) * playoutsUnit);
+                (int) (Double.parseDouble(playoutsStr.replaceAll("[^0-9.]", "")) * playoutsUnit);
             Lizzie.board.getData().setPlayouts(numPlayouts);
             if (numPlayouts > 0 && !line2.isEmpty()) {
               Lizzie.board.getData().bestMoves = Lizzie.leelaz.parseInfo(line2);
@@ -609,7 +609,7 @@ public class SGFParser {
     // move to the first move
     history.toStart();
 
-    // Game properties  
+    // Game properties
     history.getData().addProperties(generalProps.toString());
     builder.append(history.getData().propertiesString());
 
@@ -939,11 +939,11 @@ public class SGFParser {
    */
   public static String propertiesString(Map<String, String> props) {
     StringBuilder sb = new StringBuilder();
-       // Place "CA" before non-ASCII characters for safety.
-       String charsetKey = "CA";
-       String charsetValue = props.get(charsetKey);
-       if (charsetValue != null) sb.append(nodeString(charsetKey, charsetValue));
-       props.forEach((key, value) -> sb.append(key == charsetKey ? "" : nodeString(key, value)));
+    // Place "CA" before non-ASCII characters for safety.
+    String charsetKey = "CA";
+    String charsetValue = props.get(charsetKey);
+    if (charsetValue != null) sb.append(nodeString(charsetKey, charsetValue));
+    props.forEach((key, value) -> sb.append(key == charsetKey ? "" : nodeString(key, value)));
     return sb.toString();
   }
 
