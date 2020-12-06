@@ -81,11 +81,16 @@
         - [Win rate graph related](#win-rate-graph-related)
         - [Fix: Remove wrong-sized ownership marks](#fix-remove-wrong-sized-ownership-marks)
         - [Fix: Up arrow key does not work just after click on a suggested move …](#fix-up-arrow-key-does-not-work-just-after-click-on-a-suggested-move-)
+    - [Changes in v1.9](#changes-in-v19)
+        - [Fix(playouts "1.5k" is wrongly read as 15000 in SGF)](#fixplayouts-15k-is-wrongly-read-as-15000-in-sgf)
+        - [Show background playouts](#show-background-playouts)
+        - [Added engine full command as tooltip for easier engine selection](#added-engine-full-command-as-tooltip-for-easier-engine-selection)
+        - [Force UTF-8 for saving SGF](#force-utf-8-for-saving-sgf)
 
 <!-- /TOC -->
 
 日本語での説明は、こちらのリンク先をご覧ください→
-https://ameblo.jp/hope366/entry-12639259283.html
+https://ameblo.jp/hope366/entry-12642410125.html
 
 ## Lizzie - Leela Zero Interface
 ![GIF 2020-07-13 12-46-35](https://user-images.githubusercontent.com/63999713/87269204-6d744200-c507-11ea-80aa-263f24205251.gif)
@@ -497,6 +502,28 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Fix: Up arrow key does not work just after click on a suggested move …
 
  Place the stone in the place of the candidate hand displayed on the board. Restoring the stone with the up arrow key or the mouse wheel (up) without moving the mouse pointer. The stone you put on it should disappear, but it doesn't actually disappear. This issue has been fixed in v1.8.
+
+## Changes in v1.9
+
+### Fix(playouts "1.5k" is wrongly read as 15000 in SGF) 
+
+ When adding and saving the analysis data to the SGF in which the analysis data by lizzie is recorded, it sometimes took an unusually long time for the numerical values on each candidate to move.
+ In addition, there was a bug that the amount of analysis displayed in the comment column at the bottom right was incorrectly recorded as about 10 times the value on the board. It has been fixed in v1.9.
+
+### Show background playouts
+
+ Previously, when the phase was moved, the display of the total analysis amount on the upper toolbar was the value of the previous phase, but in v1.9 it has been improved to display the total analysis amount stored for each phase. It has been.
+
+### Added engine full command as tooltip for easier engine selection
+ 
+ When you move the mouse cursor to the engine selection pull-down menu, the engine command string pops up for a few seconds.
+
+### Force UTF-8 for saving SGF
+
+ If you load an SGF that uses a non-ASCII code (other than half-width alphanumeric characters, Japanese, etc.) as the player name and then save it, there was a bug that the player name at the bottom of the board would be written strangely.In v1.9 this issue is resolved by forcing UTF-8 when saving the SGF.
+
+ 
+
 
 
 
