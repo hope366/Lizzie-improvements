@@ -94,7 +94,7 @@
 <!-- /TOC -->
 
 日本語での説明は、こちらのリンク先をご覧ください→
-https://ameblo.jp/hope366/entry-12642410125.html
+https://ameblo.jp/hope366/entry-12643469110.html
 
 ## Lizzie - Leela Zero Interface
 ![GIF 2020-07-13 12-46-35](https://user-images.githubusercontent.com/63999713/87269204-6d744200-c507-11ea-80aa-263f24205251.gif)
