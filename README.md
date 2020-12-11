@@ -86,6 +86,10 @@
         - [Show background playouts](#show-background-playouts)
         - [Added engine full command as tooltip for easier engine selection](#added-engine-full-command-as-tooltip-for-easier-engine-selection)
         - [Force UTF-8 for saving SGF](#force-utf-8-for-saving-sgf)
+    - [Changes in v2.0](#changes-in-v20)
+        - [Update DisplayStrings_ko.properties](#update-displaystrings_koproperties)
+        - [Fix wrong getCoord which leads analysis hangs when enable katago ownership in rectangle board](#fix-wrong-getcoord-which-leads-analysis-hangs-when-enable-katago-ownership-in-rectangle-board)
+        - [only update last-folder if there is something to update](#only-update-last-folder-if-there-is-something-to-update)
 
 <!-- /TOC -->
 
@@ -521,6 +525,21 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### Force UTF-8 for saving SGF
 
  If you load an SGF that uses a non-ASCII code (other than half-width alphanumeric characters, Japanese, etc.) as the player name and then save it, there was a bug that the player name at the bottom of the board would be written strangely.In v1.9 this issue is resolved by forcing UTF-8 when saving the SGF.
+
+## Changes in v2.0
+
+### Update DisplayStrings_ko.properties
+
+ The Korean notation has been improved to make it easier to use. (I can't explain because I don't understand Korean)
+ See [here](https://github.com/hope366/Lizzie-improvements/pull/4) for more information.
+
+### Fix wrong getCoord which leads analysis hangs when enable katago ownership in rectangle board
+
+ Analysis hung bug when turning on KataGo's estimated area display on a rectangular board.This bug doesn't seem to occur in Lizzie-improved-v1.9, but it seems to occur in the official version of Lizzie-0.7.4.
+
+### only update last-folder if there is something to update  
+
+ This issue has not been reproduced and cannot be explained in detail. Since a bug in Ubuntu has been reported, it may be a bug limited to Ubuntu.
 
  
 
