@@ -271,6 +271,10 @@ public class LizzieFrame extends MainFrame {
         TimeUnit.SECONDS);
   }
 
+  public BoardRenderer getBoardRenderer() {
+    return boardRenderer;
+  }
+
   public void addNotify() {
     // needless?
     // https://stackoverflow.com/questions/3435994/buffers-have-not-been-created-whilst-creating-buffers

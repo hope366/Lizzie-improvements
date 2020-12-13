@@ -179,6 +179,7 @@ public class BoardData {
   }
 
   public void tryToSetBestMoves(List<MoveData> moves) {
+    if (!Lizzie.allow.isEmpty()) return;
     if (MoveData.getPlayouts(moves) > playouts) {
       bestMoves = moves;
       setPlayouts(MoveData.getPlayouts(moves));

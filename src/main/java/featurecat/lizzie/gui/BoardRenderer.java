@@ -32,6 +32,7 @@ import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.TexturePaint;
 import java.awt.font.TextAttribute;
 import java.awt.geom.Point2D;
@@ -136,6 +137,7 @@ public class BoardRenderer {
 
     //        Stopwatch timer = new Stopwatch();
     drawGoban(g);
+    if (!Lizzie.allow.isEmpty() || Lizzie.allowStart != null) drawAllowedRegion(g);
     if (!isMainBoard) drawSubBoardStatus(g);
     if (Lizzie.config.showNameInBoard && isMainBoard) drawName(g);
     //        timer.lap("background");
@@ -542,6 +544,31 @@ public class BoardRenderer {
     if (Lizzie.board.inScoreMode()) lastInScoreMode = true;
   }
 
+  private int xFor(double i) {
+    return (int) (x + scaledMarginWidth + squareWidth * i);
+  }
+
+  private int yFor(double j) {
+    return (int) (y + scaledMarginHeight + squareHeight * j);
+  }
+
+  private void drawAllowedRegion(Graphics2D g) {
+    Color origColor = g.getColor();
+    Stroke origStroke = g.getStroke();
+    double thick = 0.2, margin = 0.5 + thick / 2;
+    if (Lizzie.board == null) return;
+    int x0 = xFor(Lizzie.allowLeft - margin);
+    int x1 = xFor(Lizzie.allowRight + margin);
+    int y0 = yFor(Lizzie.allowTop - margin);
+    int y1 = yFor(Lizzie.allowBottom + margin);
+    g.setColor(Color.BLUE);
+    g.setStroke(new BasicStroke((int) (squareWidth * thick)));
+    g.drawRoundRect(
+        x0, y0, x1 - x0, y1 - y0, (int) (squareWidth * 0.5), (int) (squareHeight * 0.5));
+    g.setColor(origColor);
+    g.setStroke(origStroke);
+  }
+
   /*
    * Draw a white/black dot on territory and captured stones. Dame is drawn as red dot.
    */
@@ -593,6 +620,7 @@ public class BoardRenderer {
     // calculate best moves and branch
     bestMoves = Lizzie.leelaz.getBestMoves();
     if (Lizzie.config.showBestMovesByHold
+        && Lizzie.allow.isEmpty()
         && MoveData.getPlayouts(bestMoves) < Lizzie.board.getData().getPlayouts()) {
       bestMoves = Lizzie.board.getData().bestMoves;
     }

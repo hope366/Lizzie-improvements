@@ -750,9 +750,20 @@ public class Leelaz {
                   .config
                   .getJSONObject("leelaz")
                   .getInt("analyze-update-interval-centisec")
+              + allowCommand()
               + (this.isKataGo && Lizzie.config.showKataGoEstimate ? " ownership true" : ""));
     // until it responds to this, incoming
     // ponder results are obsolete
+  }
+
+  private String allowCommand() {
+    return allowCommandFor("B") + allowCommandFor("W");
+  }
+
+  private String allowCommandFor(String color) {
+    int untilDepth = 9999;
+    String allow = Lizzie.allow;
+    return allow.isEmpty() ? "" : String.format(" allow %s %s %d", color, allow, untilDepth);
   }
 
   public void togglePonder() {
