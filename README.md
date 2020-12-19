@@ -90,11 +90,13 @@
         - [Update DisplayStrings_ko.properties](#update-displaystrings_koproperties)
         - [Fix wrong getCoord which leads analysis hangs when enable katago ownership in rectangle board](#fix-wrong-getcoord-which-leads-analysis-hangs-when-enable-katago-ownership-in-rectangle-board)
         - [only update last-folder if there is something to update](#only-update-last-folder-if-there-is-something-to-update)
+    - [Changes in v2.1](#changes-in-v21)
+        - [Set region of interest like KaTrain 1.7](#set-region-of-interest-like-katrain-17)
 
 <!-- /TOC -->
 
 日本語での説明は、こちらのリンク先をご覧ください→
-https://ameblo.jp/hope366/entry-12643469110.html
+https://ameblo.jp/hope366/entry-12644884847.html
 
 ## Lizzie - Leela Zero Interface
 ![GIF 2020-07-13 12-46-35](https://user-images.githubusercontent.com/63999713/87269204-6d744200-c507-11ea-80aa-263f24205251.gif)
@@ -540,6 +542,14 @@ the letter **x**) and you will see all the commands listed in the GUI.
 ### only update last-folder if there is something to update  
 
  This issue has not been reproduced and cannot be explained in detail. Since a bug in Ubuntu has been reported, it may be a bug limited to Ubuntu.
+ 
+## Changes in v2.1
+
+### Set region of interest like KaTrain 1.7
+
+ * We have also incorporated the new features introduced in KaTrain 1.7 into lizzie. You can specify a rectangular area to limit the analysis within that area.
+   * Alt+drag to set region of interest.
+   * Alt+click to reset it.
 
  
 
