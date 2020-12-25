@@ -54,7 +54,8 @@ public class BoardPane extends LizziePane {
     resourceBundle.getString("LizzieFrame.commands.mouseWheelScroll"),
     resourceBundle.getString("LizzieFrame.commands.keyC"),
     resourceBundle.getString("LizzieFrame.commands.keyP"),
-    resourceBundle.getString("LizzieFrame.commands.keyPeriod"),
+    // scoreMode has no keyboard binding in 0.7.4.
+    // resourceBundle.getString("LizzieFrame.commands.keyPeriod"),
     resourceBundle.getString("LizzieFrame.commands.keyA"),
     resourceBundle.getString("LizzieFrame.commands.keyM"),
     resourceBundle.getString("LizzieFrame.commands.keyI"),
@@ -79,7 +80,8 @@ public class BoardPane extends LizziePane {
     resourceBundle.getString("LizzieFrame.commands.keyControl"),
     resourceBundle.getString("LizzieFrame.commands.keyDelete"),
     resourceBundle.getString("LizzieFrame.commands.keyBackspace"),
-    resourceBundle.getString("LizzieFrame.commands.keyE"),
+    // This is keyK actually in 0.7.4.
+    // resourceBundle.getString("LizzieFrame.commands.keyE"),
   };
 
   private static BoardRenderer boardRenderer;
@@ -108,6 +110,11 @@ public class BoardPane extends LizziePane {
         new MouseAdapter() {
           @Override
           public void mousePressed(MouseEvent e) {
+            if (e.isAltDown() && e.getButton() == MouseEvent.BUTTON1) {
+              owner.input.startSettingRegionOfInterest(e);
+              Lizzie.frame.refresh();
+              return;
+            }
             if (e.getButton() == MouseEvent.BUTTON1) { // left click
               if (e.getClickCount() == 2) { // TODO: Maybe need to delay check
                 onDoubleClicked(e.getX(), e.getY());
@@ -121,6 +128,11 @@ public class BoardPane extends LizziePane {
               Lizzie.frame.onRightClicked(e.getX(), e.getY());
               // }
             }
+          }
+
+          @Override
+          public void mouseReleased(MouseEvent e) {
+            owner.input.mouseReleased(e);
           }
 
           @Override
@@ -140,7 +152,9 @@ public class BoardPane extends LizziePane {
           }
 
           @Override
-          public void mouseDragged(MouseEvent e) {}
+          public void mouseDragged(MouseEvent e) {
+            owner.input.mouseDragged(e);
+          }
         });
   }
 

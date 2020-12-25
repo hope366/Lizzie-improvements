@@ -83,10 +83,6 @@ public abstract class MainFrame extends JFrame {
     Utils.mustBeEventDispatchThread();
   }
 
-  public BoardRenderer getBoardRenderer() {
-    return null;
-  }
-
   public boolean isDesignMode() {
     return false;
   }
