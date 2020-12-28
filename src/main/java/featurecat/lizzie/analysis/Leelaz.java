@@ -1095,6 +1095,17 @@ public class Leelaz {
       currentWeight = names.length > 1 ? names[names.length - 1] : currentWeightFile;
     }
   }
+
+  public void updateKataGoRule() {
+    updateKataGoRule(false);
+  }
+
+  public void updateKataGoRule(boolean keepPondering) {
+    if (!isKataGo) return;
+    sendCommand("kata-set-rules " + Lizzie.config.kataGoRule);
+    if (isPondering && keepPondering) ponder();
+  }
+
   // Writer thread for avoiding deadlock (#752)
   class WriterThread extends Thread {
     public ArrayDeque<String> writerQueue = new ArrayDeque<>();
