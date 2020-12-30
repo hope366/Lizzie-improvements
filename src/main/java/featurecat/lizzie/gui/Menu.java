@@ -1348,6 +1348,7 @@ public class Menu extends JMenuBar {
               Lizzie.config.setKataGoRule(rule);
               Lizzie.leelaz.updateKataGoRule(true);
               Lizzie.board.clearAnalysis();
+              Lizzie.frame.refresh();
               try {
                 Lizzie.config.save();
               } catch (IOException es) {
