@@ -17,7 +17,6 @@ import featurecat.lizzie.analysis.MoveData;
 import featurecat.lizzie.rules.Board;
 import featurecat.lizzie.rules.BoardData;
 import featurecat.lizzie.rules.BoardHistoryNode;
-import featurecat.lizzie.rules.RegionOfInterest;
 import featurecat.lizzie.rules.SGFParser;
 import featurecat.lizzie.rules.Stone;
 import featurecat.lizzie.rules.Zobrist;
@@ -138,8 +137,7 @@ public class BoardRenderer {
 
     //        Stopwatch timer = new Stopwatch();
     drawGoban(g);
-    if (Lizzie.board != null && Lizzie.board.regionOfInterest.isEnabledOrInSetting())
-      drawRegionOfInterest(g);
+    if (!Lizzie.allow.isEmpty() || Lizzie.allowStart != null) drawAllowedRegion(g);
     if (!isMainBoard) drawSubBoardStatus(g);
     if (Lizzie.config.showNameInBoard && isMainBoard) drawName(g);
     //        timer.lap("background");
@@ -546,29 +544,29 @@ public class BoardRenderer {
     if (Lizzie.board.inScoreMode()) lastInScoreMode = true;
   }
 
-  private void drawRegionOfInterest(Graphics2D g) {
-    Color origColor = g.getColor();
-    Stroke origStroke = g.getStroke();
-    double thick = 0.2, margin = 0.5 + thick / 2;
-    RegionOfInterest rect = Lizzie.board.regionOfInterest;
-    int x0 = xFor(rect.left() - margin);
-    int x1 = xFor(rect.right() + margin);
-    int y0 = yFor(rect.top() - margin);
-    int y1 = yFor(rect.bottom() + margin);
-    g.setColor(Color.BLUE);
-    g.setStroke(new BasicStroke((int) (squareWidth * thick)));
-    g.drawRoundRect(
-        x0, y0, x1 - x0, y1 - y0, (int) (squareWidth * 0.5), (int) (squareHeight * 0.5));
-    g.setColor(origColor);
-    g.setStroke(origStroke);
-  }
-
   private int xFor(double i) {
     return (int) (x + scaledMarginWidth + squareWidth * i);
   }
 
   private int yFor(double j) {
     return (int) (y + scaledMarginHeight + squareHeight * j);
+  }
+
+  private void drawAllowedRegion(Graphics2D g) {
+    Color origColor = g.getColor();
+    Stroke origStroke = g.getStroke();
+    double thick = 0.2, margin = 0.5 + thick / 2;
+    if (Lizzie.board == null) return;
+    int x0 = xFor(Lizzie.allowLeft - margin);
+    int x1 = xFor(Lizzie.allowRight + margin);
+    int y0 = yFor(Lizzie.allowTop - margin);
+    int y1 = yFor(Lizzie.allowBottom + margin);
+    g.setColor(Color.BLUE);
+    g.setStroke(new BasicStroke((int) (squareWidth * thick)));
+    g.drawRoundRect(
+        x0, y0, x1 - x0, y1 - y0, (int) (squareWidth * 0.5), (int) (squareHeight * 0.5));
+    g.setColor(origColor);
+    g.setStroke(origStroke);
   }
 
   /*
@@ -622,7 +620,7 @@ public class BoardRenderer {
     // calculate best moves and branch
     bestMoves = Lizzie.leelaz.getBestMoves();
     if (Lizzie.config.showBestMovesByHold
-        && !Lizzie.board.regionOfInterest.isEnabled()
+        && Lizzie.allow.isEmpty()
         && MoveData.getPlayouts(bestMoves) < Lizzie.board.getData().getPlayouts()) {
       bestMoves = Lizzie.board.getData().bestMoves;
     }

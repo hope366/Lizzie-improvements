@@ -84,7 +84,7 @@ public class BoardPane extends LizziePane {
     // resourceBundle.getString("LizzieFrame.commands.keyE"),
   };
 
-  private static BoardRenderer boardRenderer;
+  public static BoardRenderer boardRenderer;
 
   //  private final BufferStrategy bs;
   private static boolean started = false;
@@ -111,7 +111,7 @@ public class BoardPane extends LizziePane {
           @Override
           public void mousePressed(MouseEvent e) {
             if (e.isAltDown() && e.getButton() == MouseEvent.BUTTON1) {
-              owner.input.startSettingRegionOfInterest(e);
+              owner.input.startSettingAnalysisRegion(e);
               Lizzie.frame.refresh();
               return;
             }
