@@ -55,7 +55,7 @@
         - [click to redo in panel UI](#click-to-redo-in-panel-ui)
         - [Fix wrong variation number on subboard](#fix-wrong-variation-number-on-subboard)
     - [Changes in v1.6](#changes-in-v16)
-        - [Display existing .sgf file when openfile](#display-existing-sgf-file-when-openfile)
+        - [Display existing .sgf file when savingfile](#display-existing-sgf-file-when-savingfile)
         - [Allows reading of uppercase .SGF and .GIB files](#allows-reading-of-uppercase-sgf-and-gib-files)
         - [Display an arbitrary engine name instead of the weight file name](#display-an-arbitrary-engine-name-instead-of-the-weight-file-name)
         - [Toggle large winrate graph by mouse click of center button](#toggle-large-winrate-graph-by-mouse-click-of-center-button)
@@ -380,7 +380,7 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ## Changes in v1.6
 
-### Display existing .sgf file when openfile
+### Display existing .sgf file when savingfile
 
  Resolved an issue where existing files were not displayed when saving the file.
 
