@@ -1499,8 +1499,8 @@ public class Menu extends JMenuBar {
       engine[i].setVisible(false);
       Leelaz engineDt = engineList.get(i);
       if (engineDt != null) {
-        if (engineDt.currentWeight() != "")
-          engine[i].setText(engine[i].getText() + " : " + engineDt.nicknameOrcurrentWeight());
+        // if (engineDt.currentWeight() != "")
+        engine[i].setText(engine[i].getText() + " : " + engineDt.nicknameOrcurrentWeight());
         engine[i].setToolTipText(engineDt.engineCommand());
         engine[i].setVisible(true);
         int a = i;
