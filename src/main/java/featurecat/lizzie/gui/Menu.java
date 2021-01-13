@@ -1258,7 +1258,7 @@ public class Menu extends JMenuBar {
 
     gameMenu.addSeparator();
 
-    final JCheckBoxMenuItem scoreMode = new JCheckBoxMenuItem("Score game");
+    final JCheckBoxMenuItem scoreMode = new JCheckBoxMenuItem(resourceBundle.getString("Menu.game.scoreGame"));
     gameMenu.add(scoreMode);
     scoreMode.addActionListener(
         new ActionListener() {
@@ -1331,7 +1331,7 @@ public class Menu extends JMenuBar {
         });
     analyzeMenu.add(estimate);
 
-    kataGoRuleMenu = new JMenu("Rule");
+    kataGoRuleMenu = new JMenu(resourceBundle.getString("Menu.analyze.rule"));
     kataGoRuleMenu.setEnabled(false);
     analyzeMenu.add(kataGoRuleMenu);
 
@@ -1464,10 +1464,10 @@ public class Menu extends JMenuBar {
       e.printStackTrace();
     }
 
-    final JMenu helpMenu = new JMenu("Help");
+    final JMenu helpMenu = new JMenu(resourceBundle.getString("Menu.help"));
     this.add(helpMenu);
 
-    final JMenuItem keyboardControlsHelp = new JMenuItem("Keyboard controls");
+    final JMenuItem keyboardControlsHelp = new JMenuItem(resourceBundle.getString("Menu.help.keyboardControls"));
     keyboardControlsHelp.addActionListener(
         new ActionListener() {
           @Override
