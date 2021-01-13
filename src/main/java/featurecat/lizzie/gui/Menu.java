@@ -1258,7 +1258,8 @@ public class Menu extends JMenuBar {
 
     gameMenu.addSeparator();
 
-    final JCheckBoxMenuItem scoreMode = new JCheckBoxMenuItem(resourceBundle.getString("Menu.game.scoreGame"));
+    final JCheckBoxMenuItem scoreMode =
+        new JCheckBoxMenuItem(resourceBundle.getString("Menu.game.scoreGame"));
     gameMenu.add(scoreMode);
     scoreMode.addActionListener(
         new ActionListener() {
@@ -1467,7 +1468,8 @@ public class Menu extends JMenuBar {
     final JMenu helpMenu = new JMenu(resourceBundle.getString("Menu.help"));
     this.add(helpMenu);
 
-    final JMenuItem keyboardControlsHelp = new JMenuItem(resourceBundle.getString("Menu.help.keyboardControls"));
+    final JMenuItem keyboardControlsHelp =
+        new JMenuItem(resourceBundle.getString("Menu.help.keyboardControls"));
     keyboardControlsHelp.addActionListener(
         new ActionListener() {
           @Override
