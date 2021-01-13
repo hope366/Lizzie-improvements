@@ -1052,7 +1052,7 @@ public class Leelaz {
   }
 
   public String nicknameOrcurrentWeight() {
-    return (engineNickname == null) ? currentWeight : engineNickname;
+    return (currentWeight == null) ? engineNickname : currentWeight;
   }
 
   public String currentWeight() {
