@@ -92,6 +92,15 @@
         - [only update last-folder if there is something to update](#only-update-last-folder-if-there-is-something-to-update)
     - [Changes in v2.1](#changes-in-v21)
         - [Set region of interest like KaTrain 1.7](#set-region-of-interest-like-katrain-17)
+    - [Changes in v2.2](#changes-in-v22)
+    - [Changes in v2.2](#changes-in-v22-1)
+        - [Strengthening the engine menu](#strengthening-the-engine-menu)
+        - [Region of interest](#region-of-interest)
+        - [Revive score mode](#revive-score-mode)
+        - [Add Help menu](#add-help-menu)
+        - [Switch rules from the menu](#switch-rules-from-the-menu)
+        - [Fix typo](#fix-typo)
+        - [Show message when autoanalysis is denied](#show-message-when-autoanalysis-is-denied)
 
 <!-- /TOC -->
 
@@ -550,6 +559,50 @@ the letter **x**) and you will see all the commands listed in the GUI.
  * We have also incorporated the new features introduced in KaTrain 1.7 into lizzie. You can specify a rectangular area to limit the analysis within that area.
    * Alt+drag to set region of interest.
    * Alt+click to reset it.
+
+## Changes in v2.2
+
+## Changes in v2.2
+
+### Strengthening the engine menu
+
+ Leela 0.11.0 and colab-katago were blank in the engine menu, but now they are displayed by entering a nickname.
+
+### Region of interest
+
+ * In v2.1, all the change diagrams presented were also limited to the specified area, but in v2.2 the entire board is used.
+ * In v2.1 it was limited to normal mode, but in v2.2 it can also be used in panel UI mode.
+ * In v2.1, if you release Alt before the mouse button, the area specification will fail, but in v2.2 it will be valid.
+ * You can now cancel the set analysis area by clicking "Allow" or "Avoid" in the right-click menu. (Only when the engine is Leela Zero and Settings-> Engine-> Avoid Keep Variations is other than 0)
+
+### Revive score mode
+
+ We have revived the score mode, which has been abolished since the score estimation function using zen was applied.
+ Click "Game" on the top toolbar and "Score game" is added at the bottom.
+ In Score mode, by left-clicking on the dead stone, the numerical value of each other's fixed place considering Komi will be displayed in the Agehama display.
+
+### Add Help menu
+
+ "Help" has been added to the far right of the top toolbar. Help → Keyboard controls is a link to a page explaining lizzie shortcut keys.
+
+### Switch rules from the menu 
+
+ "Rule" has been added to the "Analysis" menu on the toolbar, and you can now freely choose from 11 types of rules.
+ This feature is only available if the engine is KataGo.
+ In panel UI mode, the selected rule is displayed above the Komi display.
+
+### Fix typo
+
+ In English mode, there was a typo in the contents of the dialog box displayed by selecting "File"-> "Open from online".
+ Before modification: Please input a available url.
+ After modification: Please input an available url.
+
+### Show message when autoanalysis is denied
+
+ If you run the automatic analysis at the end of the game (without the next move), lizzie will be unresponsive.
+ Therefore, "No next move" is displayed in the dialog box.
+
+
 
  
 
