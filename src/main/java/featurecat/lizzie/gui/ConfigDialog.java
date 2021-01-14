@@ -261,7 +261,7 @@ public class ConfigDialog extends LizzieDialog {
     lblPreload.setHorizontalAlignment(SwingConstants.LEFT);
     engineTab.add(lblPreload);
 
-    JLabel lblEngine = new JLabel(resourceBundle.getString("LizzieConfig.title.engine"));
+    JLabel lblEngine = new JLabel(resourceBundle.getString("LizzieConfig.title.engine") + " 0");
     lblEngine.setBounds(6, 44, 92, 16);
     lblEngine.setHorizontalAlignment(SwingConstants.LEFT);
     engineTab.add(lblEngine);
@@ -633,12 +633,12 @@ public class ConfigDialog extends LizzieDialog {
     lblShowLcbWinrate.setBounds(6, 457, 157, 16);
     engineTab.add(lblShowLcbWinrate);
 
-    rdoLcb = new JRadioButton("Lcb");
-    rdoLcb.setBounds(167, 454, 69, 23);
+    rdoLcb = new JRadioButton(resourceBundle.getString("LizzieConfig.title.Lcb"));
+    rdoLcb.setBounds(167, 454, 120, 23);
     engineTab.add(rdoLcb);
 
-    rdoWinrate = new JRadioButton("Winrate");
-    rdoWinrate.setBounds(250, 454, 92, 23);
+    rdoWinrate = new JRadioButton(resourceBundle.getString("LizzieConfig.title.Winrate"));
+    rdoWinrate.setBounds(300, 454, 120, 23);
     engineTab.add(rdoWinrate);
 
     ButtonGroup wrgroup = new ButtonGroup();
