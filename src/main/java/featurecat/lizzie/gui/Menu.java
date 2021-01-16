@@ -28,11 +28,11 @@ public class Menu extends JMenuBar {
 
   private static JMenu kataGoRuleMenu;
   private static final String[] kataGoRuleNames = {
-    "japanese",
-    "chinese",
-    "chinese-ogs",
-    "chinese-kgs",
-    "korean",
+    resourceBundle.getString("ui.rule1"),
+    resourceBundle.getString("ui.rule2"),
+    resourceBundle.getString("ui.rule3"),
+    resourceBundle.getString("ui.rule4"),
+    resourceBundle.getString("ui.rule5"),
     "tromp-taylor",
     "stone-scoring",
     "aga",
