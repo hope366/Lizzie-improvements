@@ -145,6 +145,9 @@ public class VariationTree {
               CENTER_DIAM,
               CENTER_DIAM);
         }
+        g.setColor(Color.white);
+        g.drawString(
+            String.valueOf(startNode.getData().moveNumber), curposx + RING_DIAM, posy + RING_DIAM);
       }
       g.setColor(curcolor);
     }
@@ -197,6 +200,9 @@ public class VariationTree {
                 + dotoffset
                 + (diff > 0 ? dotoffset + 1 : dotoffsety)
                 + (Lizzie.config.nodeColorMode == 0 ? 1 : 0));
+        g.setColor(Color.white);
+        g.drawString(
+            String.valueOf(cur.getData().moveNumber), curposx + RING_DIAM, posy + RING_DIAM);
       }
     }
     // Now we have drawn all the nodes in this variation, and has reached the bottom of this
