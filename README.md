@@ -93,7 +93,6 @@
     - [Changes in v2.1](#changes-in-v21)
         - [Set region of interest like KaTrain 1.7](#set-region-of-interest-like-katrain-17)
     - [Changes in v2.2](#changes-in-v22)
-    - [Changes in v2.2](#changes-in-v22-1)
         - [Strengthening the engine menu](#strengthening-the-engine-menu)
         - [Region of interest](#region-of-interest)
         - [Revive score mode](#revive-score-mode)
@@ -559,8 +558,6 @@ the letter **x**) and you will see all the commands listed in the GUI.
  * We have also incorporated the new features introduced in KaTrain 1.7 into lizzie. You can specify a rectangular area to limit the analysis within that area.
    * Alt+drag to set region of interest.
    * Alt+click to reset it.
-
-## Changes in v2.2
 
 ## Changes in v2.2
 
