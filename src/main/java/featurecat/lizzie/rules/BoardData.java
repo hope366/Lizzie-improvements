@@ -23,6 +23,7 @@ public class BoardData {
   public boolean verify;
 
   public double winrate;
+  public boolean firstBranch;
   private int playouts;
   public double scoreMean;
   public List<MoveData> bestMoves;
