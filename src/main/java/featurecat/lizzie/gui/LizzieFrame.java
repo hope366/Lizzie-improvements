@@ -812,7 +812,7 @@ public class LizzieFrame extends MainFrame {
 
     cachedImage = new BufferedImage(mainPanel.getWidth(), mainPanel.getHeight(), TYPE_INT_ARGB);
 
-    // redraw background
+    /// redraw background
     createBackground(mainPanel.getWidth(), mainPanel.getHeight());
 
     List<String> commandsToShow = new ArrayList<>(Arrays.asList(commands));
