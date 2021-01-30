@@ -900,7 +900,7 @@ public class BoardRenderer {
         float brightness = 0.85f;
         float alpha =
             minAlpha
-                + (maxAlpha - minAlpha)
+                + max(0, maxAlpha - minAlpha)
                     * max(
                         0,
                         (float)
@@ -1816,7 +1816,7 @@ public class BoardRenderer {
   }
 
   public void increaseMaxAlpha(int k) {
-    maxAlpha = min(maxAlpha + k, 255);
+    maxAlpha = max(0, min(maxAlpha + k, 255));
     uiPersist.put("max-alpha", maxAlpha);
   }
 
