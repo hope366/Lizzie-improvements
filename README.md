@@ -100,6 +100,14 @@
         - [Switch rules from the menu](#switch-rules-from-the-menu)
         - [Fix typo](#fix-typo)
         - [Show message when autoanalysis is denied](#show-message-when-autoanalysis-is-denied)
+    - [Changes in v2.3](#changes-in-v23)
+        - [append player rank to player name](#append-player-rank-to-player-name)
+        - [Apply Japanese rules by default](#apply-japanese-rules-by-default)
+        - [Variation windows movenum](#variation-windows-movenum)
+        - [Fix D key (toggle "show KataGo score mean")(Limited to Katago)](#fix-d-key-toggle-show-katago-score-meanlimited-to-katago)
+        - [Continue analysis off after autoplay](#continue-analysis-off-after-autoplay)
+        - [Partial change of key operation explanation](#partial-change-of-key-operation-explanation)
+        - [About the opacity slide function of the candidate move](#about-the-opacity-slide-function-of-the-candidate-move)
 
 <!-- /TOC -->
 
@@ -598,6 +606,40 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  If you run the automatic analysis at the end of the game (without the next move), lizzie will be unresponsive.
  Therefore, "No next move" is displayed in the dialog box.
+
+## Changes in v2.3
+
+### append player rank to player name
+
+ If you load an SGF that has "BR" or "WR" properties, the rank of each player will be displayed at the bottom of the board.
+
+### Apply Japanese rules by default
+
+ Since the rule selection function was applied in v2.2, even if the rule is set to "japanese" in the configuration file, it remains "tromp-taylor" in lizzie. You can change it to "japanese" in lizzie, but to avoid confusion, I changed it so that "japanese" is applied by default when lizzie is started. Also, in the list of rule changes, "japanese" is placed at the top.
+
+### Variation windows movenum
+
+ The move number is displayed in the variation tree.
+
+### Fix D key (toggle "show KataGo score mean")(Limited to Katago)
+
+ By pressing the "D" key, you can now switch the display contents of the candidate move.
+ "Normal display"-> "Scorelead + number of searches"-> "Win rate + number of searches"
+
+### Continue analysis off after autoplay
+
+ If you press the R key while hovering the mouse cursor over the candidate hand, the change diagram will be played automatically, but until now, even if you performed with analysis off, the analysis will automatically turn on as soon as the autoplay ends. It was a specification to switch.
+ This is inconvenient if you want to observe the change diagram slowly, so if you perform automatic playback with analysis off, change it so that analysis remains off after the end.
+
+### Partial change of key operation explanation
+
+ "Ctrl undo/redo 10 moves"-> "Ctrl-PageUp/Down undo/redo 10 moves"
+ "Z toggle suggestions etc."-> "Shift-z toggle suggestions etc."
+ "r replay branch"-> "r automatic replay of vairiation diagram"
+
+### About the opacity slide function of the candidate move
+
+ You can adjust the opacity of the candidate move with Ctrl + Shift + PageUp / Down, but the amount of change at one time has been slightly increased.
 
 
 
