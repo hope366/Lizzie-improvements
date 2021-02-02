@@ -103,7 +103,7 @@ public class Input implements MouseListener, KeyListener, MouseWheelListener, Mo
   @Override
   public void mouseDragged(MouseEvent e) {
     if (e.isAltDown()) {
-      if (updateAnalysisRegionGeom(e)) Lizzie.frame.refresh();
+      dragAnalysisRegion(e);
       return;
     }
     Lizzie.frame.onMouseDragged(e.getX(), e.getY());
@@ -119,6 +119,10 @@ public class Input implements MouseListener, KeyListener, MouseWheelListener, Mo
 
   public static void undo() {
     undo(1);
+  }
+
+  public void dragAnalysisRegion(MouseEvent e) {
+    if (updateAnalysisRegionGeom(e)) Lizzie.frame.refresh();
   }
 
   public static void undo(int movesToAdvance) {
