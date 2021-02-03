@@ -84,7 +84,7 @@ public class BoardPane extends LizziePane {
     // resourceBundle.getString("LizzieFrame.commands.keyE"),
   };
 
-  public static BoardRenderer boardRenderer;
+  private static BoardRenderer boardRenderer;
 
   //  private final BufferStrategy bs;
   private static boolean started = false;
@@ -94,7 +94,6 @@ public class BoardPane extends LizziePane {
 
   private long lastAutosaveTime = System.currentTimeMillis();
   private boolean isReplayVariation = false;
-  private boolean isPonderingBeforeReplayVariation = false;
 
   LizzieMain owner;
   /** Creates a window */
@@ -112,7 +111,7 @@ public class BoardPane extends LizziePane {
           @Override
           public void mousePressed(MouseEvent e) {
             if (e.isAltDown() && e.getButton() == MouseEvent.BUTTON1) {
-              owner.input.startSettingAnalysisRegion(e);
+              owner.input.startSettingRegionOfInterest(e);
               Lizzie.frame.refresh();
               return;
             }
@@ -154,7 +153,7 @@ public class BoardPane extends LizziePane {
 
           @Override
           public void mouseDragged(MouseEvent e) {
-            owner.input.dragAnalysisRegion(e);
+            owner.input.dragRegionOfInterest(e);
           }
         });
   }
@@ -569,7 +568,6 @@ public class BoardPane extends LizziePane {
     int height = this.getHeight();
     int oriBranchLength = boardRenderer.getDisplayedBranchLength();
     isReplayVariation = true;
-    isPonderingBeforeReplayVariation = Lizzie.leelaz.isPondering();
     if (Lizzie.leelaz.isPondering()) Lizzie.leelaz.togglePonder();
     Runnable runnable =
         new Runnable() {
@@ -597,8 +595,7 @@ public class BoardPane extends LizziePane {
             }
             boardRenderer.setDisplayedBranchLength(oriBranchLength);
             isReplayVariation = false;
-            if (isPonderingBeforeReplayVariation && !Lizzie.leelaz.isPondering())
-              Lizzie.leelaz.togglePonder();
+            if (!Lizzie.leelaz.isPondering()) Lizzie.leelaz.togglePonder();
           }
         };
     Thread thread = new Thread(runnable);

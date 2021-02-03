@@ -25,10 +25,6 @@ public class Lizzie {
   public static String lizzieVersion = "0.7.4";
   private static String[] mainArgs;
   public static EngineManager engineManager;
-  public static String allow = "";
-  public static int[] allowStart = null;
-  public static int allowLeft, allowRight, allowTop, allowBottom;
-
   /** Launches the game window, and runs the game. */
   public static void main(String[] args) throws IOException {
     setLookAndFeel();

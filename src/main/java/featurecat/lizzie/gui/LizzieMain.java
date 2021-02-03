@@ -320,10 +320,6 @@ public class LizzieMain extends MainFrame {
     getFocus();
   }
 
-  public BoardRenderer getBoardRenderer() {
-    return BoardPane.boardRenderer;
-  }
-
   /**
    * Draws the game board and interface
    *

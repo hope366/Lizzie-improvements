@@ -715,7 +715,6 @@ public class Leelaz {
       isPondering = true;
       startPonderTime = System.currentTimeMillis();
     }
-    Lizzie.allow = "";
     sendCommand(
         String.format(
             "lz-analyze %d %s",
@@ -751,20 +750,24 @@ public class Leelaz {
                   .config
                   .getJSONObject("leelaz")
                   .getInt("analyze-update-interval-centisec")
-              + allowCommand()
+              + regionOfInterestCommand()
               + (this.isKataGo && Lizzie.config.showKataGoEstimate ? " ownership true" : ""));
     // until it responds to this, incoming
     // ponder results are obsolete
   }
 
-  private String allowCommand() {
-    return allowCommandFor("B") + allowCommandFor("W");
+  private String regionOfInterestCommand() {
+    return regionOfInterestCommand("B") + regionOfInterestCommand("W");
   }
 
-  private String allowCommandFor(String color) {
-    int untilDepth = 1;
-    String allow = Lizzie.allow;
-    return allow.isEmpty() ? "" : String.format(" allow %s %s %d", color, allow, untilDepth);
+  private String regionOfInterestCommand(String color) {
+    if (Lizzie.board.regionOfInterest.isEnabled()) {
+      int untilDepth = 1;
+      String vertices = Lizzie.board.regionOfInterest.vertices();
+      return String.format(" allow %s %s %d", color, vertices, untilDepth);
+    } else {
+      return "";
+    }
   }
 
   public void togglePonder() {
@@ -1036,8 +1039,7 @@ public class Leelaz {
     if (engineCommand.isEmpty()) {
       // we can use Lizzie even without an engine, if the config defaults to ""
       if (!isLoaded) {
-        if (Lizzie.config.panelUI) Lizzie.frame.refresh(1);
-        else Lizzie.frame.refresh();
+        Lizzie.frame.refresh();
         isLoaded = true;
       }
     }
