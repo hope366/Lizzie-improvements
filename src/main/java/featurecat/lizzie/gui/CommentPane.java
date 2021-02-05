@@ -100,7 +100,6 @@ public class CommentPane extends LizziePane {
             // TODO Auto-generated method stub
           }
         });
-
     //    mouseMotionAdapter = new MouseMotionAdapter() {
     //      @Override
     //      public void mouseDragged(MouseEvent e) {

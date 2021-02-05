@@ -98,6 +98,7 @@ public class Leelaz {
   ArrayList<Double> estimateArray = new ArrayList<Double>();
   public double scoreMean = 0;
   public double scoreStdev = 0;
+  public static int engineIndex = 0;
 
   public boolean isLeela0110 = false;
   private List<MoveData> leela0110BestMoves;
@@ -252,8 +253,8 @@ public class Leelaz {
   }
 
   public void normalQuit() {
-    isQuittingNormally = true;
     final int MAX_TRIALS = 5;
+    isQuittingNormally = true;
     sendCommand("quit");
     executor.shutdown();
     try {
@@ -383,7 +384,7 @@ public class Leelaz {
         }
         isLoaded = true;
         if (isResponseUpToDate()
-            || isLeela0110
+            || isLeela0110 && isPondering
             || isThinking
                 && (!isPondering && Lizzie.frame.isPlayingAgainstLeelaz || isInputCommand)) {
           List<MoveData> bm = isLeela0110 ? leela0110BestMoves : bestMoves;
@@ -412,7 +413,6 @@ public class Leelaz {
         Lizzie.frame.updateTitle();
         leela0110UpdatePonder();
         return;
-
       } else if (line.startsWith("=") || line.startsWith("?")) {
         if (!isLoaded) {
           isLoaded = true;
@@ -715,6 +715,7 @@ public class Leelaz {
       isPondering = true;
       startPonderTime = System.currentTimeMillis();
     }
+    Lizzie.board.regionOfInterest.reset();
     sendCommand(
         String.format(
             "lz-analyze %d %s",
@@ -821,9 +822,7 @@ public class Leelaz {
   }
 
   public List<MoveData> getBestMoves() {
-    synchronized (this) {
-      return bestMoves;
-    }
+    return bestMoves;
   }
 
   public Optional<String> getDynamicKomi() {
@@ -1006,6 +1005,7 @@ public class Leelaz {
     updateEngineCommandAndNickname(command);
     List<String> newList = splitCommand(engineCommand);
     if (this.commands.size() != newList.size()) {
+      engineIndex++;
       return true;
     } else {
       for (int i = 0; i < this.commands.size(); i++) {
@@ -1013,6 +1013,7 @@ public class Leelaz {
         String newParam = newList.get(i);
         if ((!Utils.isBlank(param) || !Utils.isBlank(newParam))
             && (Utils.isBlank(param) || !param.equals(newParam))) {
+          engineIndex++;
           return true;
         }
       }
@@ -1039,7 +1040,8 @@ public class Leelaz {
     if (engineCommand.isEmpty()) {
       // we can use Lizzie even without an engine, if the config defaults to ""
       if (!isLoaded) {
-        Lizzie.frame.refresh();
+        if (Lizzie.config.panelUI) Lizzie.frame.refresh(1);
+        else Lizzie.frame.refresh();
         isLoaded = true;
       }
     }
@@ -1054,7 +1056,7 @@ public class Leelaz {
     return isKataGo || supportScoremean;
   }
 
-  public String nicknameOrcurrentWeight() {
+  public String nicknameOrCurrentWeight() {
     return (engineNickname == null) ? currentWeight : engineNickname;
   }
 

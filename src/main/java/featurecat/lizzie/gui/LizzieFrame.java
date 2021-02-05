@@ -101,6 +101,7 @@ public class LizzieFrame extends MainFrame {
 
   private long lastAutosaveTime = System.currentTimeMillis();
   private boolean isReplayVariation = false;
+  private boolean isPonderingBeforeReplayVariation = false;
 
   // Display Comment
   private HTMLDocument htmlDoc;
@@ -808,7 +809,7 @@ public class LizzieFrame extends MainFrame {
 
     cachedImage = new BufferedImage(mainPanel.getWidth(), mainPanel.getHeight(), TYPE_INT_ARGB);
 
-    /// redraw background
+    // redraw background
     createBackground(mainPanel.getWidth(), mainPanel.getHeight());
 
     List<String> commandsToShow = new ArrayList<>(Arrays.asList(commands));
@@ -986,15 +987,31 @@ public class LizzieFrame extends MainFrame {
     MoveData bestMove = Utils.getBestMove();
     boolean validScore = (bestMove != null);
     if (Lizzie.leelaz.isKataGo && validScore) {
+      double score = bestMove.scoreMean;
       double stdev = bestMove.scoreStdev;
+      if (Lizzie.board.getHistory().isBlacksTurn()) {
+        if (Lizzie.config.showKataGoBoardScoreMean) {
+          score = score + Lizzie.board.getHistory().getGameInfo().getKomi();
+        }
+      } else {
+        if (Lizzie.config.showKataGoBoardScoreMean) {
+          score = score - Lizzie.board.getHistory().getGameInfo().getKomi();
+        }
+        if (Lizzie.config.kataGoScoreMeanAlwaysBlack) {
+          score = -score;
+        }
+      }
       text =
-          stdev == 0
-              ? text
-              : text
-                  + resourceBundle.getString("LizzieFrame.katago.scoreStdev")
-                  + ": "
-                  + String.format("%.1f", stdev)
-                  + " ";
+          resourceBundle.getString("LizzieFrame.katago.scoreMean")
+              + ": "
+              + String.format("%.1f", score)
+              + " ";
+      text =
+          text
+              + resourceBundle.getString("LizzieFrame.katago.scoreStdev")
+              + ": "
+              + String.format("%.1f", stdev)
+              + " ";
     }
     // Last move
     if (validLastWinrate && validWinrate) {
@@ -1044,18 +1061,7 @@ public class LizzieFrame extends MainFrame {
           winString,
           barPosxB + maxBarwidth - sw - 2 * strokeRadius,
           posY + barHeight - 2 * strokeRadius);
-      String scoreTextWithLeadingColor = Utils.getScoreTextWithLeadingColor();
-      if (scoreTextWithLeadingColor != "") {
-        String scoreString =
-            resourceBundle.getString("LizzieFrame.katago.scoreMean")
-                + ": "
-                + scoreTextWithLeadingColor;
-        sw = g.getFontMetrics().stringWidth(scoreString);
-        g.drawString(
-            scoreString,
-            barPosxB + maxBarwidth / 2 - sw / 2 - strokeRadius,
-            posY + barHeight - 2 * strokeRadius);
-      }
+
       g.setColor(Color.GRAY);
       Stroke oldstroke = g.getStroke();
       Stroke dashed =
@@ -1427,6 +1433,7 @@ public class LizzieFrame extends MainFrame {
     if (replaySteps <= 0) return; // Bad steps or no branch
     int oriBranchLength = boardRenderer.getDisplayedBranchLength();
     isReplayVariation = true;
+    isPonderingBeforeReplayVariation = Lizzie.leelaz.isPondering();
     if (Lizzie.leelaz.isPondering()) Lizzie.leelaz.togglePonder();
     Runnable runnable =
         new Runnable() {
@@ -1444,7 +1451,8 @@ public class LizzieFrame extends MainFrame {
             }
             Utils.setDisplayedBranchLength(boardRenderer, oriBranchLength);
             isReplayVariation = false;
-            if (!Lizzie.leelaz.isPondering()) Lizzie.leelaz.togglePonder();
+            if (isPonderingBeforeReplayVariation && !Lizzie.leelaz.isPondering())
+              Lizzie.leelaz.togglePonder();
           }
         };
     Thread thread = new Thread(runnable);

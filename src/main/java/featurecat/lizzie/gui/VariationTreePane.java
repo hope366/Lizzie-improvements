@@ -40,6 +40,7 @@ public class VariationTreePane extends LizziePane {
             }
           }
         });
+
     addMouseMotionListener(
         new MouseMotionListener() {
           @Override

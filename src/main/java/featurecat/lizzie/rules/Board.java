@@ -765,7 +765,21 @@ public class Board implements LeelazListener {
       Lizzie.leelaz.beginModifyingBoard();
       if (history.next().isPresent()) {
         // update leelaz board position, before updating to next node
-        Utils.playVoice();
+        if (Lizzie.config.playSound) {
+          Runnable runnable =
+              new Runnable() {
+                public void run() {
+                  try {
+                    Utils.playVoice();
+                  } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                  }
+                }
+              };
+          Thread thread = new Thread(runnable);
+          thread.start();
+        }
         Optional<int[]> lastMoveOpt = history.getData().lastMove;
         if (lastMoveOpt.isPresent()) {
           int[] lastMove = lastMoveOpt.get();

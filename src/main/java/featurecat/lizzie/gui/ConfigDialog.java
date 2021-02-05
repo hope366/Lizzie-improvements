@@ -1681,7 +1681,12 @@ public class ConfigDialog extends LizzieDialog {
                 int squareLength = 30;
                 int stoneRadius = squareLength < 4 ? 1 : squareLength / 2 - 1;
                 int size = stoneRadius * 2 + 1;
-                double r = stoneRadius * Lizzie.config.shadowSize / 100;
+                double r =
+                    stoneRadius
+                        * (theme == null || cmbThemes.getSelectedIndex() <= 0
+                            ? Lizzie.config.shadowSize
+                            : theme.shadowSize())
+                        / 100;
                 int shadowSize = (int) (r * 0.3) == 0 ? 1 : (int) (r * 0.3);
                 int fartherShadowSize = (int) (r * 0.17) == 0 ? 1 : (int) (r * 0.17);
                 int stoneX = x + squareLength * 2;
@@ -1827,9 +1832,8 @@ public class ConfigDialog extends LizzieDialog {
           new FileNameExtensionFilter(
               resourceBundle.getString("LizzieConfig.title.engine"), "exe", "bat", "sh");
       chooser.setFileFilter(filter);
-    } else {
-      // setVisible(false);
     }
+
     chooser.setMultiSelectionEnabled(false);
     chooser.setDialogTitle(resourceBundle.getString("LizzieConfig.prompt.selectEngine"));
     int result = chooser.showOpenDialog(this);
@@ -1930,9 +1934,7 @@ public class ConfigDialog extends LizzieDialog {
       Lizzie.initializeEngineManager();
     }
     try {
-      // if (Lizzie.engineManager != null) {
       Lizzie.engineManager.refresh();
-      // }
     } catch (JSONException e) {
       e.printStackTrace();
     } catch (IOException e) {

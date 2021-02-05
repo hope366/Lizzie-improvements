@@ -1467,7 +1467,6 @@ public class Menu extends JMenuBar {
 
     final JMenu helpMenu = new JMenu(resourceBundle.getString("Menu.help"));
     this.add(helpMenu);
-
     final JMenuItem keyboardControlsHelp =
         new JMenuItem(resourceBundle.getString("Menu.help.keyboardControls"));
     keyboardControlsHelp.addActionListener(
@@ -1499,8 +1498,8 @@ public class Menu extends JMenuBar {
       engine[i].setVisible(false);
       Leelaz engineDt = engineList.get(i);
       if (engineDt != null) {
-        // if (engineDt.currentWeight() != "")
-        engine[i].setText(engine[i].getText() + " : " + engineDt.nicknameOrcurrentWeight());
+        // if (engineDt.nicknameOrCurrentWeight() != "")
+        engine[i].setText(engine[i].getText() + " : " + engineDt.nicknameOrCurrentWeight());
         engine[i].setToolTipText(engineDt.engineCommand());
         engine[i].setVisible(true);
         int a = i;

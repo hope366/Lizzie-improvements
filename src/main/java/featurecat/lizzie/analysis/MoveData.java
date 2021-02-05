@@ -164,9 +164,8 @@ public class MoveData {
         result.coordinate = matchold.group(1);
         result.playouts = Integer.parseInt(matchold.group(2));
         result.winrate = Double.parseDouble(matchold.group(3));
-        if (Lizzie.leelaz.isLeela0110) result.policy = Double.parseDouble(matchold.group(4));
         result.variation =
-            Arrays.asList(matchold.group(5).split(" ", Lizzie.config.limitBranchLength));
+            Arrays.asList(matchold.group(4).split(" ", Lizzie.config.limitBranchLength));
         return result;
       }
     } else {
@@ -183,12 +182,10 @@ public class MoveData {
       Pattern.compile(
           "^ *(\\w\\d*) -> *(\\d+) \\(V: ([^%)]+)%\\) \\(LCB: ([^%)]+)%\\) \\([^\\)]+\\) PV: (.+).*$");
   private static Pattern summaryPatternWinrate =
-      Pattern.compile("^ *(\\w\\d*) -> *(\\d+) \\(V: ([^%)]+)%\\) \\([^\\)]+\\) ()PV: (.+).*$");
-  // dummy () before "PV" for compatibility with summaryPatternLeela0110
+      Pattern.compile("^ *(\\w\\d*) -> *(\\d+) \\(V: ([^%)]+)%\\) \\([^\\)]+\\) PV: (.+).*$");
   // support 0.16 0.15
   private static Pattern summaryPatternLeela0110 =
-      Pattern.compile(
-          "^ *(\\w\\d*) -> *(\\d+) \\(W: ([^%)]+)%\\).* \\(N: ([^%)]+)%\\) PV: (.+).*$");
+      Pattern.compile("^ *(\\w\\d*) -> *(\\d+) \\(W: ([^%)]+)%\\).*PV: (.+).*$");
 
   public static int getPlayouts(List<MoveData> moves) {
     int playouts = 0;

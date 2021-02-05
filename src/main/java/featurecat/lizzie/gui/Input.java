@@ -13,7 +13,6 @@ import java.awt.event.MouseWheelListener;
 import java.util.*;
 
 public class Input implements MouseListener, KeyListener, MouseWheelListener, MouseMotionListener {
-
   @Override
   public void mouseClicked(MouseEvent e) {}
 

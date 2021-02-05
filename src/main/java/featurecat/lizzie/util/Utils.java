@@ -181,10 +181,6 @@ public class Utils {
   }
 
   public static double actualScoreMean(double scoreMean) {
-    return actualScoreMean(scoreMean, Lizzie.config.kataGoScoreMeanAlwaysBlack);
-  }
-
-  private static double actualScoreMean(double scoreMean, boolean alwaysBlack) {
     double score = scoreMean;
     if (Lizzie.board.getHistory().isBlacksTurn()) {
       if (Lizzie.config.showKataGoBoardScoreMean) {
@@ -194,7 +190,7 @@ public class Utils {
       if (Lizzie.config.showKataGoBoardScoreMean) {
         score = score - Lizzie.board.getHistory().getGameInfo().getKomi();
       }
-      if (alwaysBlack) {
+      if (Lizzie.config.kataGoScoreMeanAlwaysBlack) {
         score = -score;
       }
     }
@@ -204,19 +200,6 @@ public class Utils {
   public static MoveData getBestMove() {
     List<MoveData> bestMoves = Lizzie.board.getHistory().getData().bestMoves;
     return (bestMoves.size() > 0) ? bestMoves.get(0) : null;
-  }
-
-  public static String getScoreTextWithLeadingColor() {
-    MoveData bestMove = getBestMove();
-    boolean validScore = Lizzie.leelaz.isKataGo && (bestMove != null);
-    if (!validScore) {
-      return "";
-    }
-    double blackScore = actualScoreMean(bestMove.scoreMean, true);
-    String leadingColor =
-        Lizzie.frame.resourceBundle.getString(
-            (blackScore >= 0) ? "CountDialog.bigBlack" : "CountDialog.bigWhite");
-    return leadingColor + "+" + String.format("%.1f", Math.abs(blackScore));
   }
 
   public static Integer txtFieldValue(JTextField txt) {
@@ -392,44 +375,15 @@ public class Utils {
         }
       };
 
-  public static void playVoice() {
-    if (!Lizzie.config.playSound || isPlayingSound) return;
+  public static void playVoice() throws Exception {
+    if (isPlayingSound) return;
+    isPlayingSound = true;
     Runnable runnable =
         new Runnable() {
           public void run() {
             try {
-              isPlayingSound = true;
-              Runnable runnable =
-                  new Runnable() {
-                    public void run() {
-                      try {
-                        Thread.sleep(100);
-                        isPlayingSound = false;
-                      } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                      }
-                    }
-                  };
-              Thread thread = new Thread(runnable);
-              thread.start();
-              BoardHistoryNode node = Lizzie.board.getHistory().getCurrentHistoryNode();
-              if (node.previous().isPresent()) {
-                if (node.getData().blackCaptures > node.previous().get().getData().blackCaptures) {
-                  if (node.getData().blackCaptures - node.previous().get().getData().blackCaptures
-                      >= 3) playVoice("\\sound\\deadStoneMore.wav");
-                  else playVoice("\\sound\\deadStone.wav");
-                } else {
-                  if (node.getData().whiteCaptures
-                      > node.previous().get().getData().whiteCaptures) {
-                    if (node.getData().whiteCaptures - node.previous().get().getData().whiteCaptures
-                        >= 3) playVoice("\\sound\\deadStoneMore.wav");
-                    else playVoice("\\sound\\deadStone.wav");
-                  } else playVoice("\\sound\\Stone.wav");
-                }
-              } else {
-                playVoice("\\sound\\Stone.wav");
-              }
+              Thread.sleep(100);
+              isPlayingSound = false;
             } catch (Exception e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
@@ -438,10 +392,35 @@ public class Utils {
         };
     Thread thread = new Thread(runnable);
     thread.start();
+    BoardHistoryNode node = Lizzie.board.getHistory().getCurrentHistoryNode();
+    if (node.previous().isPresent()) {
+      if (node.getData().blackCaptures > node.previous().get().getData().blackCaptures) {
+        if (node.getData().blackCaptures - node.previous().get().getData().blackCaptures >= 3)
+          playVoice("\\sound\\deadStoneMore.wav");
+        else playVoice("\\sound\\deadStone.wav");
+      } else {
+        if (node.getData().whiteCaptures > node.previous().get().getData().whiteCaptures) {
+          if (node.getData().whiteCaptures - node.previous().get().getData().whiteCaptures >= 3)
+            playVoice("\\sound\\deadStoneMore.wav");
+          else playVoice("\\sound\\deadStone.wav");
+        } else playVoice("\\sound\\Stone.wav");
+      }
+    } else {
+      playVoice("\\sound\\Stone.wav");
+    }
+    return;
   }
 
   private static void playVoice(String wav) throws Exception {
-    String filePath = (new File("")).getAbsolutePath() + wav;
+    File file = new File("");
+    String courseFile = "";
+    try {
+      courseFile = file.getCanonicalPath();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    String filePath = courseFile + wav;
     if (!filePath.equals("")) {
       // Get audio input stream
       AudioInputStream audioInputStream = null;

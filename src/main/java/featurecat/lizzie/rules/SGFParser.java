@@ -121,20 +121,20 @@ public class SGFParser {
     if (Lizzie.leelaz != null) {
       Lizzie.leelaz.supportScoremean = false;
     }
+
     // Detach engine for avoiding useless "play" and "undo" (#752)
     // except for handicap stones in parseValue() (#765).
     Lizzie.leelaz.isAttached = false;
     parseValue(value, null, false);
     Lizzie.leelaz.isAttached = true;
-
     return true;
   }
 
   private static BoardHistoryList parseValue(
       String value, BoardHistoryList history, boolean isBranch) {
-
     boolean originalPlaySound = Lizzie.config.playSound;
     Lizzie.config.playSound = false;
+
     int subTreeDepth = 0;
     // Save the variation step count
     Map<Integer, Integer> subTreeStepMap = new HashMap<Integer, Integer>();
@@ -313,6 +313,8 @@ public class SGFParser {
                         .getScoreMeanFromBestMoves(Lizzie.board.getData().bestMoves);
               }
             }
+            Lizzie.board.getData().engineIndex = Leelaz.engineIndex;
+            Lizzie.board.getData().komi = Lizzie.board.getHistory().getGameInfo().getKomi();
           } else if (tag.equals("AB") || tag.equals("AW")) {
             int[] move = convertSgfPosToCoord(tagContent);
             Stone color = tag.equals("AB") ? Stone.BLACK : Stone.WHITE;

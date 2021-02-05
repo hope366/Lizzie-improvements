@@ -25,6 +25,7 @@ public class Lizzie {
   public static String lizzieVersion = "0.7.4";
   private static String[] mainArgs;
   public static EngineManager engineManager;
+
   /** Launches the game window, and runs the game. */
   public static void main(String[] args) throws IOException {
     setLookAndFeel();

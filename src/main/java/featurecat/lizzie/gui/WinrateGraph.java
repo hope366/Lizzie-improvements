@@ -131,6 +131,11 @@ public class WinrateGraph {
     if (Lizzie.config.dynamicWinrateGraphWidth && this.numMovesOfPlayed > 0) {
       numMoves = this.numMovesOfPlayed;
     }
+    if (Lizzie.config.dynamicWinrateGraphWidth
+        && curMove.getData().moveNumber - 1 > this.numMovesOfPlayed) {
+      this.numMovesOfPlayed = curMove.getData().moveNumber - 1;
+      numMoves = this.numMovesOfPlayed;
+    }
 
     while (node.previous().isPresent()) {
       double wr = node.getData().winrate;
@@ -296,13 +301,9 @@ public class WinrateGraph {
         Font origFont = g.getFont();
         g.setColor(Color.WHITE);
         Font f = new Font("", Font.BOLD, 15);
-        int sign =
-            Lizzie.config.kataGoScoreMeanAlwaysBlack
-                ? 1
-                : Lizzie.board.getHistory().isBlacksTurn() ? 1 : -1;
         g.setFont(f);
         g.drawString(
-            String.format("%.1f", sign * curCurscoreMean),
+            String.format("%.1f", curCurscoreMean),
             posx + (curMovenum * width / numMoves) - 2 * DOT_RADIUS,
             posy
                 + height / 2
