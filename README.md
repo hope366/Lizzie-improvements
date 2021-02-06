@@ -106,7 +106,6 @@
         - [Variation windows movenum](#variation-windows-movenum)
         - [Fix D key (toggle "show KataGo score mean")(Limited to Katago)](#fix-d-key-toggle-show-katago-score-meanlimited-to-katago)
         - [Continue analysis off after autoplay](#continue-analysis-off-after-autoplay)
-        - [Partial change of key operation explanation](#partial-change-of-key-operation-explanation)
         - [About the opacity slide function of the candidate move](#about-the-opacity-slide-function-of-the-candidate-move)
 
 <!-- /TOC -->
@@ -630,12 +629,6 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
  If you press the R key while hovering the mouse cursor over the candidate hand, the change diagram will be played automatically, but until now, even if you performed with analysis off, the analysis will automatically turn on as soon as the autoplay ends. It was a specification to switch.
  This is inconvenient if you want to observe the change diagram slowly, so if you perform automatic playback with analysis off, change it so that analysis remains off after the end.
-
-### Partial change of key operation explanation
-
- "Ctrl undo/redo 10 moves"-> "Ctrl-PageUp/Down undo/redo 10 moves"
- "Z toggle suggestions etc."-> "Shift-z toggle suggestions etc."
- "r replay branch"-> "r automatic replay of vairiation diagram"
 
 ### About the opacity slide function of the candidate move
 
