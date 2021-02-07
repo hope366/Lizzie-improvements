@@ -478,10 +478,9 @@ public class BoardPane extends LizziePane {
     } else {
       if (boardRenderer.isShowingNormalBoard()) {
         setDisplayedBranchLength(boardRenderer.getReplayBranch());
-      } else {
-        if (boardRenderer.getDisplayedBranchLength() > 1) {
-          boardRenderer.incrementDisplayedBranchLength(-1);
-        }
+      }
+      if (boardRenderer.getDisplayedBranchLength() > 1) {
+        boardRenderer.incrementDisplayedBranchLength(-1);
       }
     }
   }
