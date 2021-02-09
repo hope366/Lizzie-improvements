@@ -192,25 +192,7 @@ public class WinratePane extends LizziePane {
     MoveData bestMove = Utils.getBestMove();
     boolean validScore = (bestMove != null);
     if (Lizzie.leelaz.isKataGo && validScore) {
-      double score = bestMove.scoreMean;
       double stdev = bestMove.scoreStdev;
-      if (Lizzie.board.getHistory().isBlacksTurn()) {
-        if (Lizzie.config.showKataGoBoardScoreMean) {
-          score = score + Lizzie.board.getHistory().getGameInfo().getKomi();
-        }
-      } else {
-        if (Lizzie.config.showKataGoBoardScoreMean) {
-          score = score - Lizzie.board.getHistory().getGameInfo().getKomi();
-        }
-        if (Lizzie.config.kataGoScoreMeanAlwaysBlack) {
-          score = -score;
-        }
-      }
-      text =
-          LizzieMain.resourceBundle.getString("LizzieFrame.katago.scoreMean")
-              + ":"
-              + String.format("%.1f", score)
-              + " ";
       text =
           text
               + LizzieMain.resourceBundle.getString("LizzieFrame.katago.scoreStdev")
@@ -266,6 +248,18 @@ public class WinratePane extends LizziePane {
           winString,
           barPosxB + maxBarwidth - sw - 2 * strokeRadius,
           posY + barHeight - 2 * strokeRadius);
+      String scoreTextWithLeadingColor = Utils.getScoreTextWithLeadingColor();
+      if (scoreTextWithLeadingColor != "") {
+        String scoreString =
+            Lizzie.frame.resourceBundle.getString("LizzieFrame.katago.scoreMean")
+                + ": "
+                + scoreTextWithLeadingColor;
+        sw = g.getFontMetrics().stringWidth(scoreString);
+        g.drawString(
+            scoreString,
+            barPosxB + maxBarwidth / 2 - sw / 2 - strokeRadius,
+            posY + barHeight - 2 * strokeRadius);
+      }
 
       g.setColor(Color.GRAY);
       Stroke oldstroke = g.getStroke();
