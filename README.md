@@ -629,8 +629,6 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 When the mouse cursor is placed on a candidate move and the R key is pressed, the change diagram is automatically replayed, but until now, even if the analysis was turned off, the analysis was automatically turned on after the automatic replay was finished. This is inconvenient if you want to observe the change chart slowly, so we have changed it so that if you turn off the analysis and perform auto-play, the analysis will remain off even after the auto-play is finished.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ### About the opacity slide function of the candidate move
 
  You can adjust the opacity of the candidate move with Ctrl + Shift + PageUp / Down, but the amount of change at one time has been slightly increased.
