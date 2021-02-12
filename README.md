@@ -679,7 +679,7 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
  Suppose you have created a variation tree like the one on the left. The figure on the right is two steps from the figure on the left, but it looks like the branches are separated. To eliminate this unnaturalness, we added a line at the top.
  Also, if the start number is right next to the node, it often overlaps with the line, so I fine-tuned it to the lower right of the node.
 
- <img src="https://user-images.githubusercontent.com/63999713/107733832-4f8dea80-6d3f-11eb-925f-53f58fa4f616.png" width="40%"><img src="https://user-images.githubusercontent.com/63999713/107733840-54529e80-6d3f-11eb-827a-48eb92fc81e5.png" width="40%">
+ <img src="https://user-images.githubusercontent.com/63999713/107733832-4f8dea80-6d3f-11eb-925f-53f58fa4f616.png" width="40%">   <img src="https://user-images.githubusercontent.com/63999713/107733840-54529e80-6d3f-11eb-827a-48eb92fc81e5.png" width="40%">
 
 ### Fixed a bug where the rightmost change is not visible in the variation tree
 
