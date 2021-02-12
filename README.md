@@ -107,6 +107,15 @@
         - [Fix D key (toggle "show KataGo score mean")(Limited to Katago)](#fix-d-key-toggle-show-katago-score-meanlimited-to-katago)
         - [Continue analysis off after autoplay](#continue-analysis-off-after-autoplay)
         - [About the opacity slide function of the candidate move](#about-the-opacity-slide-function-of-the-candidate-move)
+    - [Changes in v2.4](#changes-in-v24)
+        - [Apply change diagram confirmation function to normal mode](#apply-change-diagram-confirmation-function-to-normal-mode)
+        - [Aply "Add as branch" to normal mode](#aply-add-as-branch-to-normal-mode)
+        - [A function to display the start number in advance when checking the change diagram](#a-function-to-display-the-start-number-in-advance-when-checking-the-change-diagram)
+        - [About inputting engine commands](#about-inputting-engine-commands)
+        - [Fixed an issue that suddenly warped past nodes in panel UI mode](#fixed-an-issue-that-suddenly-warped-past-nodes-in-panel-ui-mode)
+        - [Bug that the move number "1" is not displayed](#bug-that-the-move-number-1-is-not-displayed)
+        - [Fixed variation tree drawing](#fixed-variation-tree-drawing)
+        - [Fixed a bug where the rightmost change is not visible in the variation tree](#fixed-a-bug-where-the-rightmost-change-is-not-visible-in-the-variation-tree)
 
 <!-- /TOC -->
 
@@ -632,6 +641,56 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
 ### About the opacity slide function of the candidate move
 
  You can adjust the opacity of the candidate move with Ctrl + Shift + PageUp / Down, but the amount of change at one time has been slightly increased.
+
+## Changes in v2.4
+
+### Apply change diagram confirmation function to normal mode
+
+ As a function limited to the panel UI mode, there is a function that you can check the change diagram one by one by scrolling the mouse up and down or the arrow keys up and down on the candidate move.
+ In normal mode, you can get the same effect by holding down the Z key and performing the same operation, but in v2.4, it has been improved so that you can operate without the Z key as in the panel UI mode.
+ In addition, there was a small bug regarding this function. There was a bug that did not respond only to the first "↑" or up scroll. It has been fixed in v2.4.
+
+### Aply "Add as branch" to normal mode
+
+ This is a function limited to the panel UI mode, and there is "Add as branch" by right-clicking on the candidate move. By doing this, you can add the change diagram shown by AI as a branch. I think it's a very convenient function because you can record the reference map shown by AI with one touch without manually arranging the stones one by one. Previously it was a function limited to the panel UI mode, but in v2.4 this function can also be used in the normal mode.
+ There was also a small bug with this feature. There was a bug that the color of the added branch stones would be reversed black and white when using this function when there were no stones on the board yet. It has been fixed in v2.4.
+
+### A function to display the start number in advance when checking the change diagram
+
+ When you place the mouse cursor on the candidate hand and hold down the "Z" key and scroll the mouse up or down or check the change diagram with the up and down keys of the cursor, the stone has not been displayed on the board until now. It was a specification to arrange the stones, but in v2.4 it is a specification to arrange the stones with the start number displayed in advance.
+
+### About inputting engine commands
+
+ In the input of leelazero and sai engine commands, I think that one normal space is inserted after "-w" or "--weights".
+ If the number of spaces is 0 or 2 or more, the engine will start but the engine menu field will be blank.
+ Previously this was the specification, but in v2.4 it has been changed so that even if the number of spaces is 0 or 2 or more, it works as if it had one space.
+
+### Fixed an issue that suddenly warped past nodes in panel UI mode
+
+ Only in v2.2 and v2.3, there was a problem that suddenly warped to the past node when arranging stones in panel UI mode.
+ It seems to be a bug related to the function that limits the analysis area, but it has been fixed in v2.4.
+
+### Bug that the move number "1" is not displayed
+ 
+ There was a bug that "1" was not displayed on the first stone when placing a stone on an empty board. This bug was not in the official version of lizzie-v0.7.4, but only in the improved version of lizzie. It has been fixed in v2.4.
+
+### Fixed variation tree drawing
+
+ Suppose you have created a variation tree like the one on the left. The figure on the right is two steps from the figure on the left, but it looks like the branches are separated. To eliminate this unnaturalness, we added a line at the top.
+ Also, if the start number is right next to the node, it often overlaps with the line, so I fine-tuned it to the lower right of the node.
+
+ <img src="https://user-images.githubusercontent.com/63999713/107733832-4f8dea80-6d3f-11eb-925f-53f58fa4f616.png" width="40%"><img src="https://user-images.githubusercontent.com/63999713/107733840-54529e80-6d3f-11eb-827a-48eb92fc81e5.png" width="40%">
+
+### Fixed a bug where the rightmost change is not visible in the variation tree
+
+ "(; (; B [aa] (; W [da]) (; W [ea] (; B [fa]) (; B [ga]) (; B [ha]) (; B [ia]) (; B [ja]) (; B [ka]) (; B [la]) (; B [ma]) (; B [na]) (; B [oa]) (; B [pa]) ( ; B [qa]) (; B [ra]) (; B [sa]))) (; B [ab]; W [bb])) "
+ Load this SGF file and put your first move on A18. This is a move included in the variation tree, but I don't actually see the A18 move in the variation tree.
+ This bug has been fixed.
+
+
+
+
+
 
 
 
