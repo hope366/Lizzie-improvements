@@ -627,8 +627,9 @@ the letter **x**) and you will see all the commands listed in the GUI.
 
 ### Continue analysis off after autoplay
 
- If you press the R key while hovering the mouse cursor over the candidate hand, the change diagram will be played automatically, but until now, even if you performed with analysis off, the analysis will automatically turn on as soon as the autoplay ends. It was a specification to switch.
- This is inconvenient if you want to observe the change diagram slowly, so if you perform automatic playback with analysis off, change it so that analysis remains off after the end.
+When the mouse cursor is placed on a candidate move and the R key is pressed, the change diagram is automatically replayed, but until now, even if the analysis was turned off, the analysis was automatically turned on after the automatic replay was finished. This is inconvenient if you want to observe the change chart slowly, so we have changed it so that if you turn off the analysis and perform auto-play, the analysis will remain off even after the auto-play is finished.
+
+Translated with www.DeepL.com/Translator (free version)
 
 ### About the opacity slide function of the candidate move
 
