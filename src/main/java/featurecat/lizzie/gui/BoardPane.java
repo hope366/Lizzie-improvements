@@ -527,13 +527,14 @@ public class BoardPane extends LizziePane {
     if (generateGif) {
       FileNameExtensionFilter filter = new FileNameExtensionFilter("*.gif", "GIF");
       JSONObject filesystem = Lizzie.config.persisted.getJSONObject("filesystem");
-      JFileChooser chooser = new JFileChooser(filesystem.getString("last-folder"));
+      JFileChooser chooser = new JFileChooser(filesystem.getString("last-image-folder"));
       chooser.setAcceptAllFileFilterUsed(false);
       chooser.setFileFilter(filter);
       chooser.setMultiSelectionEnabled(false);
       int result = chooser.showSaveDialog(null);
       if (result == JFileChooser.APPROVE_OPTION) {
         File file = chooser.getSelectedFile();
+        filesystem.put("last-image-folder", file.getParent());
         if (file.exists()) {
           int ret =
               JOptionPane.showConfirmDialog(
@@ -607,7 +608,7 @@ public class BoardPane extends LizziePane {
 
   public void saveImage() {
     JSONObject filesystem = Lizzie.config.persisted.getJSONObject("filesystem");
-    JFileChooser chooser = new JFileChooser(filesystem.getString("last-folder"));
+    JFileChooser chooser = new JFileChooser(filesystem.getString("last-image-folder"));
     chooser.setAcceptAllFileFilterUsed(false);
     //    String writerNames[] = ImageIO.getWriterFormatNames();
     FileNameExtensionFilter filter1 = new FileNameExtensionFilter("*.png", "PNG");
@@ -622,6 +623,7 @@ public class BoardPane extends LizziePane {
     int result = chooser.showSaveDialog(null);
     if (result == JFileChooser.APPROVE_OPTION) {
       File file = chooser.getSelectedFile();
+      filesystem.put("last-image-folder", file.getParent());
       String ext =
           chooser.getFileFilter() instanceof FileNameExtensionFilter
               ? ((FileNameExtensionFilter) chooser.getFileFilter()).getExtensions()[0].toLowerCase()
