@@ -659,6 +659,8 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
 
  When you place the mouse cursor on the candidate hand and hold down the "Z" key and scroll the mouse up or down or check the change diagram with the up and down keys of the cursor, the stone has not been displayed on the board until now. It was a specification to arrange the stones, but in v2.4 it is a specification to arrange the stones with the start number displayed in advance.
 
+ ![ttt](https://user-images.githubusercontent.com/63999713/107847550-e8039800-6e2f-11eb-9dbc-bebdc8fe7d82.png)
+
 ### About inputting engine commands
 
  In the input of leelazero and sai engine commands, I think that one normal space is inserted after "-w" or "--weights".
@@ -684,8 +686,10 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
 ### Fixed a bug where the rightmost change is not visible in the variation tree
 
  "(; (; B [aa] (; W [da]) (; W [ea] (; B [fa]) (; B [ga]) (; B [ha]) (; B [ia]) (; B [ja]) (; B [ka]) (; B [la]) (; B [ma]) (; B [na]) (; B [oa]) (; B [pa]) ( ; B [qa]) (; B [ra]) (; B [sa]))) (; B [ab]; W [bb])) "
- Load this SGF file and put your first move on A18. This is a move included in the variation tree, but I don't actually see the A18 move in the variation tree.
- This bug has been fixed.
+ Please save this data in SGF format and load it into lizzie-improved-v2.3. Then hit A-18 with the first move. A-18 is a movement included in the variation tree, but the movement of A-18 is not actually reflected in the variation tree.
+ The figure on the left is v2.3 and the figure on the right is v2.4 (improved).
+
+ <img src="https://user-images.githubusercontent.com/63999713/107847587-3ca71300-6e30-11eb-946f-4aa422706052.png" width="45%">   <img src="https://user-images.githubusercontent.com/63999713/107847590-429cf400-6e30-11eb-8472-4c0247a13d38.png" width="45%">
 
 
 
