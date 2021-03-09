@@ -490,6 +490,10 @@ public class SGFParser {
           }
           break;
         case ';':
+          if (inProp) {
+            // support C[a;b;c;]
+            tagContentBuilder.append(c);
+          }
           break;
         default:
           if (subTreeDepth > 1 && !isMultiGo) {
@@ -921,6 +925,7 @@ public class SGFParser {
             }
           }
           break;
+        case ';':
         case ')':
           if (inTag) {
             tagContentBuilder.append(c);
@@ -938,8 +943,6 @@ public class SGFParser {
           inTag = false;
           tagBuilder = new StringBuilder();
           addProperty(props, tag, tagContentBuilder.toString());
-          break;
-        case ';':
           break;
         default:
           if (inTag) {
