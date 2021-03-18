@@ -118,7 +118,7 @@
         - [Fixed a bug where the rightmost change is not visible in the variation tree](#fixed-a-bug-where-the-rightmost-change-is-not-visible-in-the-variation-tree)
     - [Changes in v2.5](#changes-in-v25)
         - [Significant improvements to the functionality of the comment panel](#significant-improvements-to-the-functionality-of-the-comment-panel)
-            - [Problems with saving images](#problems-with-saving-images)
+        - [Problems with saving images](#problems-with-saving-images)
         - [Display the pass mark even if the move number is displayed](#display-the-pass-mark-even-if-the-move-number-is-displayed)
         - [Problem with "-1" appearing after the path in the variation tree](#problem-with--1-appearing-after-the-path-in-the-variation-tree)
         - [Variation tree line anomaly](#variation-tree-line-anomaly)
@@ -705,7 +705,7 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
  "Edit comment" and "Copy comment (Ctrl + Shift + C)" have been newly added to "Game" on the toolbar.
  By using these, you can freely enter characters in the comment panel and easily copy the displayed character string to the clipboard.
 
-#### Problems with saving images
+### Problems with saving images
 
 In panel UI mode, you can save the image of the main board with "Alt + S", but fixed some problems with this feature.
 
