@@ -228,7 +228,10 @@ public abstract class MainFrame extends JFrame {
     textArea.setSize(textArea.getPreferredSize().width, textArea.getPreferredSize().height);
     int ret =
         JOptionPane.showConfirmDialog(
-            null, new JScrollPane(textArea), resourceBundle.getString("LizzieConfig.title.comment"), JOptionPane.OK_CANCEL_OPTION);
+            null,
+            new JScrollPane(textArea),
+            resourceBundle.getString("LizzieConfig.title.comment"),
+            JOptionPane.OK_CANCEL_OPTION);
     if (ret == JOptionPane.OK_OPTION) {
       Lizzie.board.getHistory().getData().comment = textArea.getText();
       refresh();
