@@ -1188,7 +1188,7 @@ public class Menu extends JMenuBar {
 
     gameMenu.addSeparator();
 
-    final JMenuItem editComment = new JMenuItem("Edit comment");
+    final JMenuItem editComment = new JMenuItem(resourceBundle.getString("Menu.game.editComment"));
     editComment.addActionListener(
         new ActionListener() {
           @Override
@@ -1198,7 +1198,7 @@ public class Menu extends JMenuBar {
         });
     gameMenu.add(editComment);
 
-    final JMenuItem copyComment = new JMenuItem("Copy comment(Ctrl+Shift+C)");
+    final JMenuItem copyComment = new JMenuItem(resourceBundle.getString("Menu.game.copyComment"));
     copyComment.addActionListener(
         new ActionListener() {
           @Override
