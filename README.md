@@ -116,6 +116,12 @@
         - [Bug that the move number "1" is not displayed](#bug-that-the-move-number-1-is-not-displayed)
         - [Fixed variation tree drawing](#fixed-variation-tree-drawing)
         - [Fixed a bug where the rightmost change is not visible in the variation tree](#fixed-a-bug-where-the-rightmost-change-is-not-visible-in-the-variation-tree)
+    - [Changes in v2.5](#changes-in-v25)
+        - [Significant improvements to the functionality of the comment panel](#significant-improvements-to-the-functionality-of-the-comment-panel)
+            - [Problems with saving images](#problems-with-saving-images)
+        - [Display the pass mark even if the move number is displayed](#display-the-pass-mark-even-if-the-move-number-is-displayed)
+        - [Problem with "-1" appearing after the path in the variation tree](#problem-with--1-appearing-after-the-path-in-the-variation-tree)
+        - [Variation tree line anomaly](#variation-tree-line-anomaly)
 
 <!-- /TOC -->
 
@@ -690,6 +696,48 @@ When the mouse cursor is placed on a candidate move and the R key is pressed, th
  The figure on the left is v2.3 and the figure on the right is v2.4 (improved).
 
  <img src="https://user-images.githubusercontent.com/63999713/107847587-3ca71300-6e30-11eb-946f-4aa422706052.png" width="45%">   <img src="https://user-images.githubusercontent.com/63999713/107847590-429cf400-6e30-11eb-8472-4c0247a13d38.png" width="45%">
+
+## Changes in v2.5
+
+### Significant improvements to the functionality of the comment panel
+
+ It is now possible to enter any comment in the comment panel. Also, you can now copy the string displayed in the comment panel to the clipboard. This makes it easier to translate non-native displays.
+ "Edit comment" and "Copy comment (Ctrl + Shift + C)" have been newly added to "Game" on the toolbar.
+ By using these, you can freely enter characters in the comment panel and easily copy the displayed character string to the clipboard.
+
+#### Problems with saving images
+
+In panel UI mode, you can save the image of the main board with "Alt + S", but fixed some problems with this feature.
+
+* Four types of file formats that can be saved are registered: "png", "jpg", "gif", and "bmp". Of these, "jpg" and "bmp" were disabled, so this has been fixed.
+* Since the folder to be referenced when saving the image was the folder where the game record was last saved, it has been modified to refer to the folder where the image was last saved.
+* If you try to overwrite and save by entering "fff.png" while the file "fff.png" has already been saved, a warning message will be displayed asking if you really want to overwrite, but "fff" If you just enter "" and try to save it, it will be overwritten without a warning message.To prevent this, in v2.5, a warning message is displayed even when you try to overwrite and save by entering "fff".
+* When I entered "fff.png" and saved it, the file name was "fff.png.png", so I changed it so that it is saved as "fff.png".
+
+### Display the pass mark even if the move number is displayed
+
+ If you pass when the move number is hidden, the pass mark will be displayed in the center of the main board, but it has been changed so that the pass mark is displayed even when the move number is displayed.
+
+### Problem with "-1" appearing after the path in the variation tree
+
+ When passing, the start number of the variation tree is displayed as "-1", and all the nodes after that are also displayed as "-1", so this has been fixed.
+
+### Variation tree line anomaly
+
+ Let's create a variation tree as shown on the left with normal mode + default config. Then, the line becomes a dotted line as shown in the figure. Also, as shown in the figure on the right, if the start of the main tree is fixed at 1, there was a bug that all the lines of other branches became thick.
+ The thickness of the line in the figure on the right depends on the value of "Thickness of the winning percentage line" in Settings → Theme, and setting it to 1 will eliminate the appearance, but set the bug in the figure on the left to 1. Is not resolved. These bugs have been fixed in v2.5.
+
+ <img src="https://user-images.githubusercontent.com/63999713/108279328-c6a00480-71bf-11eb-8111-f102551a2be7.png" width="45%">   <img src="https://user-images.githubusercontent.com/63999713/108279336-ce5fa900-71bf-11eb-87b5-ecee98a5be6a.png" width="45%">
+
+
+
+
+
+ 
+
+
+
+ 
 
 
 
