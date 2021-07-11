@@ -228,7 +228,7 @@ public abstract class MainFrame extends JFrame {
     textArea.setSize(textArea.getPreferredSize().width, textArea.getPreferredSize().height);
     int ret =
         JOptionPane.showConfirmDialog(
-            null,
+            this,
             new JScrollPane(textArea),
             resourceBundle.getString("LizzieConfig.title.comment"),
             JOptionPane.OK_CANCEL_OPTION);
@@ -399,7 +399,7 @@ public abstract class MainFrame extends JFrame {
     JFileChooser chooser = new JFileChooser(filesystem.getString("last-folder"));
     chooser.setFileFilter(filter);
     chooser.setMultiSelectionEnabled(false);
-    int result = chooser.showSaveDialog(null);
+    int result = chooser.showSaveDialog(this);
     if (result == JFileChooser.APPROVE_OPTION) {
       File file = chooser.getSelectedFile();
       if (!(file.getPath().endsWith(".sgf") || file.getPath().endsWith(".SGF"))) {
@@ -408,7 +408,7 @@ public abstract class MainFrame extends JFrame {
       if (file.exists()) {
         int ret =
             JOptionPane.showConfirmDialog(
-                null,
+                this,
                 resourceBundle.getString("LizzieFrame.prompt.sgfExists"),
                 "Warning",
                 JOptionPane.OK_CANCEL_OPTION);
@@ -423,7 +423,7 @@ public abstract class MainFrame extends JFrame {
         }
       } catch (IOException err) {
         JOptionPane.showConfirmDialog(
-            null,
+            this,
             resourceBundle.getString("LizzieFrame.prompt.failedTosaveFile"),
             "Error",
             JOptionPane.ERROR);
@@ -464,7 +464,7 @@ public abstract class MainFrame extends JFrame {
       }
     } catch (IOException err) {
       JOptionPane.showConfirmDialog(
-          null,
+          this,
           resourceBundle.getString("LizzieFrame.prompt.failedToOpenFile"),
           "Error",
           JOptionPane.ERROR);
