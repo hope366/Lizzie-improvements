@@ -410,20 +410,21 @@ public class Utils {
     Thread thread = new Thread(runnable);
     thread.start();
     BoardHistoryNode node = Lizzie.board.getHistory().getCurrentHistoryNode();
+    String soundPath = File.separator + "sound" + File.separator;
     if (node.previous().isPresent()) {
       if (node.getData().blackCaptures > node.previous().get().getData().blackCaptures) {
         if (node.getData().blackCaptures - node.previous().get().getData().blackCaptures >= 3)
-          playVoice("\\sound\\deadStoneMore.wav");
-        else playVoice("\\sound\\deadStone.wav");
+          playVoice(soundPath + "deadStoneMore.wav");
+        else playVoice(soundPath + "deadStone.wav");
       } else {
         if (node.getData().whiteCaptures > node.previous().get().getData().whiteCaptures) {
           if (node.getData().whiteCaptures - node.previous().get().getData().whiteCaptures >= 3)
-            playVoice("\\sound\\deadStoneMore.wav");
-          else playVoice("\\sound\\deadStone.wav");
-        } else playVoice("\\sound\\Stone.wav");
+            playVoice(soundPath + "deadStoneMore.wav");
+          else playVoice(soundPath + "deadStone.wav");
+        } else playVoice(soundPath + "Stone.wav");
       }
     } else {
-      playVoice("\\sound\\Stone.wav");
+      playVoice(soundPath + "Stone.wav");
     }
     return;
   }
