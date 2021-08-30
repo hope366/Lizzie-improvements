@@ -306,10 +306,12 @@ public class LizzieMain extends MainFrame {
                   showingRecorded ? String.format("%d/", totalPlayouts) : "";
               visitsString =
                   String.format(
-                      " %s%d playouts, %d visits/second",
+                      " %s%d %s, %d %s",
                       backgroundTotalPlayoutsString,
                       displayedTotalPlayouts,
-                      (totalPlayouts > lastPlayouts) ? totalPlayouts - lastPlayouts : 0);
+                      resourceBundle.getString("LizzieFrame.playouts"),
+                      (totalPlayouts > lastPlayouts) ? totalPlayouts - lastPlayouts : 0,
+                      resourceBundle.getString("LizzieFrame.visits"));
               updateTitle();
               lastPlayouts = totalPlayouts;
             } catch (Exception e) {

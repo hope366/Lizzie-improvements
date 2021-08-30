@@ -447,7 +447,14 @@ public class Utils {
       } catch (Exception e) {
         JOptionPane.showMessageDialog(
             Lizzie.frame,
-            resourceBundle.getString("Utils.playSound.noFileHint") + " \"" + wav + "\"");
+            resourceBundle.getString("Utils.playSound.noFileHint")
+                + " \""
+                + wav
+                + "\""
+                + "\n\n"
+                + e.getClass().getName()
+                + ": "
+                + e.getMessage());
         Lizzie.config.togglePlaySound();
         return;
       }
