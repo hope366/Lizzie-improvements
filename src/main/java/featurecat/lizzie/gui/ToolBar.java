@@ -85,17 +85,6 @@ public class ToolBar extends JToolBar {
     add(kataEstimate);
     addSeparator();
 
-    JButton estimate = new JButton(resourceBundle.getString("ToolBar.estimate"));
-    estimate.setFocusable(false);
-    estimate.addActionListener(
-        new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-            Lizzie.frame.toggleEstimateByZen();
-          }
-        });
-    add(estimate);
-    addSeparator();
-
     JButton showPolicy = new JButton(resourceBundle.getString("ToolBar.showPolicy"));
     showPolicy.setFocusable(false);
     showPolicy.addActionListener(

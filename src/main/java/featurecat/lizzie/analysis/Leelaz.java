@@ -9,8 +9,10 @@ import featurecat.lizzie.util.Utils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -370,6 +372,16 @@ public class Leelaz {
           if (System.currentTimeMillis() - startPonderTime > maxAnalyzeTimeMillis
               && !Lizzie.board.inAnalysisMode()) {
             togglePonder();
+            Lizzie.frame.refresh();
+            String startPonderTimeText =
+                new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(startPonderTime));
+            String message =
+                String.format(
+                        "Paused by the time limit (%d min from %s).\n\n",
+                        maxAnalyzeTimeMillis / MINUTE, startPonderTimeText)
+                    + "Push spacebar to resume.\n"
+                    + "Click \"Settings > Engine\" menu to change \"Max Analyze Time\".";
+            Utils.showMessageDialog(Lizzie.frame, message);
           }
         }
       } else if (line.contains(" -> ")) {

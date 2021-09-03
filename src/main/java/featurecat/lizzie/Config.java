@@ -199,18 +199,16 @@ public class Config {
     if (alreadyTriedOnce) return false;
 
     boolean modified = false;
-    String theme = ui.optString("theme", "");
     JSONArray blunderWinrateThresholds = ui.optJSONArray("blunder-winrate-thresholds");
     JSONArray blunderNodeColors = ui.optJSONArray("blunder-node-colors");
-    boolean isDefaultTheme = theme.equals("Default");
     boolean isEmptyBlunderWinrateThresholds =
         (blunderWinrateThresholds == null || blunderWinrateThresholds.length() == 0);
     boolean isEmptyBlunderNodeColors =
         (blunderNodeColors == null || blunderNodeColors.length() == 0);
 
-    if (isDefaultTheme && isEmptyBlunderWinrateThresholds && isEmptyBlunderNodeColors) {
+    if (isEmptyBlunderWinrateThresholds && isEmptyBlunderNodeColors) {
       // https://github.com/featurecat/lizzie/issues/423#issuecomment-438878060
-      ui.put("blunder-winrate-thresholds", new JSONArray("[-30, -20, -10.1, -5.1, 5, 10.1]"));
+      ui.put("blunder-winrate-thresholds", new JSONArray("[-15, -10, -5, -3, 0, 5]"));
       ui.put(
           "blunder-node-colors",
           new JSONArray(
