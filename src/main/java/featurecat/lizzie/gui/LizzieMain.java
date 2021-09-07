@@ -798,6 +798,10 @@ public class LizzieMain extends MainFrame {
     boardPane.saveImage();
   };
 
+  public void updateScoreMenu(boolean on) {
+    menu.updateScoreMenu(on);
+  }
+
   protected void updateEngineMenuInEDT(List<Leelaz> engineList) {
     Utils.mustBeEventDispatchThread();
     menu.updateEngineMenu(engineList);

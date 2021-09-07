@@ -502,6 +502,8 @@ public abstract class MainFrame extends JFrame {
 
   public void saveImage() {};
 
+  public abstract void updateScoreMenu(boolean on);
+
   public void updateEngineMenu(List<Leelaz> engineList) {
     SwingUtilities.invokeLater(
         new Runnable() {
