@@ -1282,7 +1282,7 @@ public class Menu extends JMenuBar {
 
     gameMenu.addSeparator();
 
-    scoreMode = new JCheckBoxMenuItem("Score game");
+    scoreMode = new JCheckBoxMenuItem(resourceBundle.getString("Menu.game.scoreGame"));
     gameMenu.add(scoreMode);
     scoreMode.addActionListener(
         new ActionListener() {
@@ -1344,16 +1344,6 @@ public class Menu extends JMenuBar {
           }
         });
     analyzeMenu.add(showPolicy);
-
-    final JMenuItem estimate = new JMenuItem(resourceBundle.getString("Menu.analyze.estimate"));
-    estimate.addActionListener(
-        new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-            Lizzie.frame.estimateByZen();
-          }
-        });
-    analyzeMenu.add(estimate);
 
     kataGoRuleMenu = new JMenu(resourceBundle.getString("Menu.analyze.rule"));
     kataGoRuleMenu.setEnabled(false);
