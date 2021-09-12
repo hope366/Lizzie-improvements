@@ -798,14 +798,10 @@ public class LizzieMain extends MainFrame {
     boardPane.saveImage();
   };
 
-  public void updateScoreMenu(boolean on) {
-    menu.updateScoreMenu(on);
-  }
-
   protected void updateEngineMenuInEDT(List<Leelaz> engineList) {
-    Utils.mustBeEventDispatchThread();
-    menu.updateEngineMenu(engineList);
-    refresh(); // update "Engine is loading..."
+  Utils.mustBeEventDispatchThread();
+  menu.updateEngineMenu(engineList);
+  refresh(); // update "Engine is loading..."
   }
 
   protected void updateEngineIconInEDT(List<Leelaz> engineList, int currentEngineNo) {
@@ -815,6 +811,10 @@ public class LizzieMain extends MainFrame {
 
   public Optional<int[]> convertScreenToCoordinates(int x, int y) {
     return boardPane.convertScreenToCoordinates(x, y);
+  }
+
+  public void updateScoreMenu(boolean on) {
+    menu.updateScoreMenu(on);
   }
 
   public boolean openRightClickMenu(int x, int y) {

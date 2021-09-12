@@ -501,9 +501,7 @@ public abstract class MainFrame extends JFrame {
   public abstract void drawEstimateRectZen(ArrayList<Double> estimateArray);
 
   public void saveImage() {};
-
-  public abstract void updateScoreMenu(boolean on);
-
+  
   public void updateEngineMenu(List<Leelaz> engineList) {
     SwingUtilities.invokeLater(
         new Runnable() {
@@ -527,6 +525,8 @@ public abstract class MainFrame extends JFrame {
   protected abstract void updateEngineIconInEDT(List<Leelaz> engineList, int currentEngineNo);
 
   public abstract Optional<int[]> convertScreenToCoordinates(int x, int y);
+
+  public abstract void updateScoreMenu(boolean on);
 
   public abstract boolean openRightClickMenu(int x, int y);
 
