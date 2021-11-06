@@ -799,9 +799,9 @@ public class LizzieMain extends MainFrame {
   };
 
   protected void updateEngineMenuInEDT(List<Leelaz> engineList) {
-  Utils.mustBeEventDispatchThread();
-  menu.updateEngineMenu(engineList);
-  refresh(); // update "Engine is loading..."
+    Utils.mustBeEventDispatchThread();
+    menu.updateEngineMenu(engineList);
+    refresh(); // update "Engine is loading..."
   }
 
   protected void updateEngineIconInEDT(List<Leelaz> engineList, int currentEngineNo) {

@@ -501,7 +501,7 @@ public abstract class MainFrame extends JFrame {
   public abstract void drawEstimateRectZen(ArrayList<Double> estimateArray);
 
   public void saveImage() {};
-  
+
   public void updateEngineMenu(List<Leelaz> engineList) {
     SwingUtilities.invokeLater(
         new Runnable() {

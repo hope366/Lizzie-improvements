@@ -1014,12 +1014,15 @@ public class LizzieFrame extends MainFrame {
 
       // Draw change of winrate bars
       if (validWinrate && validLastWinrate) {
+        double gain = 100 - lastWR - curWR;
         double blackLastWR = Lizzie.board.getData().blackToPlay ? 100 - lastWR : lastWR;
         int lastPosxW = barPosxB + (int) (blackLastWR * maxBarwidth / 100);
+        int diffPosX = Math.min(barPosxW, lastPosxW);
+        int diffWidth = Math.abs(barPosxW - lastPosxW);
         Stroke oldstroke = g.getStroke();
         g.setStroke(new BasicStroke(strokeRadius));
-        g.setColor(Color.GRAY);
-        g.drawLine(lastPosxW, barPosY, lastPosxW, barPosY + barHeight);
+        g.setColor(gain >= 0 ? Color.GREEN : Color.RED);
+        g.drawRect(diffPosX, barPosY, diffWidth, barHeight);
         g.setStroke(oldstroke);
       }
 
@@ -1551,8 +1554,8 @@ public class LizzieFrame extends MainFrame {
   }
 
   protected void updateEngineMenuInEDT(List<Leelaz> engineList) {
-  Utils.mustBeEventDispatchThread();
-  menu.updateEngineMenu(engineList);
+    Utils.mustBeEventDispatchThread();
+    menu.updateEngineMenu(engineList);
   }
 
   protected void updateEngineIconInEDT(List<Leelaz> engineList, int currentEngineNo) {
