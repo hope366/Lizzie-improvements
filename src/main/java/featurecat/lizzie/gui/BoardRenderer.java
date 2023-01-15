@@ -157,7 +157,7 @@ public class BoardRenderer {
     //        timer.lap("rendering images");
 
     if (!isMainBoard) {
-      if (Lizzie.config.showBranchNow()) {
+      if (showingBranch) {
         drawMoveNumbers(g);
       }
       return;
@@ -709,14 +709,15 @@ public class BoardRenderer {
 
   /** Render the shadows and stones in correct background-foreground order */
   private void renderImages(Graphics2D g) {
+    boolean showBranchNow = Lizzie.config.showBranchNow() || !isMainBoard;
     g.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
     g.drawImage(cachedEstimateLargeRectImage, x, y, null);
     g.drawImage(cachedStonesShadowImage, x, y, null);
-    if (Lizzie.config.showBranchNow()) {
+    if (showBranchNow) {
       g.drawImage(branchStonesShadowImage, x, y, null);
     }
     g.drawImage(cachedStonesImage, x, y, null);
-    if (Lizzie.config.showBranchNow()) {
+    if (showBranchNow) {
       g.drawImage(branchStonesImage, x, y, null);
     }
     g.drawImage(cachedEstimateSmallRectImage, x, y, null);
@@ -959,13 +960,15 @@ public class BoardRenderer {
           strokeWidth = 2;
           if (textData.isBestMove) {
             if (textData.hasMaxWinrate) {
-              g.setColor(textData.circleColor.darker());
+              g.setColor(Color.BLUE.brighter());
               strokeWidth = 1;
             } else {
-              g.setColor(Color.RED.brighter());
+              g.setColor(Color.RED);
+              strokeWidth = 2;
             }
           } else {
-            g.setColor(Color.BLUE.brighter());
+            g.setColor(Color.BLUE);
+            strokeWidth = 2;
           }
         } else {
           g.setColor(textData.circleColor.darker());

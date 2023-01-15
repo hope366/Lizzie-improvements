@@ -29,7 +29,12 @@ public class EngineParameter extends LizzieDialog {
   private Color oriColor;
 
   /** Create the dialog. */
-  public EngineParameter(String enginePath, String weightPath, ConfigDialog configDialog) {
+  public EngineParameter(
+    String enginePath,
+    String weightPath,
+    String configPath,
+    String engineType,
+    ConfigDialog configDialog) {
     setTitle(configDialog.resourceBundle.getString("LizzieConfig.title.parameterConfig"));
     setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
     setModal(true);
@@ -47,7 +52,10 @@ public class EngineParameter extends LizzieDialog {
     txtCommandLine = new JTextField();
     txtCommandLine.setEditable(false);
     txtCommandLine.setBounds(89, 12, 565, 26);
-    txtCommandLine.setText(enginePath + " --weights " + weightPath);
+    String weightOption = engineType.equals("leelaz") ? " --weights " : " gtp -model ";
+    String configArgs =
+        (engineType.equals("leelaz") || configPath.isEmpty()) ? "" : " -config " + configPath + " ";
+    txtCommandLine.setText(enginePath + weightOption + weightPath + configArgs);
     contentPanel.add(txtCommandLine);
     txtCommandLine.setColumns(10);
     JLabel lblParameter =
@@ -66,7 +74,9 @@ public class EngineParameter extends LizzieDialog {
         });
     txtParameter.setColumns(10);
     txtParameter.setBounds(89, 44, 565, 26);
-    txtParameter.setText("-g --lagbuffer 0 ");
+    if (engineType.equals("leelaz")) {
+      txtParameter.setText("-g --lagbuffer 0 ");
+    }
     oriColor = txtParameter.getBackground();
     contentPanel.add(txtParameter);
 
@@ -94,7 +104,7 @@ public class EngineParameter extends LizzieDialog {
     okButton.addActionListener(
         new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            if (txtParameter.getText().isEmpty()) {
+            if (txtParameter.getText().isEmpty() && engineType.equals("leelaz")) {
               txtParameter.setBackground(Color.RED);
             } else {
               parameters = txtParameter.getText().trim();
