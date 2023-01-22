@@ -32,11 +32,11 @@ public class EngineParameter extends LizzieDialog {
 
   /** Create the dialog. */
   public EngineParameter(
-    String enginePath,
-    String weightPath,
-    String configPath,
-    String engineType,
-    ConfigDialog configDialog) {
+      String enginePath,
+      String weightPath,
+      String configPath,
+      String engineType,
+      ConfigDialog configDialog) {
     setTitle(configDialog.resourceBundle.getString("LizzieConfig.title.parameterConfig"));
     setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
     setModal(true);
